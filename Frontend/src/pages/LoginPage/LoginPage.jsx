@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./login-page.css";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -18,7 +19,14 @@ export default function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
+      const response = await axios.post("/users/login", {
+        email,
+        password,
+      });
+      const token = response.data.token;
+      localStorage.setItem("token", token);
       history.push("/products");
     } catch (error) {
       console.log(error);
