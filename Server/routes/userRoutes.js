@@ -37,7 +37,7 @@ router.post("/login", async (req, res) => {
   try {
     const body = req.body;
     const users = await usersModel.findUserByEmail(body.email);
-    console.log(users);
+
     if (users.length > 0) {
       const correctPassowrd = await bcrypt.comparePassword(
         body.password,

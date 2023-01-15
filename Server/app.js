@@ -4,9 +4,13 @@ const app = express();
 const usersRoutes = require("./routes/userRoutes");
 const mongoose = require("mongoose");
 const connectToDb = require("./config/connectToDB");
+const cors = require("cors");
+const path = require("path");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/users/", usersRoutes);
 
