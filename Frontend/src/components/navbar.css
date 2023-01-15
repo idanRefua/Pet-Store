@@ -1,0 +1,42 @@
+.navbar {
+}
+.header-nav {
+  background: rgb(150, 252, 149);
+  background: linear-gradient(
+    162deg,
+    rgba(150, 252, 149, 1) 0%,
+    rgba(162, 249, 254, 1) 25%,
+    rgba(145, 211, 255, 1) 50%,
+    rgba(160, 247, 215, 1) 75%,
+    rgba(191, 250, 163, 1) 100%
+  );
+
+  /*   background: rgb(118, 199, 252);
+  background: radial-gradient(
+    circle,
+    rgba(118, 199, 252, 1) 0%,
+    rgba(149, 241, 246, 1) 19%,
+    rgba(160, 247, 215, 1) 59%,
+    rgba(150, 252, 149, 1) 76%,
+    rgba(191, 250, 163, 1) 100%
+  ); */
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: black;
+}
+.navbar .nav-item .nav-link {
+  text-align: center;
+  margin: 20px 5px 0px;
+}
+
+.home-logo {
+  width: 6em;
+  height: 4.5em;
+  margin-right: 10px;
+  border-radius: 25px;
+}
+.nav-link:hover {
+  background-color: rgb(255, 246, 246);
+  border-radius: 10px;
+}
