@@ -3,11 +3,15 @@ import "./login-page.css";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth";
+import jwt_decode from "jwt-decode";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -27,6 +31,9 @@ export default function LoginPage() {
       });
       const token = response.data.token;
       localStorage.setItem("token", token);
+      const decodedToken = jwt_decode(token);
+      dispatch(authActions.login());
+      dispatch(authActions.updateUserInfo(decodedToken));
       history.push("/products");
     } catch (error) {
       console.log(error);
@@ -39,10 +46,7 @@ export default function LoginPage() {
         <br />
         <br />
         <div className="mb-3">
-          <label
-            htmlFor=""
-            className="form-label d-flex align-items-center justify-content-center "
-          >
+          <label className="form-label d-flex align-items-center justify-content-center ">
             Email
           </label>
           <br />
@@ -57,10 +61,7 @@ export default function LoginPage() {
         </div>
 
         <div className="mb-3">
-          <label
-            htmlFor=""
-            className="form-label d-flex align-items-center justify-content-center"
-          >
+          <label className="form-label d-flex align-items-center justify-content-center">
             Password
           </label>
           <br />
