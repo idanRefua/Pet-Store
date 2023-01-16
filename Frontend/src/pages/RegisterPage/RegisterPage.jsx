@@ -49,10 +49,7 @@ export default function RegisterPage() {
         <br />
         <br />
         <div className="mb-3">
-          <label
-            htmlFor=""
-            className="form-label d-flex align-items-center justify-content-center "
-          >
+          <label className="form-label d-flex align-items-center justify-content-center ">
             Email
           </label>
           <br />
@@ -66,10 +63,7 @@ export default function RegisterPage() {
           />
         </div>
         <div className="mb-3">
-          <label
-            htmlFor=""
-            className="form-label d-flex align-items-center justify-content-center"
-          >
+          <label className="form-label d-flex align-items-center justify-content-center">
             Password
           </label>
           <br />
