@@ -11,15 +11,6 @@
     rgba(191, 250, 163, 1) 100%
   );
 
-  /*   background: rgb(118, 199, 252);
-  background: radial-gradient(
-    circle,
-    rgba(118, 199, 252, 1) 0%,
-    rgba(149, 241, 246, 1) 19%,
-    rgba(160, 247, 215, 1) 59%,
-    rgba(150, 252, 149, 1) 76%,
-    rgba(191, 250, 163, 1) 100%
-  ); */
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: bold;
   font-size: 1.1rem;

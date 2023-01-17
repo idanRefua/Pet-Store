@@ -11,6 +11,7 @@ function NavBar() {
   const dispatch = useDispatch();
   const history = useHistory();
   const loggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const admin = useSelector((state) => state.auth.userInfo.admin);
   const logOut = () => {
     dispatch(authActions.logout());
     dispatch(authActions.updateUserInfo({}));
@@ -92,7 +93,7 @@ function NavBar() {
                     <NavLink
                       className="nav-link active"
                       aria-current="page"
-                      to="/usercart"
+                      to="/userinfo/cart"
                     >
                       My Cart
                     </NavLink>
@@ -121,6 +122,28 @@ function NavBar() {
                             My Profile
                           </NavLink>
                         </li>
+                        {admin && (
+                          <Fragment>
+                            <li>
+                              <NavLink
+                                className="dropdown-item"
+                                to="/addproduct"
+                                activeClassName="activeLink"
+                              >
+                                Add Product
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink
+                                className="dropdown-item"
+                                to="/myproducts"
+                                activeClassName="activeLink"
+                              >
+                                My Products
+                              </NavLink>
+                            </li>
+                          </Fragment>
+                        )}
                         <li>
                           <NavLink
                             className="dropdown-item"
