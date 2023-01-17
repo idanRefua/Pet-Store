@@ -8,6 +8,8 @@ const productsSchema = new Schema({
   description: { type: String, required: true },
   likes: [String],
   createdBy: { type: mongoose.Types.ObjectId, required: true },
+  category: { type: String, required: true },
+  price: { type: Number, required: true },
   reviews: [
     {
       review: String,
@@ -19,12 +21,31 @@ const productsSchema = new Schema({
 
 const Products = mongoose.model("Products", productsSchema);
 
+const uploadProduct = (
+  title,
+  image,
+  description,
+  createdBy,
+  category,
+  price
+) => {
+  const product = new Products(
+    title,
+    image,
+    description,
+    createdBy,
+    category,
+    price
+  );
+  product.save();
+};
+
 const allProducts = () => {
   return Products.find();
 };
 
 const userProducts = (userId) => {
-  return Products.find({ _id: userId });
+  return Products.find({ createdBy: userId });
 };
 
 const productById = (productId) => {
@@ -35,4 +56,5 @@ module.exports = {
   allProducts,
   userProducts,
   productById,
+  uploadProduct,
 };

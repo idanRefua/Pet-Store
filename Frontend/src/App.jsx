@@ -8,10 +8,14 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import AddProductPage from "./pages/AddProductPage/AddProductPage";
+import MyProductsPage from "./pages/MyProducts/MyProductsPage";
+import ProductPage from "./pages/ProductPage/ProductPage";
 import { useEffect } from "react";
 import { authActions } from "./store/auth";
 import { useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
+import UserCartPage from "./pages/UserCartPage/UserCartPage";
 
 function App() {
   const history = useHistory();
@@ -50,7 +54,11 @@ function App() {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/aboutus" component={AboutUsPage} />
-          <Route path="/products" component={ProductsPage} />
+          <Route path="/products/" component={ProductsPage} />
+          <Route path="/addproduct" component={AddProductPage} />
+          <Route path="/myproducts" component={MyProductsPage} />
+          <Route path="/products/:id" component={ProductPage} />
+          <Route path="/userinfo/cart" component={UserCartPage} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </div>
