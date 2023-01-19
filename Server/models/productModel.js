@@ -44,12 +44,27 @@ const allProducts = () => {
   return Products.find();
 };
 
+const deleteProduct = (id) => {
+  return Products.findOneAndDelete({ _id: id });
+};
+
 const userProducts = (userId) => {
   return Products.find({ createdBy: userId });
 };
 
+const updateProduct = (id) => {
+  return Products.findOneAndUpdate({ _id: id });
+};
+
 const productById = (productId) => {
   return Products.findOne({ _id: productId });
+};
+
+const addToFavourites = (productId, userId) => {
+  return Products.findByIdAndUpdate(
+    { _id: productId },
+    { $addToSet: { likes: userId } }
+  );
 };
 
 module.exports = {
@@ -57,4 +72,7 @@ module.exports = {
   userProducts,
   productById,
   uploadProduct,
+  deleteProduct,
+  updateProduct,
+  addToFavourites,
 };
