@@ -16,6 +16,8 @@ import { authActions } from "./store/auth";
 import { useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 import UserCartPage from "./pages/UserCartPage/UserCartPage";
+import AuthRoute from "./authRoute/AuthRoute";
+import AuthRouteAdmin from "./authRoute/AuthRouteAdmin";
 
 function App() {
   const history = useHistory();
@@ -55,10 +57,10 @@ function App() {
           <Route path="/register" component={RegisterPage} />
           <Route path="/aboutus" component={AboutUsPage} />
           <Route path="/products/" component={ProductsPage} />
-          <Route path="/addproduct" component={AddProductPage} />
-          <Route path="/myproducts" component={MyProductsPage} />
+          <AuthRouteAdmin path="/addproduct" component={AddProductPage} />
+          <AuthRouteAdmin path="/myproducts" component={MyProductsPage} />
           <Route path="/products/:id" component={ProductPage} />
-          <Route path="/userinfo/cart" component={UserCartPage} />
+          <AuthRoute path="/userinfo/cart" component={UserCartPage} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </div>

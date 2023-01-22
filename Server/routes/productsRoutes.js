@@ -111,4 +111,14 @@ router.post("/addtofavourites/:id", authMiddleWare, async (req, res) => {
   }
 });
 
+router.get("/moreinfo/:id", async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const product = await productsModel.productById(productId);
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
 module.exports = router;
