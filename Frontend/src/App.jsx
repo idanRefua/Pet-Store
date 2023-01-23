@@ -56,12 +56,13 @@ function App() {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/aboutus" component={AboutUsPage} />
-          <Route path="/products/" component={ProductsPage} />
+          <Route path="/products" component={ProductsPage} />
           <AuthRouteAdmin path="/addproduct" component={AddProductPage} />
           <AuthRouteAdmin path="/myproducts" component={MyProductsPage} />
-          <Route path="/products/:id" component={ProductPage} />
+          <Route path="/product/description/:id" component={ProductPage} />
           <AuthRoute path="/userinfo/cart" component={UserCartPage} />
           <Route path="*" component={NotFoundPage} />
+          <Route path="/notfoundpage" component={NotFoundPage} />
         </Switch>
       </div>
     </Fragment>
