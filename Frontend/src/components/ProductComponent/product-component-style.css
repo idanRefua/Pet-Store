@@ -1,0 +1,17 @@
+.card {
+  margin: 5px;
+  padding: 0 !important;
+}
+
+.img-product {
+  border-bottom-left-radius: 100px !important;
+}
+
+.card:hover {
+  box-shadow: 10px 15px 20px rgb(117, 117, 117);
+}
+
+.img-product:hover {
+  border-bottom-left-radius: 0px !important;
+  transition: all 1s;
+}

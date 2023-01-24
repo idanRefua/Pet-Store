@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import ProductComponent from "../../components/ProductComponent/ProductComponent";
 export default function ProductsPage() {
   const history = useHistory();
   const [productsArr, setProductsArr] = useState([]);
@@ -11,7 +12,6 @@ export default function ProductsPage() {
         const products = await axios.get("/products/allproducts");
         const productsData = await products.data;
         setProductsArr(productsData);
-        console.log(productsData);
       } catch (error) {
         history.push("/notfound");
       }
@@ -19,15 +19,23 @@ export default function ProductsPage() {
     fetchData();
   }, []);
   return (
-    <div>
-      <h2>This is Products page</h2>
-      {productsArr.map((product) => {
-        return (
-          <div key={product._id}>
-            <p>{product.description}</p>
-          </div>
-        );
-      })}
-    </div>
+    <Fragment>
+      <br />
+      <br />
+      <br />
+      <div className="row">
+        {productsArr.map((product) => {
+          return (
+            <ProductComponent
+              id={product._id}
+              key={product._id}
+              image={product.image}
+              title={product.title}
+              description={product.description}
+            />
+          );
+        })}
+      </div>
+    </Fragment>
   );
 }
