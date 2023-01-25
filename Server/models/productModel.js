@@ -67,6 +67,35 @@ const addToFavourites = (productId, userId) => {
   );
 };
 
+const removeFromFavourites = (productId, userId) => {
+  return Products.findOneAndUpdate(
+    { _id: productId },
+    { $pull: { likes: userId } }
+  );
+};
+
+const checkIfUserReview = (productId, userId) => {
+  return Products.findOne({
+    _id: productId,
+    reviews: { $elemMatch: { byUser: userId } },
+  });
+};
+
+const addProductReview = (productId, userName, review, userId) => {
+  return Products.findOneAndUpdate(
+    { _id: productId },
+    {
+      $addToSet: {
+        reviews: {
+          review,
+          userName,
+          byUser: userId,
+        },
+      },
+    }
+  );
+};
+
 module.exports = {
   allProducts,
   userProducts,
@@ -75,4 +104,7 @@ module.exports = {
   deleteProduct,
   updateProduct,
   addToFavourites,
+  removeFromFavourites,
+  addProductReview,
+  checkIfUserReview,
 };

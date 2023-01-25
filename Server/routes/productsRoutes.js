@@ -1,6 +1,7 @@
 const express = require("express");
 const productsModel = require("../models/productModel");
 const authMiddleWare = require("../middleware/auth.middleware");
+const { json } = require("express");
 
 const router = express.Router();
 
@@ -111,6 +112,27 @@ router.post("/addtofavourites/:id", authMiddleWare, async (req, res) => {
   }
 });
 
+router.patch("/removefromfavourites/:id", authMiddleWare, async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const user = req.userData;
+    const product = await productsModel.productById(productId);
+    if (product.likes.includes(user._id)) {
+      const removeLike = await productsModel.removeFromFavourites(
+        productId,
+        user._id
+      );
+      res.status(200).json(removeLike);
+    } else {
+      throw "You didn't add this product to your favourites";
+    }
+
+    res.status(200).json(remove);
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+});
+
 router.get("/product/moreinfo/:id", async (req, res) => {
   try {
     const productId = req.params.id;
@@ -121,4 +143,25 @@ router.get("/product/moreinfo/:id", async (req, res) => {
   }
 });
 
+router.post("/addreview/:id", authMiddleWare, async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const body = req.body;
+    const user = req.userData;
+    const product = await productsModel.checkIfUserReview(productId, user._id);
+    if (!product) {
+      const review = await productsModel.addProductReview(
+        productId,
+        user.email,
+        body.review,
+        user._id
+      );
+      res.status(200).json(review);
+    } else {
+      throw "you already write your review on that product";
+    }
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
 module.exports = router;
