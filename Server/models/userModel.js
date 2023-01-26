@@ -24,9 +24,27 @@ const findUserByEmail = (email) => {
   return Users.find({ email });
 };
 
+const findUserById = (id) => {
+  return Users.find({ _id: id });
+};
+
 const deleteUserById = (id) => {
   const deleteUser = Users.findByIdAndDelete({ _id: id });
   return deleteUser;
 };
 
-module.exports = { allUsers, addUser, findUserByEmail, deleteUserById };
+const addProductToCart = (userId, productId) => {
+  return Users.findOneAndUpdate(
+    { _id: userId },
+    { $addToSet: { cartUser: productId } }
+  );
+};
+
+module.exports = {
+  allUsers,
+  addUser,
+  findUserByEmail,
+  deleteUserById,
+  addProductToCart,
+  findUserById,
+};

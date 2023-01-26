@@ -12,32 +12,57 @@ export default function ProductPage() {
   const [product, setProduct] = useState(null);
   const [productsReviews, setProductsReviews] = useState([]);
   const [productLikes, setProductLikes] = useState([]);
+  const [likes, setLikes] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const product = await axios.get(`/products/product/moreinfo/${id}
-        `);
-        const productData = await product.data;
-        setProduct(productData);
-        setProductsReviews(productData.reviews);
-        setProductLikes(productData.likes);
-      } catch (error) {
-        history.push("/notfoundpage");
-      }
-    };
-    fetchData();
-  }, [id, productsReviews]);
-
-  const handleAddReview = async () => {
-    try {
-      const reviewByUser = await axios.post(`/products/addreview/${id}`, {
-        review,
+    axios
+      .get(
+        `/products/product/moreinfo/${id}
+        `
+      )
+      .then((res) => {
+        setProduct(res.data);
+        setProductsReviews(res.data.reviews);
+        setProductLikes(res.data.likes);
+      })
+      .catch(() => {
+        history.push("/notfound");
       });
-      const dataReview = await reviewByUser.data;
-      console.log(dataReview);
-    } catch (error) {
-      alert("can't add review right not please try again later!");
-    }
+  }, [id, likes, userInfo._id]);
+
+  const handleAddReview = () => {
+    axios
+      .post(`/products/addreview/${id}`, {
+        review,
+      })
+      .then((res) => {
+        window.location.reload(false);
+      })
+      .catch((err) =>
+        alert("can't add review right not please try again later!")
+      );
+  };
+
+  const handleAddToFavourites = () => {
+    axios
+      .post(
+        `/products/addtofavourites/${id}
+      `
+      )
+      .then((res) => {
+        setLikes(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const handleRemoveFromFavourites = () => {
+    axios
+      .patch(`/products/removefromfavourites/${id}`)
+      .then((res) => {
+        setLikes(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
   };
 
   const hadnleReviewText = (e) => {
@@ -64,11 +89,20 @@ export default function ProductPage() {
               <br />
               <br />
               <p>
-                {!productLikes.includes(userInfo._id) && (
-                  <button>Add To Favourites</button>
-                )}
-                {productLikes.includes(userInfo._id) && (
-                  <button>Remove From Favourites</button>
+                {productLikes.includes(userInfo._id) ? (
+                  <button
+                    className="btn-info"
+                    onClick={handleRemoveFromFavourites}
+                  >
+                    Remove From Favourites
+                  </button>
+                ) : (
+                  <button
+                    className="btn-success"
+                    onClick={handleAddToFavourites}
+                  >
+                    Add To Favourites
+                  </button>
                 )}
               </p>
             </div>
@@ -81,7 +115,6 @@ export default function ProductPage() {
                 <textarea
                   type="text"
                   value={review}
-                  name=""
                   id="product-review"
                   rows={3}
                   cols={120}
@@ -107,16 +140,12 @@ export default function ProductPage() {
               <tbody>
                 {productsReviews.map((review) => {
                   return (
-                    <tr>
+                    <tr key={review._id}>
                       <td>{review.userName}</td>
                       <td>{review.review}</td>
                     </tr>
                   );
                 })}
-                {/*  <tr>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr> */}
               </tbody>
             </table>
           </div>

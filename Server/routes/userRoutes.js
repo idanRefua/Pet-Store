@@ -85,4 +85,14 @@ router.get("/admin", authMiddleware, async (req, res) => {
   }
 });
 
+router.get("/usercart", authMiddleware, async (req, res) => {
+  try {
+    const userData = req.userData;
+    const user = await usersModel.findUserById(userData._id);
+    res.status(200).json(user[0].cartUser);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
 module.exports = router;
