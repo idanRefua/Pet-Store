@@ -126,8 +126,6 @@ router.patch("/removefromfavourites/:id", authMiddleWare, async (req, res) => {
     } else {
       throw "You didn't add this product to your favourites";
     }
-
-    res.status(200).json(remove);
   } catch (error) {
     res.status(400).json({ error });
   }
