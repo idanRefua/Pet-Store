@@ -23,6 +23,7 @@ export default function ProductPage() {
         setProduct(res.data);
         setProductsReviews(res.data.reviews);
         setProductLikes(res.data.likes);
+        console.log(productsReviews);
       })
       .catch(() => {
         history.push("/notfound");
@@ -34,8 +35,15 @@ export default function ProductPage() {
       .post(`/products/addreview/${id}`, {
         review,
       })
-      .then((res) => {
-        window.location.reload(false);
+      .then(() => {
+        let newReview = {
+          _id: Math.random(),
+          review: review,
+          byUser: userInfo._id,
+          userName: userInfo.email,
+        };
+
+        setProductsReviews((prev) => prev.concat(newReview));
       })
       .catch((err) =>
         alert("can't add review right not please try again later!")
