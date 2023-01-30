@@ -1,7 +1,14 @@
+import { useSelector } from "react-redux";
+import MyProductsComponent from "../../components/MyProductsComponent/MyProductsComponent";
+const data = [];
+
 export default function MyProductsPage() {
+  const user = useSelector((state) => state.auth.userInfo);
   return (
     <div>
-      <h3>This is all your products you upload</h3>
+      <h3 className="">Hello,{user.email},This are all your products</h3>
+      <br />
+      <MyProductsComponent products={data} />
     </div>
   );
 }

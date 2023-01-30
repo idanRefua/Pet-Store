@@ -8,6 +8,7 @@ export default function ProductPage() {
   const history = useHistory();
   const { id } = useParams();
   const userInfo = useSelector((state) => state.auth.userInfo);
+  const loggedInUser = useSelector((state) => state.auth.isLoggedIn);
   const [review, setReview] = useState();
   const [product, setProduct] = useState(null);
   const [productsReviews, setProductsReviews] = useState([]);
@@ -95,24 +96,25 @@ export default function ProductPage() {
               <br />
               <br />
               <br />
-              <br />
-              <p>
-                {productLikes.includes(userInfo._id) ? (
-                  <button
-                    className="btn-info"
-                    onClick={handleRemoveFromFavourites}
-                  >
-                    Remove From Favourites
-                  </button>
-                ) : (
-                  <button
-                    className="btn-success"
-                    onClick={handleAddToFavourites}
-                  >
-                    Add To Favourites
-                  </button>
-                )}
-              </p>
+              {loggedInUser && (
+                <p>
+                  {productLikes.includes(userInfo._id) ? (
+                    <button
+                      className="btn-info"
+                      onClick={handleRemoveFromFavourites}
+                    >
+                      Remove From Favourites
+                    </button>
+                  ) : (
+                    <button
+                      className="btn-success"
+                      onClick={handleAddToFavourites}
+                    >
+                      Add To Favourites
+                    </button>
+                  )}
+                </p>
+              )}
             </div>
           </div>
           <div className="container reviews-table">
@@ -159,6 +161,8 @@ export default function ProductPage() {
           </div>
         </Fragment>
       )}
+      <br />
+      <br />
     </div>
   );
 }
