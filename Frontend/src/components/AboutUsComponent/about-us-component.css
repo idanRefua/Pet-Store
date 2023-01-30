@@ -1,0 +1,78 @@
+.about-us-box {
+  margin-top: 2.5em;
+}
+
+.about-us-title {
+  font-weight: bold;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 2.5em;
+  color: rgb(227, 32, 198);
+  border-bottom: 2px solid rgb(227, 32, 198);
+  text-shadow: -2px 2px rgb(115, 115, 115);
+  margin-bottom: 1.5em;
+}
+
+.about-us-content-box {
+  background: rgb(228, 131, 250);
+  background: linear-gradient(
+    216deg,
+    rgba(228, 131, 250, 1) 0%,
+    rgba(219, 173, 252, 1) 10%,
+    rgba(249, 104, 104, 0.9836309523809523) 23%,
+    rgba(247, 109, 115, 1) 37%,
+    rgba(231, 188, 153, 1) 46%,
+    rgba(218, 255, 186, 1) 65%,
+    rgba(121, 251, 219, 1) 78%,
+    rgba(214, 233, 255, 1) 92%,
+    rgba(89, 164, 255, 1) 100%
+  );
+  padding: 40px;
+  border-radius: 40px;
+  box-shadow: 17px 17px 15px black;
+}
+.story-title {
+  border-bottom: 2px solid rgb(227, 32, 198);
+  margin-bottom: 1.1em;
+  font-weight: bold;
+  font-size: 2.21em;
+  color: rgb(227, 32, 198);
+}
+
+.store-map {
+  margin-left: 3em;
+  border-radius: 50px;
+}
+
+.p-story-content {
+  font-size: 1.21em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 550;
+}
+
+.store-map-box {
+  margin-top: 2em !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  .store-map {
+    width: 340px;
+    margin-left: 0;
+  }
+
+  .about-us-title {
+    font-size: 2.1em;
+  }
+  .story-title {
+    font-size: 2em;
+  }
+  .p-story-content {
+    font-size: 1.1em;
+  }
+}
+
+@media only screen and (max-width: 766px) {
+  .store-map {
+    width: 400px;
+    margin-left: 0;
+  }
+}
