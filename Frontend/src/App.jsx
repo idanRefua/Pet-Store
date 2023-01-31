@@ -47,6 +47,7 @@ function App() {
   return (
     <Fragment>
       <NavBar />
+      <div className="container-fluid"></div>
       <div className="container">
         <Switch>
           <Route path="/" exact>

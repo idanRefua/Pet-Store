@@ -6,14 +6,14 @@ export default function UserCartPage() {
   const user = useSelector((state) => state.auth.userInfo);
   const [userCart, setUserCart] = useState([]);
 
-  useEffect(() => {
-    axios.get();
-  }, []);
+  /*  useEffect(() => {
+    axios.get()
+  }, []); */
 
   return (
     <div className="row">
       <h3 className="d-flex justify-content-center">
-        hello,{user.email}, This is your cart
+        hello,{user.name}, This is your cart
       </h3>
       <div className="products-cart col-sm-8">
         <p>

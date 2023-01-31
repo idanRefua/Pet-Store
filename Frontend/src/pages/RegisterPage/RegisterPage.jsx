@@ -7,10 +7,15 @@ import axios from "axios";
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [name, setName] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+
   const history = useHistory();
+
+  const handleUserName = (e) => {
+    setName(e.target.value);
+  };
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -27,6 +32,7 @@ export default function RegisterPage() {
 
     try {
       const response = await axios.post("/users/adduser", {
+        name,
         email,
         password,
       });
@@ -48,6 +54,19 @@ export default function RegisterPage() {
       <form className="login-form" onSubmit={handleRegister}>
         <br />
         <br />
+        <div className="mb-3">
+          <label className="form-label d-flex align-items-center justify-content-center ">
+            Name
+          </label>
+          <br />
+          <span></span>
+          <input
+            type="text"
+            className="form-control input-login"
+            value={name}
+            onChange={handleUserName}
+          />
+        </div>
         <div className="mb-3">
           <label className="form-label d-flex align-items-center justify-content-center ">
             Email

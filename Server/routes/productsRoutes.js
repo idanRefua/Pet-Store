@@ -58,7 +58,7 @@ router.delete("/deleteproduct/:productid", authMiddleWare, async (req, res) => {
     const user = req.userData;
     if (user.admin) {
       const product = await productsModel.productById(productId);
-      if (product.createdBy === user._id) {
+      if (product.createdBy.toString() === user._id) {
         const deleteProduct = await productsModel.deleteProduct(productId);
         res.status(200).json({ message: "The product delete succssfuly" });
       } else {

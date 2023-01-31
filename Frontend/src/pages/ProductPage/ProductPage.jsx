@@ -24,7 +24,6 @@ export default function ProductPage() {
         setProduct(res.data);
         setProductsReviews(res.data.reviews);
         setProductLikes(res.data.likes);
-        console.log(productsReviews);
       })
       .catch(() => {
         history.push("/notfound");
