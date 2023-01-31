@@ -21,6 +21,7 @@ router.post("/adduser", async (req, res) => {
     if (users.length === 0) {
       const hashPass = await bcrypt.createPassword(req.body.password);
       const addUser = await usersModel.addUser({
+        name: req.body.name,
         email: req.body.email,
         password: hashPass,
       });
@@ -46,6 +47,7 @@ router.post("/login", async (req, res) => {
       if (correctPassowrd) {
         const token = await jsonToken.generateToken({
           _id: users[0]._id,
+          name: users[0].name,
           email: users[0].email,
           admin: users[0].admin,
         });

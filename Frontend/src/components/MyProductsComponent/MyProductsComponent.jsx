@@ -1,25 +1,34 @@
+import { useHistory } from "react-router-dom";
+import "./my-products-component.css";
 export default function MyProductsComponent(props) {
-  if (props.products.length === 0) {
-    return <h2>Sorry you don't create products </h2>;
-  }
+  const history = useHistory();
+  const handleEdit = () => {
+    props.onEdit(props.id);
+  };
+
+  const handleDelete = () => {
+    props.onDelete(props.id);
+  };
+
+  const moveToProduct = () => {
+    history.push(`/product/description/${props.id}`);
+  };
 
   return (
-    <table className="table">
-      <thead>
-        <tr>
-          <th scope="col">Image</th>
-          <th scope="col">Product Title</th>
-          <th scope="col">Update / Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-      </tbody>
-    </table>
+    <tr>
+      <td>
+        <img
+          src={props.image}
+          style={{ height: "150px", width: "200px" }}
+          onClick={moveToProduct}
+          className="image-my-products-component"
+        />
+      </td>
+      <td>{props.title}</td>
+      <td>
+        <button onClick={handleEdit}>Edit Product</button>
+        <button onClick={handleDelete}>Delete Product</button>
+      </td>
+    </tr>
   );
 }

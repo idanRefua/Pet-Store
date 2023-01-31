@@ -10,6 +10,7 @@ import jwt_decode from "jwt-decode";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -45,6 +46,7 @@ export default function LoginPage() {
       <form className="login-form" onSubmit={handleLogin}>
         <br />
         <br />
+
         <div className="mb-3">
           <label className="form-label d-flex align-items-center justify-content-center ">
             Email
