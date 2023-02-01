@@ -1,0 +1,36 @@
+.register-form-box {
+  margin-top: 8.5em;
+}
+
+.register-form {
+  background: rgb(132, 155, 255);
+  background: linear-gradient(
+    156deg,
+    rgba(132, 155, 255, 1) 20%,
+    rgba(119, 144, 255, 0.8491597322522759) 64%,
+    rgba(161, 161, 161, 0.510224158022584) 91%
+  );
+  padding: 4em;
+  border-radius: 30px;
+  box-shadow: 15px 17px 20px black;
+  width: 500px;
+}
+
+.form-label {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.register-btn {
+  background-color: rgb(136, 232, 136) !important;
+  font-weight: bold !important;
+  height: 3em;
+  border-radius: 15px !important;
+  box-shadow: 5px 5px 5px black;
+}
+
+.p-error-msg {
+  font-weight: bold;
+  color: rgb(180, 18, 18);
+  font-size: 1.1em;
+}

@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import "./register-page-style.css";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import registerLogo from "../../imgs/register.svg";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -50,62 +50,64 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="register-form-box d-flex align-items-center justify-content-center">
-      <form className="login-form" onSubmit={handleRegister}>
-        <br />
-        <br />
-        <div className="mb-3">
-          <label className="form-label d-flex align-items-center justify-content-center ">
-            Name
-          </label>
-          <br />
-          <span></span>
-          <input
-            type="text"
-            className="form-control input-login"
-            value={name}
-            onChange={handleUserName}
-          />
+    <div className="register-form-box d-flex  justify-content-center">
+      <div className="row">
+        <div className="col-md-6 form-box">
+          <form className="register-form" onSubmit={handleRegister}>
+            <div className="mb-3">
+              <label className="form-label d-flex align-items-center justify-content-center ">
+                Name
+              </label>
+              <br />
+              <span></span>
+              <input
+                type="text"
+                className="form-control input-login"
+                value={name}
+                onChange={handleUserName}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label d-flex align-items-center justify-content-center ">
+                Email
+              </label>
+              <br />
+              <span></span>
+              <input
+                type="text"
+                placeholder="example@mail.com"
+                className="form-control input-login"
+                value={email}
+                onChange={handleEmail}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label d-flex align-items-center justify-content-center">
+                Password
+              </label>
+              <br />
+              <span></span>
+              <input
+                type="password"
+                className="form-control input-password"
+                value={password}
+                onChange={handlePassword}
+              />
+            </div>
+            <br></br>
+            <p className="p-error-msg">{errorMsg}</p>
+            <p>{successMsg}</p>
+            <p className=" d-flex align-items-center justify-content-center p-login-btn">
+              <button type="submit" className="btn register-btn">
+                Register Now !
+              </button>
+            </p>
+          </form>
         </div>
-        <div className="mb-3">
-          <label className="form-label d-flex align-items-center justify-content-center ">
-            Email
-          </label>
-          <br />
-          <span></span>
-          <input
-            type="text"
-            placeholder="example@mail.com"
-            className="form-control input-login"
-            value={email}
-            onChange={handleEmail}
-          />
+        <div className="col-md-6">
+          <img src={registerLogo} alt="image login" className="register-logo" />
         </div>
-        <div className="mb-3">
-          <label className="form-label d-flex align-items-center justify-content-center">
-            Password
-          </label>
-          <br />
-          <span></span>
-          <input
-            type="password"
-            className="form-control input-password"
-            value={password}
-            onChange={handlePassword}
-          />
-        </div>
-        <br></br>
-        <p>{errorMsg}</p>
-        <p>{successMsg}</p>
-        <p className=" d-flex align-items-center justify-content-center p-login-btn">
-          <button type="submit" className="btn login-btn">
-            Register Now !
-          </button>
-        </p>
-
-        <br />
-        <br />
-      </form>
+      </div>
     </div>
   );
 }
