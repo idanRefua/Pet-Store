@@ -1,5 +1,5 @@
-.register-form-box {
-  margin-top: 8.5em;
+.register-row {
+  margin-top: 8em !important;
 }
 
 .register-form {
@@ -12,6 +12,8 @@
   );
   padding: 4em;
   border-radius: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
   box-shadow: 15px 17px 20px black;
   width: 500px;
 }
@@ -33,4 +35,36 @@
   font-weight: bold;
   color: rgb(180, 18, 18);
   font-size: 1.1em;
+}
+.link-to-login {
+  color: black;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.link-to-login:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.register-logo {
+  width: 44em;
+}
+
+@media (min-width: 728px) and (max-width: 1280px) {
+  .register-logo {
+    width: 23em;
+    grid-column: 4;
+    margin-top: 4em;
+    margin-left: 10px;
+  }
+  .register-form {
+    padding: 2em;
+  }
+}
+
+@media (max-width: 767px) {
+  .register-logo {
+    display: none;
+  }
 }

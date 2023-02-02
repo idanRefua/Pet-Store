@@ -1,6 +1,7 @@
 import "./register-page-style.css";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import registerLogo from "../../imgs/register.svg";
 
@@ -50,9 +51,9 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="register-form-box d-flex  justify-content-center">
-      <div className="row">
-        <div className="col-md-6 form-box">
+    <div className="container">
+      <div className="row register-row">
+        <div className="register-form-box d-flex align-items-center justify-content-center col-md-6">
           <form className="register-form" onSubmit={handleRegister}>
             <div className="mb-3">
               <label className="form-label d-flex align-items-center justify-content-center ">
@@ -101,6 +102,11 @@ export default function RegisterPage() {
               <button type="submit" className="btn register-btn">
                 Register Now !
               </button>
+            </p>
+            <p className="d-flex align-items-center justify-content-center">
+              <Link to="/login" className="link-to-login">
+                You already register? Log-in Here
+              </Link>
             </p>
           </form>
         </div>

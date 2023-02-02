@@ -47,8 +47,8 @@ function App() {
   return (
     <Fragment>
       <NavBar />
-      <div className="container-fluid"></div>
-      <div className="container">
+
+      <div className="container-fluid">
         <Switch>
           <Route path="/" exact>
             <Redirect to="/home" />

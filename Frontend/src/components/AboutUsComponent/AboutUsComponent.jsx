@@ -2,7 +2,7 @@ import "./about-us-component.css";
 
 export default function AboutUsComponent() {
   return (
-    <div className="about-us-box">
+    <div className="about-us-box container">
       <h2 className="d-flex justify-content-center about-us-title">
         About Our Company
       </h2>
