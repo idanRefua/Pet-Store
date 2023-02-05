@@ -20,21 +20,22 @@ export default function ProductsPage() {
   }, []);
   return (
     <Fragment>
-      <br />
-      <br />
-      <br />
-      <div className="row">
-        {productsArr.map((product) => {
-          return (
-            <ProductComponent
-              id={product._id}
-              key={product._id}
-              image={product.image}
-              title={product.title}
-              description={product.description}
-            />
-          );
-        })}
+      <div className="container">
+        <br />
+        <br />
+        <div className="row">
+          {productsArr.map((product) => {
+            return (
+              <ProductComponent
+                id={product._id}
+                key={product._id}
+                image={product.image}
+                title={product.title}
+                description={product.description}
+              />
+            );
+          })}
+        </div>
       </div>
     </Fragment>
   );

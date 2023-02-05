@@ -15,3 +15,7 @@
   border-bottom-left-radius: 0px !important;
   transition: all 1s;
 }
+
+.img-product {
+  transition: all 0.7s;
+}

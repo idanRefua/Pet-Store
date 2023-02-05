@@ -1,0 +1,33 @@
+.home-page-search-input {
+  width: 90%;
+}
+
+.product-search-image {
+  height: 4.5em;
+}
+
+.search-result {
+  width: 90%;
+  border: 2.5px solid black;
+  border-radius: 5px;
+  background: #eeeeee;
+}
+.product-search-box {
+  border-bottom: 1px solid black;
+}
+
+.span-product {
+  margin-left: 5em;
+}
+
+.link-search-product {
+  font-size: 1.2em;
+  text-decoration: none;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: bold;
+  color: aqua;
+}
+
+.link-search-product:hover {
+  color: aqua;
+}
