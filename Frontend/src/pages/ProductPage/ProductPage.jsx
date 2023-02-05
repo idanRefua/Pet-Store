@@ -78,7 +78,7 @@ export default function ProductPage() {
   };
 
   return (
-    <div>
+    <div className="container">
       {product !== null && (
         <Fragment>
           <div className="row main-product-page-div">
@@ -95,6 +95,7 @@ export default function ProductPage() {
               <br />
               <br />
               <br />
+
               {loggedInUser && (
                 <p>
                   {productLikes.includes(userInfo._id) ? (
@@ -117,22 +118,23 @@ export default function ProductPage() {
             </div>
           </div>
           <div className="container reviews-table">
-            {!productsReviews.some(
-              (review) => review.byUser === userInfo._id
-            ) && (
-              <div className="review-input">
-                <textarea
-                  type="text"
-                  value={review}
-                  id="product-review"
-                  rows={3}
-                  cols={120}
-                  onChange={hadnleReviewText}
-                />
-                <br />
-                <button onClick={handleAddReview}>Add Review</button>
-              </div>
-            )}
+            {loggedInUser &&
+              !productsReviews.some(
+                (review) => review.byUser === userInfo._id
+              ) && (
+                <div className="review-input">
+                  <textarea
+                    type="text"
+                    value={review}
+                    id="product-review"
+                    rows={3}
+                    cols={120}
+                    onChange={hadnleReviewText}
+                  />
+                  <br />
+                  <button onClick={handleAddReview}>Add Review</button>
+                </div>
+              )}
 
             <br />
             <table className="table">
