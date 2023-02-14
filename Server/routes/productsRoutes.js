@@ -18,11 +18,12 @@ router.post("/addproduct", authMiddleWare, async (req, res) => {
   try {
     const user = req.userData;
     const body = req.body;
+    const { path: image } = req.file;
     if (user.admin) {
       const newProduct = await productsModel.uploadProduct({
         title: body.title,
-        image: body.image
-          ? body.image
+        image: image
+          ? image
           : `https://cdn.pixabay.com/photo/2015/11/03/09/10/question-mark-1020165_960_720.jpg`,
         description: body.description,
         createdBy: user._id,

@@ -37,6 +37,9 @@
   font-size: 2.21em;
   color: rgb(227, 32, 198);
 }
+.about-our-us {
+  transition: all 1.5s;
+}
 
 .store-map {
   margin-left: 3em;
