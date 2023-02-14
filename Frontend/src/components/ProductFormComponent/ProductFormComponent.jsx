@@ -1,35 +1,81 @@
+import React from "react";
 import { useState } from "react";
+import IamgeUpload from "../ImageUpload/ImageUpload";
 
 export default function ProductFormComponent(props) {
-  /*   const [inputOne, setInputOne] = useState("");
-  const [inputTwo, setInputTwo] = useState("");
-  const hadnleInputOne = (e) => {
-    setInputOne(e.target.value);
-    console.log(inputOne);
+  const [title, setTitle] = useState();
+  const [image, setImage] = useState(undefined);
+  const [description, setDescription] = useState();
+  const [category, setCategory] = useState(undefined);
+  const [price, setPrice] = useState();
+
+  const handleTitleInput = (e) => {
+    setTitle(e.target.value);
+  };
+  const handleImageInput = (pickedFile, fileIsValid) => {
+    if (fileIsValid) {
+      setImage(pickedFile);
+    }
+  };
+  const handleDescriptionInput = (e) => {
+    setDescription(e.target.value);
+  };
+  const handleCategoryInput = (e) => {
+    setCategory(e.target.value);
+  };
+  const handlePriceInput = (e) => {
+    setPrice(e.target.value);
   };
 
-  const hadnleInputTwo = (e) => {
-    setInputTwo(e.target.value);
-    console.log(inputTwo);
-  }; */
+  const handleSubmitForm = async (e) => {
+    e.preventDefault();
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <form>
-      <label>Hello write here</label>
+    <form className="container" onSubmit={handleSubmitForm}>
+      <h2 className="d-flex justify-content-center">Add new Product here </h2>
+
+      <label>Title</label>
+      <br />
       <input
         type="text"
         placeholder="..."
-        /*  onChange={hadnleInputOne} */
-        value={props.val1}
+        onChange={handleTitleInput}
+        value={title}
       />
       <br />
+      <label>Category</label>
       <br />
-      <label>Hello write here</label>
       <input
         type="text"
         placeholder="..."
-        /*  onChange={hadnleInputTwo} */
-        value={props.val2}
+        onChange={handleCategoryInput}
+        value={category}
       />
+      <br />
+      <label>Description</label>
+      <br />
+      <input
+        type="text"
+        placeholder="..."
+        onChange={handleDescriptionInput}
+        value={description}
+      />
+      <br />
+      <label>Description</label>
+      <br />
+      <input
+        type="text"
+        placeholder="..."
+        onChange={handlePriceInput}
+        value={price}
+      />
+
+      <IamgeUpload onInput={handleImageInput} />
     </form>
   );
 }

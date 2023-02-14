@@ -25,11 +25,12 @@ export default function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    if (email || password === "") {
-      alert("please fill the inputs");
-      return;
-    }
     try {
+      if (email === "" || password === "") {
+        alert("please fill the inputs");
+        return;
+      }
+
       const response = await axios.post("/users/login", {
         email,
         password,

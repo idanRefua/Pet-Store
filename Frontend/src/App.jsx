@@ -47,25 +47,22 @@ function App() {
   return (
     <Fragment>
       <NavBar />
-
-      <div className="container-fluid">
-        <Switch>
-          <Route path="/" exact>
-            <Redirect to="/home" />
-          </Route>
-          <Route path="/home" component={HomePage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/aboutus" component={AboutUsPage} />
-          <Route path="/products" component={ProductsPage} />
-          <AuthRoute path="/addproduct" component={AddProductPage} />
-          <AuthRoute path="/myproducts" component={MyProductsPage} />
-          <Route path="/product/description/:id" component={ProductPage} />
-          <AuthRoute path="/userinfo/cart" component={UserCartPage} />
-          <Route path="*" component={NotFoundPage} />
-          <Route path="/notfoundpage" component={NotFoundPage} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/" exact>
+          <Redirect to="/home" />
+        </Route>
+        <Route path="/home" component={HomePage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/register" component={RegisterPage} />
+        <Route path="/aboutus" component={AboutUsPage} />
+        <Route path="/products" component={ProductsPage} />
+        <AuthRoute path="/addproduct" component={AddProductPage} />
+        <AuthRoute path="/myproducts" component={MyProductsPage} />
+        <Route path="/product/description/:id" component={ProductPage} />
+        <AuthRoute path="/userinfo/cart" component={UserCartPage} />
+        <Route path="*" component={NotFoundPage} />
+        <Route path="/notfoundpage" component={NotFoundPage} />
+      </Switch>
     </Fragment>
   );
 }

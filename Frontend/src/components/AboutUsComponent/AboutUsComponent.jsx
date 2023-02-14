@@ -6,8 +6,9 @@ export default function AboutUsComponent() {
       <h2 className="d-flex justify-content-center about-us-title">
         About Our Company
       </h2>
+
       <div className="row about-us-content-box">
-        <div className="col-md-6 ">
+        <div className="col-md-6  about-our-us">
           <h3 className="d-flex justify-content-center story-title">
             Our story
           </h3>

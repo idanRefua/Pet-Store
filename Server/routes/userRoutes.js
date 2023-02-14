@@ -10,7 +10,7 @@ router.get("/", authMiddleware, async (req, res) => {
     const users = await usersModel.allUsers();
     res.status(200).json({ users, userToken });
   } catch (error) {
-    res.status(400).json({ error });
+    return res.status(400).json({ error });
   }
 });
 
