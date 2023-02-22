@@ -18,6 +18,7 @@ import jwt_decode from "jwt-decode";
 import UserCartPage from "./pages/UserCartPage/UserCartPage";
 import AuthRoute from "./authRoute/AuthRoute";
 import AuthRouteAdmin from "./authRoute/AuthRouteAdmin";
+import EditProductPage from "./pages/EditProductPage/EditProductPage";
 
 function App() {
   const history = useHistory();
@@ -58,6 +59,7 @@ function App() {
         <Route path="/products" component={ProductsPage} />
         <AuthRoute path="/addproduct" component={AddProductPage} />
         <AuthRoute path="/myproducts" component={MyProductsPage} />
+        <AuthRoute path="/editproduct/:productid" component={EditProductPage} />
         <Route path="/product/description/:id" component={ProductPage} />
         <AuthRoute path="/userinfo/cart" component={UserCartPage} />
         <Route path="*" component={NotFoundPage} />

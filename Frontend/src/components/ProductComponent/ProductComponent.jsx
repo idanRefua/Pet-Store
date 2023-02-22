@@ -9,7 +9,7 @@ export default function ProductComponent(props) {
   return (
     <div onClick={handleMoreInfo} className="card" style={{ width: "18rem" }}>
       <img
-        src={props.image}
+        src={`http://localhost:8181/${props.image}`}
         className="card-img-top img-product"
         alt={props.title}
       />

@@ -1,6 +1,6 @@
 import "./navbar.css";
 import React from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import homeLogo from "../imgs/favicon.jpg";
 import { useSelector } from "react-redux";
 import { Fragment } from "react";
@@ -55,13 +55,7 @@ function NavBar() {
               </li>
               <li className="nav-item">
                 <NavLink to="/">
-                  <a href="">
-                    <img
-                      src={homeLogo}
-                      alt="home logo"
-                      className="home-logo "
-                    />
-                  </a>
+                  <img src={homeLogo} alt="home logo" className="home-logo " />
                 </NavLink>
               </li>
 
@@ -100,15 +94,16 @@ function NavBar() {
                   </li>
                   <div className="">
                     <li className="nav-item dropdown person-menu">
-                      <a
+                      <Link
                         className="nav-link active dropdown-toggle my-profile"
                         id="navbarDropdown"
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
+                        to={""}
                       >
                         User Info
-                      </a>
+                      </Link>
                       <ul
                         className="dropdown-menu drop-down-links"
                         aria-labelledby="navbarDropdown"

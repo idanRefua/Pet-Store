@@ -1,7 +1,8 @@
 const express = require("express");
 const productsModel = require("../models/productModel");
 const authMiddleWare = require("../middleware/auth.middleware");
-const { json } = require("express");
+const uploadImage = require("../middleware/upload-image");
+const fs = require("fs");
 
 const router = express.Router();
 
@@ -14,30 +15,39 @@ router.get("/allproducts", async (req, res) => {
   }
 });
 
-router.post("/addproduct", authMiddleWare, async (req, res) => {
-  try {
-    const user = req.userData;
-    const body = req.body;
-    const { path: image } = req.file;
-    if (user.admin) {
-      const newProduct = await productsModel.uploadProduct({
-        title: body.title,
-        image: image
-          ? image
-          : `https://cdn.pixabay.com/photo/2015/11/03/09/10/question-mark-1020165_960_720.jpg`,
-        description: body.description,
-        createdBy: user._id,
-        category: body.category,
-        price: body.price,
-      });
-      res.status(200).json({ message: `You created new product !` });
-    } else {
-      throw "You are not admin user !";
+router.post(
+  "/addproduct",
+  authMiddleWare,
+  uploadImage.single("image"),
+  async (req, res) => {
+    try {
+      const user = req.userData;
+      const { title, description, price, category } = req.body;
+      const { path: image } = req.file;
+      if (user.admin) {
+        if (category === "Food" || category === "Equip") {
+          const newProduct = await productsModel.uploadProduct({
+            title,
+            description,
+            image: image.replace("\\", "/").replace("\\", "/"),
+            createdBy: user._id,
+            category,
+            price,
+          });
+          res
+            .status(200)
+            .json({ message: `You created new product !`, newProduct });
+        } else {
+          throw "Please Select which category: Food Or Equip! ";
+        }
+      } else {
+        throw "You are not admin user !";
+      }
+    } catch (error) {
+      res.status(400).send(error);
     }
-  } catch (error) {
-    res.status(400).json({ error });
   }
-});
+);
 
 router.get("/myproducts", authMiddleWare, async (req, res) => {
   try {
@@ -82,8 +92,11 @@ router.patch("/updateproduct/:id", authMiddleWare, async (req, res) => {
   try {
     const user = req.userData;
     const productId = req.params.id;
-    const body = req.body;
+    const { title, price, description } = req.body;
     if (user.admin) {
+      // all the same files not change -  so don't send the request,
+      // if he don't change the image - don't delete it by fs.unlink() ,
+
       const product = await productsModel.productById(productId);
       if (product.createdBy === user._id) {
         const updateProduct = await productsModel.updateProduct(productId);

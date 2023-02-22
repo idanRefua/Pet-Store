@@ -2,10 +2,12 @@ import { useSelector } from "react-redux";
 import MyProductsComponent from "../../components/MyProductsComponent/MyProductsComponent";
 import "./my-products-page.css";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default function MyProductsPage() {
   const [productsArray, setProductsArray] = useState([]);
+  const history = useHistory();
   const hadnleDeletProduct = (productId) => {
     const userConfirm = window.confirm(
       "Are You Sure You want delete this Product ? "
@@ -25,7 +27,7 @@ export default function MyProductsPage() {
     }
   };
   const handleEdit = (productId) => {
-    console.log(productId);
+    history.push(`/editproduct/${productId}`);
   };
   useEffect(() => {
     axios.get("/products/myproducts").then((data) => {
@@ -36,7 +38,7 @@ export default function MyProductsPage() {
   return (
     <div>
       <h3 className="d-flex justify-content-center my-products-title">
-        Hello,{user.email},This are all your products
+        Hello,{user.name},This are all your products
       </h3>
       <br />
       <table className="table">

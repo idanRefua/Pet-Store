@@ -24,6 +24,7 @@ export default function ProductPage() {
         setProduct(res.data);
         setProductsReviews(res.data.reviews);
         setProductLikes(res.data.likes);
+        console.log(res.data);
       })
       .catch(() => {
         history.push("/notfound");
@@ -68,7 +69,6 @@ export default function ProductPage() {
       .patch(`/products/removefromfavourites/${id}`)
       .then((res) => {
         setLikes(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -84,7 +84,7 @@ export default function ProductPage() {
           <div className="row main-product-page-div">
             <div className="col-sm-6">
               <img
-                src={product.image}
+                src={"http://localhost:8181/" + product.image}
                 alt={product.title}
                 className="image-box"
               />
