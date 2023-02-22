@@ -6,10 +6,12 @@
   width: 500px;
   border-radius: 50px;
   transition: 1s;
+  height: 500px;
 }
 
 .image-box:hover {
   width: 540px;
+  height: 560px;
   transition: all 2s;
 }
 

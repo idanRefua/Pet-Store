@@ -5,6 +5,7 @@
 
 .img-product {
   border-bottom-left-radius: 100px !important;
+  height: 15em;
 }
 
 .card:hover {

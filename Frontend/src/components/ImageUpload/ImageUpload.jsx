@@ -21,7 +21,7 @@ export default function IamgeUpload(props) {
   const pickHandlerImage = (event) => {
     let pickedFile;
     let fileIsValid = valid;
-    if (event.target.files && event.target.files.length !== 0) {
+    if (event.target.files && event.target.files.length === 1) {
       pickedFile = event.target.files[0];
       setFile(pickedFile);
       setValid(true);
@@ -49,15 +49,21 @@ export default function IamgeUpload(props) {
       />
 
       <div className="image-upload-btn">
+        <br />
         <div className="image-preview">
-          {previewUrl && <img src={previewUrl} alt="Preview" />}
+          {previewUrl && (
+            <img src={previewUrl} alt="Preview" className="img-upload" />
+          )}
           {!previewUrl && <p>You have to pick some file</p>}
         </div>
+        <br />
+
         <button type="button" onClick={handleImagePick}>
           Pick Image
         </button>
       </div>
       {!valid && <p>{props.errorText}</p>}
+      <br />
     </div>
   );
 }

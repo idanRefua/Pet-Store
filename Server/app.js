@@ -10,9 +10,11 @@ const path = require("path");
 
 app.use(cors());
 app.use(express.json());
+app.use("/uploads/images", express.static(path.join("uploads", "images")));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static("uploads"));
+
 app.use("/users/", usersRoutes);
 app.use("/products/", productsRoutes);
 
