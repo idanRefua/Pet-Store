@@ -44,6 +44,14 @@ const allProducts = () => {
   return Products.find();
 };
 
+const allFoodProducts = () => {
+  return Products.find({ category: "Food" });
+};
+
+const allEquipProducts = () => {
+  return Products.find({ category: "Equip" });
+};
+
 const deleteProduct = (id) => {
   return Products.findOneAndDelete({ _id: id });
 };
@@ -52,8 +60,16 @@ const userProducts = (userId) => {
   return Products.find({ createdBy: userId });
 };
 
-const updateProduct = (id) => {
-  return Products.findOneAndUpdate({ _id: id });
+const updateProduct = (id, title, description, price, category, image) => {
+  const filter = {
+    title,
+    description,
+    price,
+    category,
+    image,
+  };
+
+  return Products.findOneAndUpdate({ _id: id }, filter);
 };
 
 const productById = (productId) => {
@@ -98,6 +114,8 @@ const addProductReview = (productId, userName, review, userId) => {
 
 module.exports = {
   allProducts,
+  allFoodProducts,
+  allEquipProducts,
   userProducts,
   productById,
   uploadProduct,

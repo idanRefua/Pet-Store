@@ -33,8 +33,15 @@ export default function EditProductComponent() {
 
   const handleSubmitForm = async () => {
     try {
-      const result = await axios.put();
+      const result = await axios.patch(`/products/updateproduct/${productid}`, {
+        price,
+        title,
+        description,
+        image,
+        category,
+      });
       const data = await result.data;
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -97,13 +104,16 @@ export default function EditProductComponent() {
               value={price}
               name="price"
             />
-          </div>
-          <div className="col-sm-6">
+            <br />
+            <br />
             <img
               className="img-edit-page"
               src={`http://localhost:8181/${product.image}`}
               alt={product.title}
             />
+          </div>
+          <div className="col-sm-6">
+            <h4>Want Change The Product Image?</h4>
             <IamgeUpload onInput={handleImageInput} />
           </div>
         </div>

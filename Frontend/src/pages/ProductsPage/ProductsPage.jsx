@@ -12,7 +12,6 @@ export default function ProductsPage() {
         const products = await axios.get("/products/allproducts");
         const productsData = await products.data;
         setProductsArr(productsData);
-        console.log(productsData);
       } catch (error) {
         history.push("/notfound");
       }
@@ -32,6 +31,7 @@ export default function ProductsPage() {
                 key={product._id}
                 image={product.image}
                 title={product.title}
+                price={product.price}
                 description={product.description}
               />
             );

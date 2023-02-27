@@ -19,6 +19,8 @@ import UserCartPage from "./pages/UserCartPage/UserCartPage";
 import AuthRoute from "./authRoute/AuthRoute";
 import AuthRouteAdmin from "./authRoute/AuthRouteAdmin";
 import EditProductPage from "./pages/EditProductPage/EditProductPage";
+import EquipProductsPage from "./pages/EquipProducts/EquipProductsPage";
+import FoodProductPgae from "./pages/FoodProducts/FoodProductsPage";
 
 function App() {
   const history = useHistory();
@@ -56,7 +58,8 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/aboutus" component={AboutUsPage} />
-        <Route path="/products" component={ProductsPage} />
+        <Route path="/products/equip" component={EquipProductsPage} exact />
+        <Route path="/products/food" component={FoodProductPgae} exact />
         <AuthRoute path="/addproduct" component={AddProductPage} />
         <AuthRoute path="/myproducts" component={MyProductsPage} />
         <AuthRoute path="/editproduct/:productid" component={EditProductPage} />

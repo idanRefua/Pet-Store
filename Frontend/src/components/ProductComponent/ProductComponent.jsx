@@ -14,8 +14,9 @@ export default function ProductComponent(props) {
         alt={props.title}
       />
       <div className="card-body">
-        <h5>{props.title}</h5>
+        <h3>{props.title}</h3>
         <p className="card-text">{props.description}</p>
+        <p className="d-flex justify-content-center">{props.price}$</p>
       </div>
     </div>
   );

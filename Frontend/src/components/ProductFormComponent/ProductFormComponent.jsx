@@ -1,7 +1,9 @@
 import React from "react";
+import "./product-form-component.css";
 import { useState } from "react";
 import IamgeUpload from "../ImageUpload/ImageUpload";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function ProductFormComponent() {
   const [title, setTitle] = useState("");
@@ -9,6 +11,7 @@ export default function ProductFormComponent() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
+  const history = useHistory();
 
   const handleImageInput = (pickedFile, fileIsValid) => {
     if (fileIsValid) {
@@ -24,6 +27,7 @@ export default function ProductFormComponent() {
   };
   const handleCategoryInput = (e) => {
     setCategory(e.target.value);
+    console.log(e.target.value);
   };
   const handlePriceInput = (e) => {
     setPrice(e.target.value);
@@ -39,12 +43,15 @@ export default function ProductFormComponent() {
     formData.append("price", price);
 
     try {
-      const result = await axios.post("/products/addproduct", formData);
-
-      const data = await result.data;
-      console.log(data);
+      if (category === "Food" || category === "Equip") {
+        const result = await axios.post("/products/addproduct", formData);
+        const data = await result.data;
+        history.push("/products");
+      } else {
+        alert(`Category must be "Food" Or "Equip"`);
+      }
     } catch (error) {
-      console.log(error, formData);
+      alert("We can't send the request,Please try again later");
     }
   };
 
@@ -67,12 +74,18 @@ export default function ProductFormComponent() {
       <br />
       <label>Category</label>
       <br />
-      <input
-        type="text"
-        placeholder="..."
-        onChange={handleCategoryInput}
-        value={category}
-      />
+      <div className="input-group mb-3 select-input-add-product">
+        <select
+          value={category}
+          className="form-select"
+          id="inputGroupSelect01"
+          onChange={handleCategoryInput}
+        >
+          <option defaultValue>Choose Category...</option>
+          <option value="Food">Food</option>
+          <option value="Equip">Equip</option>
+        </select>
+      </div>
       <br />
       <label>Description</label>
       <br />
@@ -93,9 +106,7 @@ export default function ProductFormComponent() {
         value={price}
         name="price"
       />
-
       <IamgeUpload onInput={handleImageInput} />
-
       <button>Add Product</button>
     </form>
   );

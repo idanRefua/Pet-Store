@@ -44,21 +44,49 @@ function NavBar() {
                   About Us
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/products"
-                >
-                  Products
-                </NavLink>
-              </li>
+              <div className="">
+                <li className="nav-item dropdown person-menu">
+                  <Link
+                    className="nav-link active dropdown-toggle my-profile"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    to={""}
+                  >
+                    Products
+                  </Link>
+                  <ul
+                    className="dropdown-menu drop-down-links"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <li>
+                      <NavLink
+                        className="dropdown-item"
+                        to="/products/food"
+                        activeClassName="activeLink"
+                      >
+                        Food
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        className="dropdown-item"
+                        to="/products/equip"
+                        activeClassName="activeLink"
+                      >
+                        Equip
+                      </NavLink>
+                    </li>
+                  </ul>
+                </li>
+              </div>
+
               <li className="nav-item">
                 <NavLink to="/">
                   <img src={homeLogo} alt="home logo" className="home-logo " />
                 </NavLink>
               </li>
-
               {!loggedIn && (
                 <Fragment>
                   <li className="nav-item">
@@ -163,3 +191,41 @@ function NavBar() {
 }
 
 export default NavBar;
+
+<div className="">
+  <li className="nav-item dropdown person-menu">
+    <Link
+      className="nav-link active dropdown-toggle my-profile"
+      id="navbarDropdown"
+      role="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+      to={""}
+    >
+      Products
+    </Link>
+    <ul
+      className="dropdown-menu drop-down-links"
+      aria-labelledby="navbarDropdown"
+    >
+      <li>
+        <NavLink
+          className="dropdown-item"
+          to="/products/food"
+          activeClassName="activeLink"
+        >
+          Food
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className="dropdown-item"
+          to="/products/equip"
+          activeClassName="activeLink"
+        >
+          Equip
+        </NavLink>
+      </li>
+    </ul>
+  </li>
+</div>;
