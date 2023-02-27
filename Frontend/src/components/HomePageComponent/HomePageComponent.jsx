@@ -57,7 +57,7 @@ export default function HomePageComponent() {
                 return (
                   <div key={product._id} className="product-search-box">
                     <img
-                      src={product.image}
+                      src={`http://localhost:8181/${product.image}`}
                       alt={product.title}
                       className="product-search-image"
                     />
@@ -95,7 +95,11 @@ export default function HomePageComponent() {
             {productsArray.map((item) => {
               return (
                 <SwiperSlide className="swiper-slide" key={item._id}>
-                  <img src={item.image} id={item._id} alt={item.title} />
+                  <img
+                    src={`http://localhost:8181/${item.image}`}
+                    id={item._id}
+                    alt={item.title}
+                  />
                 </SwiperSlide>
               );
             })}

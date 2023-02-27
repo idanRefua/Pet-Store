@@ -15,6 +15,23 @@ router.get("/allproducts", async (req, res) => {
   }
 });
 
+router.get("/food", async (req, res) => {
+  try {
+    const foodProducts = await productsModel.allFoodProducts();
+    res.status(200).json(foodProducts);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+router.get("/equip", async (req, res) => {
+  try {
+    const equipProducts = await productsModel.allEquipProducts();
+    res.status(200).json(equipProducts);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
 router.post(
   "/addproduct",
   authMiddleWare,
@@ -71,6 +88,9 @@ router.delete("/deleteproduct/:productid", authMiddleWare, async (req, res) => {
       const product = await productsModel.productById(productId);
       if (product.createdBy.toString() === user._id) {
         const deleteProduct = await productsModel.deleteProduct(productId);
+        fs.unlinkSync(product.image, function (err) {
+          if (err) return console.log(err);
+        });
         res.status(200).json({ message: "The product delete succssfuly" });
       } else {
         throw "This is not your product";
@@ -88,27 +108,56 @@ router.delete("/deleteproduct/:productid", authMiddleWare, async (req, res) => {
 //////
 //////
 
-router.patch("/updateproduct/:id", authMiddleWare, async (req, res) => {
-  try {
-    const user = req.userData;
-    const productId = req.params.id;
-    const { title, price, description } = req.body;
-    if (user.admin) {
-      // all the same files not change -  so don't send the request,
-      // if he don't change the image - don't delete it by fs.unlink() ,
-
-      const product = await productsModel.productById(productId);
-      if (product.createdBy === user._id) {
-        const updateProduct = await productsModel.updateProduct(productId);
-        res.status(200).json(updateProduct);
+router.patch(
+  "/updateproduct/:id",
+  uploadImage.single("image"),
+  authMiddleWare,
+  async (req, res) => {
+    try {
+      const user = req.userData;
+      const productId = req.params.id;
+      const { title, price, description, category } = req.body;
+      if (user.admin) {
+        const product = await productsModel.productById(productId);
+        if (product.createdBy.toHexString() === user._id) {
+          if (req.file) {
+            fs.unlinkSync(product.image, function (err) {
+              if (err) return console.log(err);
+            });
+            const newImage = req.file.path
+              .replace("\\", "/")
+              .replace("\\", "/");
+            const updateProduct = await productsModel.updateProduct(
+              productId,
+              title,
+              description,
+              price,
+              category,
+              newImage
+            );
+            res.status(200).json(updateProduct);
+          } else {
+            const updateProduct = await productsModel.updateProduct(
+              productId,
+              title,
+              description,
+              price,
+              category,
+              product.image
+            );
+            res.status(200).json(updateProduct);
+          }
+        } else {
+          throw "this is not your product";
+        }
+      } else {
+        throw "You are not admin user";
       }
-    } else {
-      throw "You are not admin user";
+    } catch (error) {
+      res.status(400).send(error);
     }
-  } catch (error) {
-    res.status(400).json(error);
   }
-});
+);
 
 router.post("/addtofavourites/:id", authMiddleWare, async (req, res) => {
   try {
