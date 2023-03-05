@@ -168,7 +168,7 @@ router.post("/addtofavourites/:id", authMiddleWare, async (req, res) => {
       const addLike = await productsModel.addToFavourites(productId, user._id);
       res.status(200).json(addLike);
     } else {
-      throw "You already add this product to yoru favourites list";
+      throw "You already add this product to your favourites list";
     }
   } catch (error) {
     res.status(400).json({ error });
@@ -213,7 +213,7 @@ router.post("/addreview/:id", authMiddleWare, async (req, res) => {
     if (!product) {
       const review = await productsModel.addProductReview(
         productId,
-        user.email,
+        user.name,
         body.review,
         user._id
       );
@@ -225,4 +225,25 @@ router.post("/addreview/:id", authMiddleWare, async (req, res) => {
     res.status(400).json(error);
   }
 });
+
+router.delete("/removereview/:id", authMiddleWare, async (req, res) => {
+  try {
+    const user = req.userData;
+    const productId = req.params.id;
+    const review = await productsModel.checkIfUserReview(productId, user._id);
+    console.log(review, user._id);
+    if (review) {
+      const deleteReview = await productsModel.removeReview(
+        productId,
+        user._id
+      );
+      res.status(200).json("This Review deleted !");
+    } else {
+      throw "This is Not your review!";
+    }
+  } catch (error) {
+    res.status(400).json(console.log(error));
+  }
+});
+
 module.exports = router;

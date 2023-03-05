@@ -8,9 +8,9 @@ import axios from "axios";
 export default function MyProductsPage() {
   const [productsArray, setProductsArray] = useState([]);
   const history = useHistory();
-  const hadnleDeletProduct = (productId) => {
+  const hadnleDeletProduct = (productId, productTitle) => {
     const userConfirm = window.confirm(
-      "Are You Sure You want delete this Product ? "
+      `Are You Sure You want delete this Product  - ${productTitle}? `
     );
     if (userConfirm) {
       axios

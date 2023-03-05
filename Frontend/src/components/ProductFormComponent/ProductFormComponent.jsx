@@ -16,7 +16,6 @@ export default function ProductFormComponent() {
   const handleImageInput = (pickedFile, fileIsValid) => {
     if (fileIsValid) {
       setImage(pickedFile);
-      console.log(pickedFile);
     }
   };
   const handleTitleInput = (e) => {
@@ -27,7 +26,6 @@ export default function ProductFormComponent() {
   };
   const handleCategoryInput = (e) => {
     setCategory(e.target.value);
-    console.log(e.target.value);
   };
   const handlePriceInput = (e) => {
     setPrice(e.target.value);
@@ -46,7 +44,7 @@ export default function ProductFormComponent() {
       if (category === "Food" || category === "Equip") {
         const result = await axios.post("/products/addproduct", formData);
         const data = await result.data;
-        history.push("/products");
+        history.push("/myproducts");
       } else {
         alert(`Category must be "Food" Or "Equip"`);
       }
@@ -57,57 +55,71 @@ export default function ProductFormComponent() {
 
   return (
     <form
-      className="container"
+      className="container add-product-box"
       onSubmit={handleSubmitForm}
       encType="multipart/form-data"
     >
-      <h2 className="d-flex justify-content-center">Add new Product here </h2>
-
-      <label>Title</label>
-      <br />
-      <input
-        type="text"
-        placeholder="..."
-        onChange={handleTitleInput}
-        value={title}
-      />
-      <br />
-      <label>Category</label>
-      <br />
-      <div className="input-group mb-3 select-input-add-product">
-        <select
-          value={category}
-          className="form-select"
-          id="inputGroupSelect01"
-          onChange={handleCategoryInput}
-        >
-          <option defaultValue>Choose Category...</option>
-          <option value="Food">Food</option>
-          <option value="Equip">Equip</option>
-        </select>
+      <h2 className="d-flex justify-content-center add-product-title-page">
+        Add New Product
+      </h2>
+      <div className="row">
+        <div className="col-md-6">
+          <label className="label-add-product">Title</label>
+          <br />
+          <input
+            type="text"
+            onChange={handleTitleInput}
+            value={title}
+            className="title-input input-add-product"
+          />
+          <br />
+          <label className="category-label label-add-product">Category</label>
+          <br />
+          <div className="input-group mb-3 select-input-add-product">
+            <select
+              value={category}
+              className="form-select select-title"
+              id="inputGroupSelect01"
+              onChange={handleCategoryInput}
+            >
+              <option defaultValue>Choose Category...</option>
+              <option className="input-add-product" value="Food">
+                Food
+              </option>
+              <option className="input-add-product" value="Equip">
+                Equip
+              </option>
+            </select>
+          </div>
+          <br />
+          <label className="label-add-product">Description</label>
+          <br />
+          <textarea
+            value={description}
+            onChange={handleDescriptionInput}
+            name=""
+            id=""
+            className="text-area-product-description input-add-product"
+            cols={50}
+            rows={5}
+          ></textarea>
+          <br />
+          <label className="label-add-product">Price (Dollars)</label>
+          <br />
+          <input
+            type="text"
+            placeholder=""
+            onChange={handlePriceInput}
+            value={price}
+            name="price"
+            className="input-add-product"
+          />
+        </div>
+        <div className="col-md-6">
+          <IamgeUpload onInput={handleImageInput} className="img-upload" />
+          <button className="add-product-btn">Add Product</button>
+        </div>
       </div>
-      <br />
-      <label>Description</label>
-      <br />
-      <input
-        type="text"
-        placeholder="..."
-        onChange={handleDescriptionInput}
-        value={description}
-        name="description"
-      />
-      <br />
-      <label>Price</label>
-      <br />
-      <input
-        type="text"
-        placeholder="..."
-        onChange={handlePriceInput}
-        value={price}
-        name="price"
-      />
-      <IamgeUpload onInput={handleImageInput} />
-      <button>Add Product</button>
     </form>
   );
 }

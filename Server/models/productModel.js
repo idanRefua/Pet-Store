@@ -112,6 +112,13 @@ const addProductReview = (productId, userName, review, userId) => {
   );
 };
 
+const removeReview = (productId, userId) => {
+  return Products.findOneAndUpdate(
+    { _id: productId },
+    { $pull: { reviews: { byUser: userId } } }
+  );
+};
+
 module.exports = {
   allProducts,
   allFoodProducts,
@@ -125,4 +132,5 @@ module.exports = {
   removeFromFavourites,
   addProductReview,
   checkIfUserReview,
+  removeReview,
 };

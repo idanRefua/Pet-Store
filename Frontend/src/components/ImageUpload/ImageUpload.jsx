@@ -58,7 +58,11 @@ export default function IamgeUpload(props) {
         </div>
         <br />
 
-        <button type="button" onClick={handleImagePick}>
+        <button
+          className="pick-img-btn"
+          type="button"
+          onClick={handleImagePick}
+        >
           Pick Image
         </button>
       </div>
