@@ -7,7 +7,7 @@ export default function MyProductsComponent(props) {
   };
 
   const handleDelete = () => {
-    props.onDelete(props.id);
+    props.onDelete(props.id, props.title);
   };
 
   const moveToProduct = () => {

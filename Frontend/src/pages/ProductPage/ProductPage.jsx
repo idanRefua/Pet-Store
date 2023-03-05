@@ -24,7 +24,6 @@ export default function ProductPage() {
         setProduct(res.data);
         setProductsReviews(res.data.reviews);
         setProductLikes(res.data.likes);
-        console.log(res.data);
       })
       .catch(() => {
         history.push("/notfound");
@@ -59,7 +58,6 @@ export default function ProductPage() {
       )
       .then((res) => {
         setLikes(res.data);
-        console.log(res.data);
       })
       .catch((error) => console.log(error));
   };
@@ -75,6 +73,10 @@ export default function ProductPage() {
 
   const hadnleReviewText = (e) => {
     setReview(e.target.value);
+  };
+
+  const handleDeleteReview = () => {
+    axios.delete();
   };
 
   return (
@@ -154,6 +156,11 @@ export default function ProductPage() {
                     <tr key={review._id}>
                       <td>{review.userName}</td>
                       <td>{review.review}</td>
+                      {review.byUser === userInfo._id && (
+                        <td>
+                          <button onClick={handleDeleteReview}>Delete</button>
+                        </td>
+                      )}
                     </tr>
                   );
                 })}
