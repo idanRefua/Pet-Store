@@ -1,5 +1,5 @@
 import "./edit-product-component.css";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
@@ -13,6 +13,7 @@ export default function EditProductComponent() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
+  const history = useHistory();
 
   const handleTitleInput = (e) => {
     setTitle(e.target.value);
@@ -33,15 +34,22 @@ export default function EditProductComponent() {
 
   const handleSubmitForm = async () => {
     try {
-      const result = await axios.patch(`/products/updateproduct/${productid}`, {
-        price,
-        title,
-        description,
-        image,
-        category,
-      });
-      const data = await result.data;
-      console.log(data);
+      if (category === "Food" || category === "Equip") {
+        const result = await axios.patch(
+          `/products/updateproduct/${productid}`,
+          {
+            price,
+            title,
+            description,
+            image,
+            category,
+          }
+        );
+        const data = await result.data;
+        history.push("/myproducts");
+      } else {
+        alert("Please Select Category");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -67,42 +75,57 @@ export default function EditProductComponent() {
       {product !== null && (
         <div className="edit-product-box row">
           <div className="col-sm-6">
-            <label>Title</label>
+            <label className="label-add-product">Title</label>
             <br />
             <input
               type="text"
-              placeholder="..."
               onChange={handleTitleInput}
               value={title}
+              className="title-input input-add-product"
             />
             <br />
-            <label>Category</label>
+            <label className="category-label label-add-product">Category</label>
             <br />
-            <input
-              type="text"
-              placeholder="..."
-              onChange={handleCategoryInput}
-              value={category}
-            />
+            <div className="input-group mb-3 select-input-add-product">
+              <select
+                value={category}
+                className="form-select select-title"
+                id="inputGroupSelect01"
+                onChange={handleCategoryInput}
+              >
+                <option className="" defaultValue>
+                  Choose Category...
+                </option>
+                <option className="" value="Food">
+                  Food
+                </option>
+                <option className="" value="Equip">
+                  Equip
+                </option>
+              </select>
+            </div>
             <br />
-            <label>Description</label>
+            <label className="label-add-product">Description</label>
             <br />
-            <input
-              type="text"
-              placeholder="..."
-              onChange={handleDescriptionInput}
+            <textarea
               value={description}
-              name="description"
-            />
+              onChange={handleDescriptionInput}
+              name=""
+              id=""
+              className="text-area-product-description input-add-product"
+              cols={50}
+              rows={5}
+            ></textarea>
             <br />
-            <label>Price</label>
+            <label className="label-add-product">Price (Dollars)</label>
             <br />
             <input
               type="text"
-              placeholder="..."
+              placeholder=""
               onChange={handlePriceInput}
               value={price}
               name="price"
+              className="input-add-product"
             />
             <br />
             <br />
@@ -115,15 +138,15 @@ export default function EditProductComponent() {
           <div className="col-sm-6">
             <h4>Want Change The Product Image?</h4>
             <IamgeUpload onInput={handleImageInput} />
+            <button
+              onClick={handleSubmitForm}
+              className="add-product-btn btn-edit d-flex justify-content-center"
+            >
+              Add Product
+            </button>
           </div>
         </div>
       )}
-      <button
-        onClick={handleSubmitForm}
-        className="btn-edit d-flex justify-content-center"
-      >
-        Add Product
-      </button>
     </div>
   );
 }

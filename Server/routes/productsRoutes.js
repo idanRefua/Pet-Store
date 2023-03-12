@@ -3,6 +3,7 @@ const productsModel = require("../models/productModel");
 const authMiddleWare = require("../middleware/auth.middleware");
 const uploadImage = require("../middleware/upload-image");
 const fs = require("fs");
+const usersModel = require("../models/userModel");
 
 const router = express.Router();
 
@@ -243,6 +244,20 @@ router.delete("/removereview/:id", authMiddleWare, async (req, res) => {
     }
   } catch (error) {
     res.status(400).json(console.log(error));
+  }
+});
+
+router.post("/addtocart/:id", authMiddleWare, async (req, res) => {
+  try {
+    const user = req.userData;
+    const productId = req.params.id;
+    const productAddToCart = await usersModel.addProductToCart(
+      user._id,
+      productId
+    );
+    res.status(200).json("You add this product to Your cart");
+  } catch (error) {
+    res.status(400).json(error);
   }
 });
 

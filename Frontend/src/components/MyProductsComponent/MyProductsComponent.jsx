@@ -24,10 +24,14 @@ export default function MyProductsComponent(props) {
           className="image-my-products-component"
         />
       </td>
-      <td>{props.title}</td>
+      <td className="title-product-my-prodicts">{props.title}</td>
       <td>
-        <button onClick={handleEdit}>Edit Product</button>
-        <button onClick={handleDelete}>Delete Product</button>
+        <button className="edit-product-button" onClick={handleEdit}>
+          Edit Product
+        </button>
+        <button className="delete-product-button" onClick={handleDelete}>
+          Delete Product
+        </button>
       </td>
     </tr>
   );

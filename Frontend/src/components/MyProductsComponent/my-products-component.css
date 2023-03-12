@@ -1,3 +1,30 @@
 .image-my-products-component {
   cursor: pointer;
 }
+.title-product-my-prodicts {
+  font-weight: bold;
+}
+
+.edit-product-button {
+  background-color: rgb(109, 204, 255);
+  border: 0;
+  padding: 5px;
+  border-radius: 10px;
+  font-weight: bold;
+  margin: 3px;
+}
+.delete-product-button {
+  background-color: rgb(255, 75, 111);
+  font-weight: bold;
+  border: 0;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 3px;
+}
+
+.edit-product-button:hover {
+  box-shadow: 3px 3px 3px black;
+}
+.delete-product-button:hover {
+  box-shadow: 3px 3px 3px black;
+}

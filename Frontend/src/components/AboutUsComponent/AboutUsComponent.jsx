@@ -10,21 +10,21 @@ export default function AboutUsComponent() {
       <div className="row about-us-content-box">
         <div className="col-md-6  about-our-us">
           <h3 className="d-flex justify-content-center story-title">
-            Our story
+            Our Story
           </h3>
           <p className="p-story-content">
-            Idan Store was created in 2005,They work years for help others to
+            • Idan Store was created in 2005,They work years for help others to
             find the best products for dogs,food,accessories and many more.
           </p>
           <p className="p-story-content">
-            We sold each year thousands of prodcuts,to all the country.
+            • We sold each year thousands of prodcuts,to all the country.
             <br />
             All the products we sell have warnlatey for 2-3 years,You can feel
             free to contact us if you have problem with any product you buy in
             our store.
           </p>
           <p className="p-story-content">
-            You can buy easily in this website, You information is seure here
+            • You can buy easily in this website, You information is seure here
             and we have best protection about cards and more.
           </p>
         </div>

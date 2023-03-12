@@ -13,19 +13,6 @@
 }
 
 .about-us-content-box {
-  background: rgb(228, 131, 250);
-  background: linear-gradient(
-    216deg,
-    rgba(228, 131, 250, 1) 0%,
-    rgba(219, 173, 252, 1) 10%,
-    rgba(249, 104, 104, 0.9836309523809523) 23%,
-    rgba(247, 109, 115, 1) 37%,
-    rgba(231, 188, 153, 1) 46%,
-    rgba(218, 255, 186, 1) 65%,
-    rgba(121, 251, 219, 1) 78%,
-    rgba(214, 233, 255, 1) 92%,
-    rgba(89, 164, 255, 1) 100%
-  );
   padding: 40px;
   border-radius: 40px;
   box-shadow: 17px 17px 15px black;
@@ -36,6 +23,7 @@
   font-weight: bold;
   font-size: 2.21em;
   color: rgb(227, 32, 198);
+  text-shadow: 3px 3px 1px black;
 }
 .about-our-us {
   transition: all 1.5s;
