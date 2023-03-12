@@ -54,7 +54,9 @@ export default function IamgeUpload(props) {
           {previewUrl && (
             <img src={previewUrl} alt="Preview" className="img-upload" />
           )}
-          {!previewUrl && <p>You have to pick some file</p>}
+          {!previewUrl && (
+            <p className="p-pick-image">You have to pick some file</p>
+          )}
         </div>
         <br />
 
@@ -66,7 +68,7 @@ export default function IamgeUpload(props) {
           Pick Image
         </button>
       </div>
-      {!valid && <p>{props.errorText}</p>}
+      {!valid && <p className="p-not-picture">{props.errorText}</p>}
       <br />
     </div>
   );

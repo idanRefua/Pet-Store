@@ -82,11 +82,13 @@ export default function ProductFormComponent() {
               id="inputGroupSelect01"
               onChange={handleCategoryInput}
             >
-              <option defaultValue>Choose Category...</option>
-              <option className="input-add-product" value="Food">
+              <option className="" defaultValue>
+                Choose Category...
+              </option>
+              <option className="" value="Food">
                 Food
               </option>
-              <option className="input-add-product" value="Equip">
+              <option className="" value="Equip">
                 Equip
               </option>
             </select>

@@ -1,13 +1,15 @@
 import "./navbar.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import homeLogo from "../imgs/favicon.jpg";
 import { useSelector } from "react-redux";
 import { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth";
+import axios from "axios";
 
 function NavBar() {
+  const [countCart, setCountCart] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
   const loggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -18,6 +20,18 @@ function NavBar() {
     localStorage.clear();
     history.push("/login");
   };
+
+  useEffect(() => {
+    axios
+      .get("/users/cart/products")
+      .then((res) => {
+        console.log(res.data.length);
+        setCountCart(res.data.length);
+      })
+      .catch(() => {
+        alert("There is error");
+      });
+  }, []);
   return (
     <div className="header-nav d-flex justify-content-center">
       <nav className="navbar navbar-expand-lg navbar-light ">
@@ -117,7 +131,7 @@ function NavBar() {
                       aria-current="page"
                       to="/userinfo/cart"
                     >
-                      My Cart
+                      My Cart ({countCart})
                     </NavLink>
                   </li>
                   <div className="">
@@ -136,15 +150,6 @@ function NavBar() {
                         className="dropdown-menu drop-down-links"
                         aria-labelledby="navbarDropdown"
                       >
-                        <li>
-                          <NavLink
-                            className="dropdown-item"
-                            to="/users/myprofile"
-                            activeClassName="activeLink"
-                          >
-                            My Profile
-                          </NavLink>
-                        </li>
                         {admin && (
                           <Fragment>
                             <li>

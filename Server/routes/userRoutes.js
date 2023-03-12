@@ -4,6 +4,7 @@ const usersModel = require("../models/userModel");
 const jsonToken = require("../config/token");
 const authMiddleware = require("../middleware/auth.middleware");
 const bcrypt = require("../config/bcrypt");
+const productsModel = require("../models/productModel");
 
 router.get("/", authMiddleware, async (req, res) => {
   try {
@@ -88,6 +89,17 @@ router.get("/admin", authMiddleware, async (req, res) => {
 });
 
 router.get("/usercart", authMiddleware, async (req, res) => {
+  try {
+    const userData = req.userData;
+    const user = await usersModel.findUserById(userData._id);
+    const userCart = await productsModel.porudctsInCart(user[0].cartUser);
+    res.status(200).json(userCart);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
+router.get("/cart/products", authMiddleware, async (req, res) => {
   try {
     const userData = req.userData;
     const user = await usersModel.findUserById(userData._id);

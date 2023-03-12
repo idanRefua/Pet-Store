@@ -43,6 +43,9 @@ const uploadProduct = (
 const allProducts = () => {
   return Products.find();
 };
+const porudctsInCart = (userCart) => {
+  return Products.find().where("_id").in(userCart).exec();
+};
 
 const allFoodProducts = () => {
   return Products.find({ category: "Food" });
@@ -133,4 +136,5 @@ module.exports = {
   addProductReview,
   checkIfUserReview,
   removeReview,
+  porudctsInCart,
 };

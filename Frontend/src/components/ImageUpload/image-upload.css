@@ -1,4 +1,25 @@
 .img-upload {
   width: 300px;
   height: 300px;
+  border-radius: 20px;
+}
+
+.p-not-picture {
+  color: rgb(255, 73, 73);
+}
+
+.p-pick-image {
+  color: rgb(130, 159, 255);
+  font-weight: bold;
+  font-size: 1.2em;
+  text-shadow: 1px 1px 1px black;
+}
+.pick-img-btn {
+  border: 0;
+  background-color: #affaff;
+  padding: 10px;
+  border-radius: 10px;
+}
+.pick-img-btn:hover {
+  box-shadow: 5px 5px 5px black;
 }
