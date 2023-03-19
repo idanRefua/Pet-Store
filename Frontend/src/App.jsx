@@ -63,7 +63,7 @@ function App() {
         <AuthRoute path="/addproduct" component={AddProductPage} />
         <AuthRoute path="/myproducts" component={MyProductsPage} />
         <AuthRoute path="/editproduct/:productid" component={EditProductPage} />
-        <Route path="/product/description/:id" component={ProductPage} />
+        <Route path="/product/description/:prid" component={ProductPage} />
         <AuthRoute path="/userinfo/cart" component={UserCartPage} />
         <Route path="*" component={NotFoundPage} />
         <Route path="/notfoundpage" component={NotFoundPage} />

@@ -25,7 +25,6 @@ function NavBar() {
     axios
       .get("/users/cart/products")
       .then((res) => {
-        console.log(res.data.length);
         setCountCart(res.data.length);
       })
       .catch(() => {

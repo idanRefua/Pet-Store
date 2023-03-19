@@ -40,7 +40,7 @@ export default function LoginPage() {
       const decodedToken = jwt_decode(token);
       dispatch(authActions.login());
       dispatch(authActions.updateUserInfo(decodedToken));
-      history.push("/products");
+      history.push("/");
     } catch (error) {
       console.log(error);
     }

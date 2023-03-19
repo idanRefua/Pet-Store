@@ -1,11 +1,33 @@
 .card {
   margin: 5px;
   padding: 0 !important;
+  overflow: hidden;
+  border: 0.2px solid rgb(255, 172, 163) !important;
+  border-radius: 20px 20px 20px !important;
 }
 
 .img-product {
   border-bottom-left-radius: 100px !important;
   height: 15em;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.6em;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: rgb(115, 197, 199);
+  text-shadow: 1px 1px 1.5px black;
+}
+
+.card-text {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1.1em;
+}
+.card-price {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: rgb(76, 171, 76);
 }
 
 .card:hover {

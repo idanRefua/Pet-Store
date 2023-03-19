@@ -4,6 +4,7 @@ const authMiddleWare = require("../middleware/auth.middleware");
 const uploadImage = require("../middleware/upload-image");
 const fs = require("fs");
 const usersModel = require("../models/userModel");
+const { log } = require("console");
 
 const router = express.Router();
 
@@ -232,7 +233,7 @@ router.delete("/removereview/:id", authMiddleWare, async (req, res) => {
     const user = req.userData;
     const productId = req.params.id;
     const review = await productsModel.checkIfUserReview(productId, user._id);
-    console.log(review, user._id);
+
     if (review) {
       const deleteReview = await productsModel.removeReview(
         productId,
@@ -243,7 +244,7 @@ router.delete("/removereview/:id", authMiddleWare, async (req, res) => {
       throw "This is Not your review!";
     }
   } catch (error) {
-    res.status(400).json(console.log(error));
+    res.status(400).json(error);
   }
 });
 
@@ -255,9 +256,31 @@ router.post("/addtocart/:id", authMiddleWare, async (req, res) => {
       user._id,
       productId
     );
-    res.status(200).json("You add this product to Your cart");
+    res.status(200).json(productAddToCart);
   } catch (error) {
-    res.status(400).json(error);
+    res.status(400).json(console.log(error));
+  }
+});
+
+router.patch("/removefromcart/:id", authMiddleWare, async (req, res) => {
+  try {
+    const userDataToken = req.userData;
+    const productId = req.params.id;
+    const user = await usersModel.findUserById(userDataToken._id);
+
+    const productInCart = user[0].cartUser.includes(productId);
+
+    console.log(user[0]);
+    if (productInCart) {
+      const removeProductFromCart = await usersModel.removeProductFromUserCart(
+        user[0]._id.toHexString(),
+        productId
+      );
+      res.status(200).json(removeProductFromCart);
+    }
+    throw "This Product Not found in your cart";
+  } catch (error) {
+    res.status(400).send(console.log(error));
   }
 });
 
