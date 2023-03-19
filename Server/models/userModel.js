@@ -41,6 +41,13 @@ const addProductToCart = (userId, productId) => {
   );
 };
 
+const removeProductFromUserCart = (userId, productId) => {
+  return Users.findOneAndUpdate(
+    { _id: userId },
+    { $pull: { cartUser: productId } }
+  );
+};
+
 module.exports = {
   allUsers,
   addUser,
@@ -48,4 +55,5 @@ module.exports = {
   deleteUserById,
   addProductToCart,
   findUserById,
+  removeProductFromUserCart,
 };
