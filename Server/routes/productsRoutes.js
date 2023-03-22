@@ -267,18 +267,17 @@ router.patch("/removefromcart/:id", authMiddleWare, async (req, res) => {
     const userDataToken = req.userData;
     const productId = req.params.id;
     const user = await usersModel.findUserById(userDataToken._id);
-
     const productInCart = user[0].cartUser.includes(productId);
 
-    console.log(user[0]);
     if (productInCart) {
       const removeProductFromCart = await usersModel.removeProductFromUserCart(
         user[0]._id.toHexString(),
         productId
       );
       res.status(200).json(removeProductFromCart);
+    } else {
+      throw "This Product Not found in your cart";
     }
-    throw "This Product Not found in your cart";
   } catch (error) {
     res.status(400).send(console.log(error));
   }

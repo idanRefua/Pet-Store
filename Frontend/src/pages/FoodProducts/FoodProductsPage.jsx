@@ -9,7 +9,6 @@ export default function FoodProductPgae() {
     axios
       .get("/products/food")
       .then((res) => {
-        console.log(res.data);
         setProducts(res.data);
       })
       .catch((err) => {

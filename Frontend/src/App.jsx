@@ -6,7 +6,6 @@ import HomePage from "./pages/HomePage/HomePage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
-import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import AddProductPage from "./pages/AddProductPage/AddProductPage";
 import MyProductsPage from "./pages/MyProducts/MyProductsPage";
@@ -17,10 +16,10 @@ import { useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 import UserCartPage from "./pages/UserCartPage/UserCartPage";
 import AuthRoute from "./authRoute/AuthRoute";
-import AuthRouteAdmin from "./authRoute/AuthRouteAdmin";
 import EditProductPage from "./pages/EditProductPage/EditProductPage";
 import EquipProductsPage from "./pages/EquipProducts/EquipProductsPage";
 import FoodProductPgae from "./pages/FoodProducts/FoodProductsPage";
+import CartProvider from "./context/CartContext/cartContext";
 
 function App() {
   const history = useHistory();
@@ -49,25 +48,30 @@ function App() {
 
   return (
     <Fragment>
-      <NavBar />
-      <Switch>
-        <Route path="/" exact>
-          <Redirect to="/home" />
-        </Route>
-        <Route path="/home" component={HomePage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/register" component={RegisterPage} />
-        <Route path="/aboutus" component={AboutUsPage} />
-        <Route path="/products/equip" component={EquipProductsPage} exact />
-        <Route path="/products/food" component={FoodProductPgae} exact />
-        <AuthRoute path="/addproduct" component={AddProductPage} />
-        <AuthRoute path="/myproducts" component={MyProductsPage} />
-        <AuthRoute path="/editproduct/:productid" component={EditProductPage} />
-        <Route path="/product/description/:prid" component={ProductPage} />
-        <AuthRoute path="/userinfo/cart" component={UserCartPage} />
-        <Route path="*" component={NotFoundPage} />
-        <Route path="/notfoundpage" component={NotFoundPage} />
-      </Switch>
+      <CartProvider>
+        <NavBar />
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/home" />
+          </Route>
+          <Route path="/home" component={HomePage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
+          <Route path="/aboutus" component={AboutUsPage} />
+          <Route path="/products/equip" component={EquipProductsPage} exact />
+          <Route path="/products/food" component={FoodProductPgae} exact />
+          <AuthRoute path="/addproduct" component={AddProductPage} />
+          <AuthRoute path="/myproducts" component={MyProductsPage} />
+          <AuthRoute
+            path="/editproduct/:productid"
+            component={EditProductPage}
+          />
+          <Route path="/product/description/:prid" component={ProductPage} />
+          <AuthRoute path="/userinfo/cart" component={UserCartPage} />
+          <Route path="*" component={NotFoundPage} />
+          <Route path="/notfoundpage" component={NotFoundPage} />
+        </Switch>
+      </CartProvider>
     </Fragment>
   );
 }

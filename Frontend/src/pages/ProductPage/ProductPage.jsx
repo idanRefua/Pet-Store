@@ -37,7 +37,6 @@ export default function ProductPage() {
       .get("/users/usercart")
       .then((res) => {
         setUserCart(res.data);
-        console.log(userCart);
       })
       .catch((err) => console.log(err));
   }, [prid, likes, userInfo._id, productsCart]);
