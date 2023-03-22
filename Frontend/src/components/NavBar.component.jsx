@@ -1,15 +1,19 @@
 import "./navbar.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import homeLogo from "../imgs/favicon.jpg";
 import { useSelector } from "react-redux";
 import { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth";
-import axios from "axios";
+import { CartContext } from "../context/CartContext/cartContext";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import CartProductNavbarComponent from "./CartProductNavbarComponent/CartProductNavbarComponent";
 
 function NavBar() {
-  const [countCart, setCountCart] = useState(0);
+  const cartUser = useContext(CartContext);
+  const [modalCart, setModalCart] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const loggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -21,18 +25,41 @@ function NavBar() {
     history.push("/login");
   };
 
-  useEffect(() => {
-    axios
-      .get("/users/cart/products")
-      .then((res) => {
-        setCountCart(res.data.length);
-      })
-      .catch(() => {
-        alert("There is error");
-      });
-  }, []);
+  const productsCart = cartUser.item.reduce(
+    (sum, product) => sum + product.quantity,
+    0
+  );
+
+  const handleShowCartUser = () => {
+    setModalCart(true);
+  };
+  const handleCloseUserCart = () => {
+    setModalCart(false);
+  };
   return (
     <div className="header-nav d-flex justify-content-center">
+      <Modal show={modalCart} onHide={handleCloseUserCart}>
+        <Modal.Header closeButton>
+          <Modal.Title>This Is Your Cart</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {cartUser.item.map((curItem, index) => {
+            return (
+              <CartProductNavbarComponent
+                key={index}
+                id={curItem.id}
+                quantity={curItem.quantity}
+              ></CartProductNavbarComponent>
+            );
+          })}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseUserCart}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container-fluid">
           <button
@@ -127,10 +154,11 @@ function NavBar() {
                   <li className="nav-item">
                     <NavLink
                       className="nav-link active"
-                      aria-current="page"
-                      to="/userinfo/cart"
+                      aria-expanded="false"
+                      to={"#"}
+                      onClick={handleShowCartUser}
                     >
-                      My Cart ({countCart})
+                      My Cart ({productsCart})
                     </NavLink>
                   </li>
                   <div className="">
@@ -195,41 +223,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
-<div className="">
-  <li className="nav-item dropdown person-menu">
-    <Link
-      className="nav-link active dropdown-toggle my-profile"
-      id="navbarDropdown"
-      role="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-      to={""}
-    >
-      Products
-    </Link>
-    <ul
-      className="dropdown-menu drop-down-links"
-      aria-labelledby="navbarDropdown"
-    >
-      <li>
-        <NavLink
-          className="dropdown-item"
-          to="/products/food"
-          activeClassName="activeLink"
-        >
-          Food
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className="dropdown-item"
-          to="/products/equip"
-          activeClassName="activeLink"
-        >
-          Equip
-        </NavLink>
-      </li>
-    </ul>
-  </li>
-</div>;

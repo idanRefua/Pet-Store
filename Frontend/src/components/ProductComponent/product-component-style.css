@@ -39,6 +39,21 @@
   transition: all 1s;
 }
 
+.qty-label {
+  font-weight: bold;
+}
+
+.add-one-btn {
+  margin-left: 8px;
+}
+.remove-one-btn {
+  margin-right: 8px;
+}
+
+.delete-from-cart-btn {
+  margin-top: 5px;
+}
+
 .img-product {
   transition: all 0.7s;
 }
