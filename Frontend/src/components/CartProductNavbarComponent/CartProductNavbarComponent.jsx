@@ -8,6 +8,7 @@ export default function CartProductNavbarComponent(props) {
   const id = props.id;
   const quantity = props.quantity;
   const [productData, setProductData] = useState(undefined);
+  const [cart, setCart] = useState(cartUser);
 
   const handleDeleteFromCart = () => {
     cartUser.deleteCart(id);
