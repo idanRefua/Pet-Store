@@ -1,8 +1,10 @@
 import "./product-component-style.css";
 import { useHistory } from "react-router-dom";
 import { CartContext } from "../../context/CartContext/cartContext";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
+
 export default function ProductComponent(props) {
+  const [cart, setCart] = useState(getUserCartLocal);
   const cartUser = useContext(CartContext);
   const productQty = cartUser.getProductQty(props.id);
   const history = useHistory();
