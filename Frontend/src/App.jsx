@@ -1,7 +1,7 @@
 import "./App.css";
 import NavBar from "./components/NavBar.component";
 import { Switch, Route, Redirect, useHistory } from "react-router";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import HomePage from "./pages/HomePage/HomePage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";

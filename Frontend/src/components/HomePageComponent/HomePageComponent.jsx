@@ -18,7 +18,6 @@ export default function HomePageComponent() {
     axios
       .get("/products/allproducts")
       .then((res) => {
-        console.log(res.data);
         setProductsArray(res.data);
       })
       .catch((err) => console.log(err));

@@ -28,22 +28,24 @@ export default function EditProductComponent() {
     setPrice(e.target.value);
   };
 
-  const handleImageInput = (e) => {
-    console.log(e);
+  const handleImageInput = (pickedFile, fileIsValid) => {
+    if (fileIsValid) {
+      setImage(pickedFile);
+    }
   };
 
   const handleSubmitForm = async () => {
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("category", category);
+    formData.append("price", price);
     try {
       if (category === "Food" || category === "Equip") {
         const result = await axios.patch(
           `/products/updateproduct/${productid}`,
-          {
-            price,
-            title,
-            description,
-            image,
-            category,
-          }
+          formData
         );
         const data = await result.data;
         history.push("/myproducts");
@@ -142,7 +144,7 @@ export default function EditProductComponent() {
               onClick={handleSubmitForm}
               className="add-product-btn btn-edit d-flex justify-content-center"
             >
-              Add Product
+              Edit Product
             </button>
           </div>
         </div>

@@ -9,11 +9,12 @@ import { authActions } from "../store/auth";
 import { CartContext } from "../context/CartContext/cartContext";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import CartProductNavbarComponent from "./CartProductNavbarComponent/CartProductNavbarComponent";
+import CartProductNavbarComponent from "../components/CartProductNavbarComponent/CartProductNavbarComponent";
 
 function NavBar() {
   const cartUser = useContext(CartContext);
   const [modalCart, setModalCart] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
   const loggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -25,7 +26,7 @@ function NavBar() {
     history.push("/login");
   };
 
-  const productsCart = cartUser.item.reduce(
+  const productsCart = cartUser.items.reduce(
     (sum, product) => sum + product.quantity,
     0
   );
@@ -36,6 +37,7 @@ function NavBar() {
   const handleCloseUserCart = () => {
     setModalCart(false);
   };
+
   return (
     <div className="header-nav d-flex justify-content-center">
       <Modal show={modalCart} onHide={handleCloseUserCart}>
@@ -43,7 +45,7 @@ function NavBar() {
           <Modal.Title>This Is Your Cart</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {cartUser.item.map((curItem, index) => {
+          {cartUser.items.map((curItem, index) => {
             return (
               <CartProductNavbarComponent
                 key={index}

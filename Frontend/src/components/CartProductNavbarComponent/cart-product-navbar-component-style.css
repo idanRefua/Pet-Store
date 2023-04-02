@@ -1,0 +1,8 @@
+.cart-product-img {
+  width: 150px;
+}
+
+.cart-product-p-quantity {
+  font-weight: bold;
+  color: rgb(67, 123, 255);
+}

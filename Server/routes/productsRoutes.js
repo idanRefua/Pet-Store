@@ -105,11 +105,6 @@ router.delete("/deleteproduct/:productid", authMiddleWare, async (req, res) => {
   }
 });
 
-////
-/////
-//////
-//////
-
 router.patch(
   "/updateproduct/:id",
   uploadImage.single("image"),
@@ -147,7 +142,7 @@ router.patch(
               category,
               product.image
             );
-            res.status(200).json(updateProduct);
+            res.status(200).json(console.log(updateProduct));
           }
         } else {
           throw "this is not your product";
@@ -156,7 +151,7 @@ router.patch(
         throw "You are not admin user";
       }
     } catch (error) {
-      res.status(400).send(error);
+      res.status(400).send(console.log(error));
     }
   }
 );
