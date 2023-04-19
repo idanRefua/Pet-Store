@@ -2,6 +2,13 @@
   margin-top: 70px !important;
 }
 
+.add-fav-btns {
+  margin-bottom: 2em;
+}
+.add-cart-product-btn {
+  color: white;
+}
+
 .image-box {
   width: 500px;
   border-radius: 50px;

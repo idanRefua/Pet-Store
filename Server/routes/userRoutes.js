@@ -5,6 +5,8 @@ const jsonToken = require("../config/token");
 const authMiddleware = require("../middleware/auth.middleware");
 const bcrypt = require("../config/bcrypt");
 const productsModel = require("../models/productModel");
+const stripe = require("stripe")(process.env.STRIPE_TEST_PRIVATE_KEY);
+require("dotenv").config();
 
 router.get("/", authMiddleware, async (req, res) => {
   try {
@@ -109,4 +111,32 @@ router.get("/cart/products", authMiddleware, async (req, res) => {
   }
 });
 
+router.post("/checkout", authMiddleware, async (req, res) => {
+  try {
+    const items = req.body.items;
+    let lineItems = [];
+
+    items.forEach((item) => {
+      lineItems.push({
+        price: item.id,
+        quantity: item.quantity,
+      });
+    });
+
+    const session = stripe.checkout.sessions.create({
+      line_items: lineItems,
+      mode: "payment",
+      success_url: "http://localhost:3000/success",
+      cancel_url: "http://localhost:3000/cancel",
+    });
+
+    res.status(200).send(
+      JSON.stringify({
+        url: session.url,
+      })
+    );
+  } catch (error) {
+    return res.status(401).json(error);
+  }
+});
 module.exports = router;

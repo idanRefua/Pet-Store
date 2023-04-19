@@ -1,4 +1,6 @@
 import { createContext, useState, useEffect } from "react";
+import { products, getProductInfo } from "../../GetData/getDataProducts";
+import axios from "axios";
 
 export const CartContext = createContext({
   items: [],
@@ -7,6 +9,7 @@ export const CartContext = createContext({
   removeOneProductFromCart: () => {},
   deleteCart: () => {},
   getTotalPrice: () => {},
+  getTotalCost: () => {},
 });
 
 const initState = [];
@@ -89,6 +92,15 @@ export function CartProvider({ children }) {
     return totalPrice;
   }
 
+  function getTotalCost(prodcutsArray, userCart) {
+    let totalCost = 0;
+    userCart.map((product) => {
+      const productInfo = getProductInfo(prodcutsArray, product.id);
+      totalCost += productInfo.price * product.quantity;
+    });
+    return totalCost;
+  }
+
   const contextValue = {
     items: cartProducts,
     getProductQty,
@@ -96,6 +108,7 @@ export function CartProvider({ children }) {
     removeOneProductFromCart,
     deleteCart,
     getTotalPrice,
+    getTotalCost,
   };
 
   return (

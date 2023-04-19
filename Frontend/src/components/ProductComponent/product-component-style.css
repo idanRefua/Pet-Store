@@ -1,14 +1,15 @@
 .card {
   margin: 5px;
-  padding: 0 !important;
+  padding: 0px !important;
   overflow: hidden;
   border: 0.2px solid rgb(255, 172, 163) !important;
   border-radius: 20px 20px 20px !important;
+  height: 26.9em;
 }
 
 .img-product {
   border-bottom-left-radius: 100px !important;
-  height: 15em;
+  height: 12em;
 }
 
 .card-title {

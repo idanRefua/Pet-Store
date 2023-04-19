@@ -7,7 +7,6 @@
   font-weight: bold;
   color: rgb(49, 128, 131);
   text-shadow: 2px 2.1px rgb(35, 121, 111);
-  border-bottom: 2px solid rgb(35, 121, 111);
 }
 .select-input-add-product {
   width: 15em !important;

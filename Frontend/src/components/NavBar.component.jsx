@@ -10,11 +10,13 @@ import { CartContext } from "../context/CartContext/cartContext";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import CartProductNavbarComponent from "../components/CartProductNavbarComponent/CartProductNavbarComponent";
+import axios from "axios";
+import { getProductInfo } from "../GetData/getDataProducts";
 
 function NavBar() {
   const cartUser = useContext(CartContext);
   const [modalCart, setModalCart] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [products, setProdutcs] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
   const loggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -25,6 +27,19 @@ function NavBar() {
     localStorage.clear();
     history.push("/login");
   };
+  let price;
+  useEffect(() => {
+    axios
+      .get("/products/allproducts")
+      .then((res) => {
+        setProdutcs(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  if (products.length > 0) {
+    price = cartUser.getTotalCost(products, cartUser.items);
+  }
 
   const productsCart = cartUser.items.reduce(
     (sum, product) => sum + product.quantity,
@@ -38,6 +53,21 @@ function NavBar() {
     setModalCart(false);
   };
 
+  const checkoutCart = async () => {
+    try {
+      const response = await axios.post(
+        "/users/checkout",
+        JSON.stringify({ items: cartUser.items })
+      );
+
+      if (response.url) {
+        window.location.assign(response.url);
+      }
+    } catch (error) {
+      alert("request not work, please try again later");
+    }
+  };
+
   return (
     <div className="header-nav d-flex justify-content-center">
       <Modal show={modalCart} onHide={handleCloseUserCart}>
@@ -45,20 +75,28 @@ function NavBar() {
           <Modal.Title>This Is Your Cart</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {cartUser.items.map((curItem, index) => {
-            return (
-              <CartProductNavbarComponent
-                key={index}
-                id={curItem.id}
-                quantity={curItem.quantity}
-              ></CartProductNavbarComponent>
-            );
-          })}
+          {productsCart > 0 ? (
+            <Fragment>
+              {cartUser.items.map((curItem, index) => {
+                return (
+                  <CartProductNavbarComponent
+                    key={index}
+                    id={curItem.id}
+                    quantity={curItem.quantity}
+                  ></CartProductNavbarComponent>
+                );
+              })}
+            </Fragment>
+          ) : (
+            <h1>There is no items in the cart</h1>
+          )}
+          <h2>Total : {`${price}$`}</h2>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseUserCart}>
             Close
           </Button>
+          <Button onClick={checkoutCart}>Purchase the products!</Button>
         </Modal.Footer>
       </Modal>
 

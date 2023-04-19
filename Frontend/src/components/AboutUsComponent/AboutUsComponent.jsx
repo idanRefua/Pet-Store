@@ -1,14 +1,32 @@
 import "./about-us-component.css";
-
+import axios from "axios";
+import { useEffect, useState, useContext } from "react";
+import { CartContext } from "../../context/CartContext/cartContext";
 export default function AboutUsComponent() {
+  const cartUser = useContext(CartContext);
+  const [products, setProdutcs] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/products/allproducts")
+      .then((res) => {
+        setProdutcs(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  let price;
+  if (products.length > 0) {
+    price = cartUser.getTotalCost(products, cartUser.items);
+  }
   return (
     <div className="about-us-box container">
-      <h2 className="d-flex justify-content-center about-us-title">
+      <h1 className="animate__animated animate__flip d-flex justify-content-center about-us-title">
         About Our Company
-      </h2>
+      </h1>
+      {price !== undefined && <h2>{price + "$"}</h2>}
 
       <div className="row about-us-content-box">
-        <div className="col-md-6  about-our-us">
+        <div className="col-md-6  about-our-us animate__animated animate__fadeInLeftBig">
           <h3 className="d-flex justify-content-center story-title">
             Our Story
           </h3>

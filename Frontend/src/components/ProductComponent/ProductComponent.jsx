@@ -33,12 +33,11 @@ export default function ProductComponent(props) {
       />
       <div className="card-body">
         <h3 className="card-title">{props.title}</h3>
-        <p className="card-text">{props.description}</p>
         <p className="d-flex justify-content-center card-price">
           {props.price}$
         </p>
       </div>
-      <div>
+      <div className="">
         {productQty > 0 ? (
           <Fragment>
             <div className="product-btns d-flex justify-content-center">
@@ -74,7 +73,7 @@ export default function ProductComponent(props) {
           </div>
         )}
       </div>
-      <div className="d-flex justify-content-center ">
+      <div className="d-flex justify-content-center  move-to-product-details-btn">
         <button onClick={handleMoreInfo} className="mt-2 mb-2">
           More Details
         </button>

@@ -1,14 +1,17 @@
 import "./product-page-style.css";
-import { Fragment, useEffect } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import ReviewTableRowComponent from "../../components/ReviewTableRowComponent/ReviewTableRowComponent";
+import { CartContext } from "../../context/CartContext/cartContext";
 
 export default function ProductPage() {
   const history = useHistory();
   const { prid } = useParams();
+  const cartUser = useContext(CartContext);
+  const productQty = cartUser.getProductQty(prid);
   const userInfo = useSelector((state) => state.auth.userInfo);
   const loggedInUser = useSelector((state) => state.auth.isLoggedIn);
   const [review, setReview] = useState("");
@@ -107,18 +110,16 @@ export default function ProductPage() {
     }
   };
 
-  const handleRemoveFromCart = () => {
-    axios
-      .patch(`/products/removefromcart/${prid}`)
-      .then((res) => setProductsCart(res.data))
-      .catch((err) => console.log(err));
+  const handleAddToCart = () => {
+    cartUser.addOneProductToCart(prid);
   };
 
-  const handleAddProductToUserCart = () => {
-    axios
-      .post(`/products/addtocart/${prid}`)
-      .then((res) => setProductsCart(res.data))
-      .catch((err) => console.log(err));
+  const handleRemoveOneProduct = () => {
+    cartUser.removeOneProductFromCart(prid);
+  };
+
+  const handleRemoveFromCart = () => {
+    cartUser.deleteCart(prid);
   };
 
   const findProductId = userCart.find((product) => product._id === prid);
@@ -138,48 +139,67 @@ export default function ProductPage() {
             <div className="col-sm-6 ">
               <h3 className="product-page-title">{product.title}</h3>
               <p className="product-page-p">{product.description}</p>
-              <br />
+              <p>{product.price}$</p>
               <br />
               <br />
 
               {loggedInUser && (
-                <div className="add-fav-add-cart-btns">
+                <div className="add-fav-btns">
                   <p>
                     {productLikes.includes(userInfo._id) ? (
                       <button
-                        className="btn-info"
+                        className="btn btn-danger"
                         onClick={handleRemoveFromFavourites}
                       >
                         Remove From Favourites
                       </button>
                     ) : (
                       <button
-                        className="btn-success"
+                        className="btn btn-success"
                         onClick={handleAddToFavourites}
                       >
                         Add To Favourites
                       </button>
                     )}
                   </p>
-                  <p>
-                    {findProductId ? (
-                      <button
-                        className="btn-info remove-cart-btn"
-                        onClick={handleRemoveFromCart}
-                      >
-                        Remove From Cart
-                      </button>
-                    ) : (
-                      <button
-                        className="btn-success add-cart-btn"
-                        onClick={handleAddProductToUserCart}
-                      >
-                        Add To Cart
-                      </button>
-                    )}
-                  </p>
                 </div>
               )}
+
+              <div className="">
+                {productQty > 0 ? (
+                  <Fragment>
+                    <div className="product-btns">
+                      <button
+                        onClick={handleRemoveOneProduct}
+                        className="btn btn-danger remove-one-btn"
+                      >
+                        -
+                      </button>
+                      <label className=" qty-label">Qty : {productQty} </label>
+                      <button
+                        onClick={handleAddToCart}
+                        className="btn btn-info add-one-btn"
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <button
+                      className="btn btn-danger delete-from-cart-btn"
+                      onClick={handleRemoveFromCart}
+                    >
+                      Remove From Cart
+                    </button>
+                  </Fragment>
+                ) : (
+                  <button
+                    onClick={handleAddToCart}
+                    className="btn btn-info add-cart-product-btn"
+                  >
+                    Add To Cart
+                  </button>
+                )}
+              </div>
             </div>
           </div>
           <div className="container reviews-table">

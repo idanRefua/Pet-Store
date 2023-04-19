@@ -2,24 +2,25 @@ import "./cart-product-navbar-component-style.css";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { CartContext } from "../../context/CartContext/cartContext";
 import axios from "axios";
+import { products, getProductInfo } from "../../GetData/getDataProducts";
 
 export default function CartProductNavbarComponent(props) {
   const cartUser = useContext(CartContext);
+
   const id = props.id;
   const quantity = props.quantity;
-  const [productData, setProductData] = useState(undefined);
+  const [productDataFromServer, setProductDataFromServer] = useState([]);
 
   useEffect(() => {
     axios
-      .get(
-        `/products/product/moreinfo/${id}
-        `
-      )
+      .get("/products/allproducts")
       .then((res) => {
-        setProductData(res.data);
+        setProductDataFromServer(res.data);
       })
-      .catch(() => alert("Not finish quest"));
+      .catch((err) => console.log(err));
   }, []);
+
+  let productData = getProductInfo(productDataFromServer, id);
 
   const handleAddToCart = () => {
     cartUser.addOneProductToCart(props.id);

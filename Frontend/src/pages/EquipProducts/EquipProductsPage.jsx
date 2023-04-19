@@ -27,7 +27,6 @@ export default function EquipProductsPage() {
               key={product._id}
               id={product._id}
               title={product.title}
-              description={product.description}
               price={product.price}
               image={product.image}
             />

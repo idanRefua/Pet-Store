@@ -11,6 +11,8 @@ import store from "./store/index";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
 
+import "animate.css";
+
 axios.defaults.baseURL = "http://localhost:8181";
 
 axios.interceptors.request.use((config) => {

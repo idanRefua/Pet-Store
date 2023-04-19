@@ -16,7 +16,7 @@ export default function FoodProductPgae() {
       });
   }, []);
   return (
-    <div className="container">
+    <div className="container food-products-page-box">
       <div className="row">
         {products.map((product) => {
           return (
@@ -24,7 +24,6 @@ export default function FoodProductPgae() {
               key={product._id}
               id={product._id}
               title={product.title}
-              description={product.description}
               price={product.price}
               image={product.image}
             />
