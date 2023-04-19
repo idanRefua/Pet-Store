@@ -55,10 +55,9 @@ function NavBar() {
 
   const checkoutCart = async () => {
     try {
-      const response = await axios.post(
-        "/users/checkout",
-        JSON.stringify({ items: cartUser.items })
-      );
+      const response = await axios.post("/users/checkout", {
+        items: cartUser.items,
+      });
 
       if (response.url) {
         window.location.assign(response.url);

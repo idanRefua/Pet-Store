@@ -67,14 +67,17 @@ export default function ProductComponent(props) {
           </Fragment>
         ) : (
           <div className="d-flex justify-content-center">
-            <button onClick={handleAddToCart} className="">
+            <button onClick={handleAddToCart} className="add-to-cart-btn">
               Add To Cart
             </button>
           </div>
         )}
       </div>
       <div className="d-flex justify-content-center  move-to-product-details-btn">
-        <button onClick={handleMoreInfo} className="mt-2 mb-2">
+        <button
+          onClick={handleMoreInfo}
+          className="mt-2 mb-2 more-details-product-btn"
+        >
           More Details
         </button>
       </div>

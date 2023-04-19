@@ -37,9 +37,10 @@ export default function MyProductsPage() {
   const user = useSelector((state) => state.auth.userInfo);
   return (
     <div>
-      <h3 className="d-flex justify-content-center my-products-title">
-        Hello,{user.name},This are all your products
+      <h3 className="d-flex justify-content-center my-products-title animate__animated animate__backInLeft">
+        Hello {user.name},This are all your products
       </h3>
+      <hr className="title-hr" />
       <br />
       <table className="table">
         <thead>

@@ -1,29 +1,12 @@
 import "./about-us-component.css";
 import axios from "axios";
-import { useEffect, useState, useContext } from "react";
-import { CartContext } from "../../context/CartContext/cartContext";
-export default function AboutUsComponent() {
-  const cartUser = useContext(CartContext);
-  const [products, setProdutcs] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("/products/allproducts")
-      .then((res) => {
-        setProdutcs(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  let price;
-  if (products.length > 0) {
-    price = cartUser.getTotalCost(products, cartUser.items);
-  }
+export default function AboutUsComponent() {
   return (
     <div className="about-us-box container">
       <h1 className="animate__animated animate__flip d-flex justify-content-center about-us-title">
         About Our Company
       </h1>
-      {price !== undefined && <h2>{price + "$"}</h2>}
 
       <div className="row about-us-content-box">
         <div className="col-md-6  about-our-us animate__animated animate__fadeInLeftBig">
@@ -34,6 +17,7 @@ export default function AboutUsComponent() {
             • Idan Store was created in 2005,They work years for help others to
             find the best products for dogs,food,accessories and many more.
           </p>
+          <hr />
           <p className="p-story-content">
             • We sold each year thousands of prodcuts,to all the country.
             <br />
@@ -41,6 +25,7 @@ export default function AboutUsComponent() {
             free to contact us if you have problem with any product you buy in
             our store.
           </p>
+          <hr />
           <p className="p-story-content">
             • You can buy easily in this website, You information is seure here
             and we have best protection about cards and more.

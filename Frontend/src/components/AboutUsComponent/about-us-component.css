@@ -15,6 +15,8 @@
   padding: 40px;
   border-radius: 40px;
   box-shadow: 17px 17px 15px black;
+  background-color: #fbda61;
+  background-image: linear-gradient(45deg, #fbda61 0%, #ff5acd 100%);
 }
 .story-title {
   border-bottom: 2px solid rgb(227, 32, 198);
@@ -36,8 +38,8 @@
 .p-story-content {
   font-size: 1.21em;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 550;
-  color: rgb(84, 151, 187);
+  font-weight: 800;
+  color: rgb(61, 141, 184);
 }
 
 .store-map-box {

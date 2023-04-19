@@ -1,5 +1,8 @@
 .my-products-title {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 2em;
+  margin: 1em;
+  font-size: 2.3em;
+  text-shadow: 2px 2px 5px rgb(182, 104, 255);
+  color: blueviolet;
 }
