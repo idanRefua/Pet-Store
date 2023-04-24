@@ -137,9 +137,9 @@ export default function ProductPage() {
               />
             </div>
             <div className="col-sm-6 ">
-              <h3 className="product-page-title">{product.title}</h3>
+              <h1 className="product-page-title">{product.title}</h1>
               <p className="product-page-p">{product.description}</p>
-              <p>{product.price}$</p>
+              <p className="price-product-p">Price : {product.price}$</p>
               <br />
               <br />
 
@@ -148,14 +148,14 @@ export default function ProductPage() {
                   <p>
                     {productLikes.includes(userInfo._id) ? (
                       <button
-                        className="btn btn-danger"
+                        className="btn-remove-from-fav"
                         onClick={handleRemoveFromFavourites}
                       >
                         Remove From Favourites
                       </button>
                     ) : (
                       <button
-                        className="btn btn-success"
+                        className="btn-add-to-fav"
                         onClick={handleAddToFavourites}
                       >
                         Add To Favourites
@@ -192,10 +192,7 @@ export default function ProductPage() {
                     </button>
                   </Fragment>
                 ) : (
-                  <button
-                    onClick={handleAddToCart}
-                    className="btn btn-info add-cart-product-btn"
-                  >
+                  <button onClick={handleAddToCart} className="add-to-cart-btn">
                     Add To Cart
                   </button>
                 )}
