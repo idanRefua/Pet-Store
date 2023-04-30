@@ -13,7 +13,9 @@ export default function ReviewTableRowComponent(props) {
       <td className="review-description">{props.review}</td>
       {props.byUser === userInfo._id && (
         <td>
-          <button onClick={handleDeleteReview}>Delete</button>
+          <button className="delete-review-btn" onClick={handleDeleteReview}>
+            Delete
+          </button>
         </td>
       )}
     </tr>

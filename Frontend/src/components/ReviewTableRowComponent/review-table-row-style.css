@@ -1,3 +1,27 @@
 .review-description {
   word-break: break-all;
 }
+
+.delete-review-btn {
+  background-image: linear-gradient(
+    to right,
+    #556270 0%,
+    #ff6b6b 51%,
+    #556270 100%
+  );
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  padding: 5px 15px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 5 5 20px black;
+  border-radius: 10px;
+  display: block;
+}
+
+.delete-review-btn:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}

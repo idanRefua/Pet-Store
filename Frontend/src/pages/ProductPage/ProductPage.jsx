@@ -62,9 +62,7 @@ export default function ProductPage() {
 
         setProductsReviews((prev) => prev.concat(newReview));
       })
-      .catch((err) =>
-        alert("can't add review right not please try again later!")
-      );
+      .catch(() => alert("can't add review right not please try again later!"));
   };
 
   const handleAddToFavourites = () => {
@@ -76,7 +74,7 @@ export default function ProductPage() {
       .then((res) => {
         setLikes(res.data);
       })
-      .catch((error) => console.log(error));
+      .catch(() => alert("there is problem , try again later"));
   };
 
   const handleRemoveFromFavourites = () => {
@@ -85,7 +83,7 @@ export default function ProductPage() {
       .then((res) => {
         setLikes(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch(() => "there is problem , try again later");
   };
 
   const hadnleReviewText = (e) => {
@@ -103,7 +101,7 @@ export default function ProductPage() {
           });
           setProductsReviews(newReviewsArrFilter);
         })
-        .catch((err) => {
+        .catch(() => {
           alert("there is problem with the server , please try again later");
         });
       setReview("");
@@ -214,7 +212,9 @@ export default function ProductPage() {
                     onChange={hadnleReviewText}
                   />
                   <br />
-                  <button onClick={handleAddReview}>Add Review</button>
+                  <button className=" add-review-btn" onClick={handleAddReview}>
+                    Add Review
+                  </button>
                 </div>
               )}
 
