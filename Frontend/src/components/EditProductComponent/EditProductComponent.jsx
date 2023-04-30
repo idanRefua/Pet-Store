@@ -53,7 +53,7 @@ export default function EditProductComponent() {
         alert("Please Select Category");
       }
     } catch (error) {
-      console.log(error);
+      alert("there is problem with the server");
     }
   };
 

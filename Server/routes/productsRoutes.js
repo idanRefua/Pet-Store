@@ -142,7 +142,7 @@ router.patch(
               category,
               product.image
             );
-            res.status(200).json(console.log(updateProduct));
+            res.status(200).json(updateProduct);
           }
         } else {
           throw "this is not your product";

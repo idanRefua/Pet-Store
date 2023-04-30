@@ -1,4 +1,5 @@
-.home-page-main {
+.input-group {
+  height: 2em;
 }
 
 .home-page-search-input {
@@ -7,13 +8,16 @@
 
 .product-search-image {
   height: 4.5em;
+  width: 7em;
 }
-
+.products-swiper {
+}
 .search-result {
   width: 90%;
   border: 2.5px solid black;
   border-radius: 5px;
   background: #eeeeee;
+  z-index: 7 !important;
 }
 .product-search-box {
   border-bottom: 1px solid black;
@@ -28,11 +32,11 @@
   text-decoration: none;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: bold;
-  color: aqua;
+  color: rgb(8, 81, 81);
 }
 
 .link-search-product:hover {
-  color: aqua;
+  color: rgb(8, 81, 81);
 }
 
 .my-swiper {

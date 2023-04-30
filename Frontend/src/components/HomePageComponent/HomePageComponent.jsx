@@ -40,9 +40,6 @@ export default function HomePageComponent() {
   return (
     <Fragment>
       <div className="home-page-main">
-        <h2 className="d-flex justify-content-center">
-          This is home page from component
-        </h2>
         <br />
         <div className="input-group d-flex justify-content-center">
           <input
