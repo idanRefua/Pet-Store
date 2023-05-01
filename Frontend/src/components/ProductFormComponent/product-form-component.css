@@ -5,8 +5,11 @@
 .add-product-title-page {
   margin-bottom: 2em;
   font-weight: bold;
-  color: rgb(49, 128, 131);
-  text-shadow: 2px 2.1px rgb(35, 121, 111);
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  text-shadow: 7px 2px 7px rgb(88, 88, 88);
+  background: -webkit-linear-gradient(#06ba0f, #ff4c4c, #4848ff, #ff5cef);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .select-input-add-product {
   width: 15em !important;

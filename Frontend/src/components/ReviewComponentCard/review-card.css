@@ -1,10 +1,13 @@
 .reviews-cards-box {
-  background: rgb(231, 175, 71);
+  /*   background: rgb(231, 175, 71);
   background: linear-gradient(
     292deg,
     rgba(231, 175, 71, 1) 0%,
     rgba(254, 186, 59, 1) 100%
-  );
+  ); */
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+
   padding: 15px;
   width: 100%;
   height: 34em;
@@ -42,7 +45,8 @@
   font-size: 2.2em;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: bold;
-  text-shadow: 1px 2px 3px black;
+  color: #d519ff;
+  text-shadow: 3px 1px 2px rgb(92, 92, 92);
 }
 
 .review-p {

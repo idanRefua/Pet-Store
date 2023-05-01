@@ -7,7 +7,7 @@ export default function ReviewsComponentCard() {
   const reviews = [
     {
       id: 1,
-      name: "uhdawd",
+      name: "Dalit",
       review:
         "lorem kdoiawjdilawkd ajwnhdjawhduawd kawjduiwah duawhduahwduhawdad awudahw ddawhuoqwiu8erijhdiuwhefjwsefoiwhefis",
       image:
@@ -15,7 +15,7 @@ export default function ReviewsComponentCard() {
     },
     {
       id: 2,
-      name: "uhdawd",
+      name: "Yoav",
       review:
         "lorem kdoiawjdilawkd ajwnhdjawhduawd kawjduiwah duawhduahwduhawdad awudahw ddawhuoqwiu8erijhdiuwhefjwsefoiwhefis",
       image:
@@ -23,7 +23,7 @@ export default function ReviewsComponentCard() {
     },
     {
       id: 3,
-      name: "uhdawd",
+      name: "Anthony",
       review:
         "lorem kdoiawjdilawkd ajwnhdjawhduawd kawjduiwah duawhduahwduhawdad awudahw ddawhuoqwiu8erijhdiuwhefjwsefoiwhefis",
       image:
@@ -31,7 +31,7 @@ export default function ReviewsComponentCard() {
     },
     {
       id: 4,
-      name: "uhdawd",
+      name: "John",
       review:
         "lorem kdoiawjdilawkd ajwnhdjawhduawd kawjduiwah duawhduahwduhawdad awudahw ddawhuoqwiu8erijhdiuwhefjwsefoiwhefis",
       image:

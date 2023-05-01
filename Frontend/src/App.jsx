@@ -19,6 +19,7 @@ import AuthRoute from "./authRoute/AuthRoute";
 import EditProductPage from "./pages/EditProductPage/EditProductPage";
 import EquipProductsPage from "./pages/EquipProducts/EquipProductsPage";
 import FoodProductPgae from "./pages/FoodProducts/FoodProductsPage";
+import FooterComponent from "./components/FooterComponent/FooterComponent";
 import CartProvider from "./context/CartContext/cartContext";
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
           <Route path="/notfoundpage" component={NotFoundPage} />
         </Switch>
       </CartProvider>
+      <FooterComponent />
     </Fragment>
   );
 }

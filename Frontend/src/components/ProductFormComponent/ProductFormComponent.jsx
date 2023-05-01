@@ -59,7 +59,7 @@ export default function ProductFormComponent() {
       onSubmit={handleSubmitForm}
       encType="multipart/form-data"
     >
-      <h1 className="animate__animated animate__flipInY animate__delay-1s d-flex justify-content-center add-product-title-page">
+      <h1 className="animate__animated animate__flipInY animate__delay-0.7s d-flex justify-content-center add-product-title-page">
         Add New Product
       </h1>
       <div className="row">

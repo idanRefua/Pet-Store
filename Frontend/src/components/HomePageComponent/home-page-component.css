@@ -17,7 +17,7 @@
   border: 2.5px solid black;
   border-radius: 5px;
   background: #eeeeee;
-  z-index: 7 !important;
+  z-index: 7;
 }
 .product-search-box {
   border-bottom: 1px solid black;
