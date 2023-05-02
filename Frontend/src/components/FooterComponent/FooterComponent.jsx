@@ -11,7 +11,7 @@ export default function FooterComponent() {
               href="#!"
               role="button"
             >
-              <i className="fab fa-facebook-f"></i>
+              <i className="fa fa-facebook-f"></i>
             </a>
 
             <a
@@ -19,7 +19,7 @@ export default function FooterComponent() {
               href="#!"
               role="button"
             >
-              <i className="fab fa-twitter"></i>
+              <i className="fa fa-twitter"></i>
             </a>
 
             <a
@@ -27,7 +27,7 @@ export default function FooterComponent() {
               href="#!"
               role="button"
             >
-              <i className="fab fa-google"></i>
+              <i className="fa fa-google"></i>
             </a>
 
             <a
@@ -35,7 +35,7 @@ export default function FooterComponent() {
               href="#!"
               role="button"
             >
-              <i className="fab fa-instagram"></i>
+              <i className="fa fa-instagram"></i>
             </a>
 
             <a
@@ -43,7 +43,7 @@ export default function FooterComponent() {
               href="#!"
               role="button"
             >
-              <i className="fab fa-linkedin-in"></i>
+              <i className="fa fa-linkedin"></i>
             </a>
 
             <a
@@ -51,16 +51,13 @@ export default function FooterComponent() {
               href="#!"
               role="button"
             >
-              <i className="fab fa-github"></i>
+              <i className="fa fa-github"></i>
             </a>
           </section>
         </div>
 
         <div className="text-center p-3">
-          © 2022 Copyright :
-          <a className="text-white" href="https://mdbootstrap.com/">
-            refua-websites.com
-          </a>
+          © 2022 Copyright :<a className="text-white">refua-websites.com</a>
         </div>
       </footer>
     </div>

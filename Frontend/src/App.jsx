@@ -51,29 +51,33 @@ function App() {
     <Fragment>
       <CartProvider>
         <NavBar />
-        <Switch>
-          <Route path="/" exact>
-            <Redirect to="/home" />
-          </Route>
-          <Route path="/home" component={HomePage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/aboutus" component={AboutUsPage} />
-          <Route path="/products/equip" component={EquipProductsPage} exact />
-          <Route path="/products/food" component={FoodProductPgae} exact />
-          <AuthRoute path="/addproduct" component={AddProductPage} />
-          <AuthRoute path="/myproducts" component={MyProductsPage} />
-          <AuthRoute
-            path="/editproduct/:productid"
-            component={EditProductPage}
-          />
-          <Route path="/product/description/:prid" component={ProductPage} />
-          <AuthRoute path="/userinfo/cart" component={UserCartPage} />
-          <Route path="*" component={NotFoundPage} />
-          <Route path="/notfoundpage" component={NotFoundPage} />
-        </Switch>
+        <div className="pages">
+          <Switch>
+            <Route path="/" exact>
+              <Redirect to="/home" />
+            </Route>
+            <Route path="/home" component={HomePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/aboutus" component={AboutUsPage} />
+            <Route path="/products/equip" component={EquipProductsPage} exact />
+            <Route path="/products/food" component={FoodProductPgae} exact />
+            <AuthRoute path="/addproduct" component={AddProductPage} />
+            <AuthRoute path="/myproducts" component={MyProductsPage} />
+            <AuthRoute
+              path="/editproduct/:productid"
+              component={EditProductPage}
+            />
+            <Route path="/product/description/:prid" component={ProductPage} />
+            <AuthRoute path="/userinfo/cart" component={UserCartPage} />
+            <Route path="*" component={NotFoundPage} />
+            <Route path="/notfoundpage" component={NotFoundPage} />
+          </Switch>
+        </div>
       </CartProvider>
-      <FooterComponent />
+      <div className="footer-component-div">
+        <FooterComponent />
+      </div>
     </Fragment>
   );
 }

@@ -1,0 +1,9 @@
+.pages {
+  min-height: 100vh;
+}
+.footer-component-div {
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
