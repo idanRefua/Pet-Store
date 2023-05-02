@@ -1,15 +1,21 @@
 import "./product-component-style.css";
 import { useHistory } from "react-router-dom";
 import { CartContext } from "../../context/CartContext/cartContext";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext } from "react";
+import { useSelector } from "react-redux";
 
 export default function ProductComponent(props) {
+  const loggedInUser = useSelector((state) => state.auth.isLoggedIn);
   const cartUser = useContext(CartContext);
   const productQty = cartUser.getProductQty(props.id);
   const history = useHistory();
 
   const handleAddToCart = () => {
-    cartUser.addOneProductToCart(props.id);
+    if (loggedInUser) {
+      cartUser.addOneProductToCart(props.id);
+    } else {
+      alert("You must login to the website");
+    }
   };
 
   const handleRemoveOneProduct = () => {

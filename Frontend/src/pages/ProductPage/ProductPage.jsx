@@ -109,7 +109,11 @@ export default function ProductPage() {
   };
 
   const handleAddToCart = () => {
-    cartUser.addOneProductToCart(prid);
+    if (loggedInUser) {
+      cartUser.addOneProductToCart(prid);
+    } else {
+      alert("You must login to website first");
+    }
   };
 
   const handleRemoveOneProduct = () => {
@@ -120,7 +124,7 @@ export default function ProductPage() {
     cartUser.deleteCart(prid);
   };
 
-  const findProductId = userCart.find((product) => product._id === prid);
+  /* const findProductId = userCart.find((product) => product._id === prid); */
 
   return (
     <div className="container">
@@ -163,38 +167,36 @@ export default function ProductPage() {
                 </div>
               )}
 
-              <div className="">
-                {productQty > 0 ? (
-                  <Fragment>
-                    <div className="product-btns">
-                      <button
-                        onClick={handleRemoveOneProduct}
-                        className="btn btn-danger remove-one-btn"
-                      >
-                        -
-                      </button>
-                      <label className=" qty-label">Qty : {productQty} </label>
-                      <button
-                        onClick={handleAddToCart}
-                        className="btn btn-info add-one-btn"
-                      >
-                        +
-                      </button>
-                    </div>
-
+              {productQty > 0 ? (
+                <Fragment>
+                  <div className="product-btns">
                     <button
-                      className="btn btn-danger delete-from-cart-btn"
-                      onClick={handleRemoveFromCart}
+                      onClick={handleRemoveOneProduct}
+                      className="btn btn-danger remove-one-btn"
                     >
-                      Remove From Cart
+                      -
                     </button>
-                  </Fragment>
-                ) : (
-                  <button onClick={handleAddToCart} className="add-to-cart-btn">
-                    Add To Cart
+                    <label className=" qty-label">Qty : {productQty} </label>
+                    <button
+                      onClick={handleAddToCart}
+                      className="btn btn-info add-one-btn"
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <button
+                    className="btn btn-danger delete-from-cart-btn"
+                    onClick={handleRemoveFromCart}
+                  >
+                    Remove From Cart
                   </button>
-                )}
-              </div>
+                </Fragment>
+              ) : (
+                <button onClick={handleAddToCart} className="add-to-cart-btn">
+                  Add To Cart
+                </button>
+              )}
             </div>
           </div>
           <div className="container reviews-table">
