@@ -1,6 +1,6 @@
 import "./product-page-style.css";
 import { Fragment, useContext, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import { CartContext } from "../../context/CartContext/cartContext";
 
 export default function ProductPage() {
   const history = useHistory();
+  const location = useLocation();
   const { prid } = useParams();
   const cartUser = useContext(CartContext);
   const productQty = cartUser.getProductQty(prid);
@@ -112,7 +113,7 @@ export default function ProductPage() {
     if (loggedInUser) {
       cartUser.addOneProductToCart(prid);
     } else {
-      alert("You must login to website first");
+      history.push("/login", { prevUrl: location.pathname });
     }
   };
 

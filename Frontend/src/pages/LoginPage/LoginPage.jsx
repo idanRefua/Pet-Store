@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./login-page.css";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth";
@@ -11,7 +11,7 @@ import loginPagePic from "../../imgs/login-page-pic.svg";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -40,7 +40,11 @@ export default function LoginPage() {
       const decodedToken = jwt_decode(token);
       dispatch(authActions.login());
       dispatch(authActions.updateUserInfo(decodedToken));
-      history.push("/");
+      if (location.state === null) {
+        history.push("/");
+      } else {
+        history.push(location.state.prevUrl);
+      }
     } catch (error) {
       console.log(error);
     }
