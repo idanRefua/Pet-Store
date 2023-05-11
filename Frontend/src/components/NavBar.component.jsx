@@ -29,12 +29,14 @@ function NavBar() {
   };
   let price;
   useEffect(() => {
-    axios
-      .get("/products/allproducts")
-      .then((res) => {
-        setProdutcs(res.data);
-      })
-      .catch((err) => console.log(err));
+    if (loggedIn) {
+      axios
+        .get("/products/allproducts")
+        .then((res) => {
+          setProdutcs(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   if (products.length > 0) {

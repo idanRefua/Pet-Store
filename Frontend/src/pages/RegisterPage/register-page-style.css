@@ -36,6 +36,11 @@
   color: rgb(180, 18, 18);
   font-size: 1.1em;
 }
+.p-errors-register-inputs {
+  font-weight: bold;
+  color: rgb(180, 18, 18);
+  font-size: 1.1em;
+}
 .link-to-login {
   color: black;
   text-decoration: none;

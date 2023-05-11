@@ -1,4 +1,5 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+
 import AboutUsComponent from "../../components/AboutUsComponent/AboutUsComponent";
 
 export default function AboutUsPage() {
