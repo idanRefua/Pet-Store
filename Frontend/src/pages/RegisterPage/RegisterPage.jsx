@@ -45,16 +45,13 @@ export default function RegisterPage() {
           setSuccessMsg(
             "You registerd successfuly , you will be move to login page!"
           );
-          console.log(response.status);
+
           setTimeout(() => {
             history.push("login");
           }, 2000);
-          console.log(values);
         }
       } catch (error) {
-        setErrorMsg(
-          "this is email is used , or there is problem with our servers,please try again later!"
-        );
+        setErrorMsg(error.response.data);
       }
     },
   });

@@ -7,54 +7,59 @@ import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth";
 import jwt_decode from "jwt-decode";
 import loginPagePic from "../../imgs/login-page-pic.svg";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const passValid = new RegExp(
+    "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()]).{6,}$"
+  );
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("invalid email address")
+        .required("Email is required"),
+      password: Yup.string()
+        .required("Password is required")
+        .min(5, "Password is too short (min - 5 characters)")
+        .matches(
+          passValid,
+          "Password must include at least : One Uppercase letter [A-Z], One number [0-9] and one symbol [!,@,#,%,$,&,^]"
+        ),
+    }),
+    onSubmit: async (values) => {
+      setErrorMsg("");
+      try {
+        const response = await axios.post("/users/login", values);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        const decodedToken = jwt_decode(token);
+        dispatch(authActions.login());
+        dispatch(authActions.updateUserInfo(decodedToken));
+        if (location.state === null) {
+          history.push("/");
+        } else {
+          history.push(location.state.prevUrl);
+        }
+      } catch (error) {
+        setErrorMsg(error.response.data.error);
+      }
+    },
+  });
+  const [errorMsg, setErrorMsg] = useState("");
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      if (email === "" || password === "") {
-        alert("please fill the inputs");
-        return;
-      }
-
-      const response = await axios.post("/users/login", {
-        email,
-        password,
-      });
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-      const decodedToken = jwt_decode(token);
-      dispatch(authActions.login());
-      dispatch(authActions.updateUserInfo(decodedToken));
-      if (location.state === null) {
-        history.push("/");
-      } else {
-        history.push(location.state.prevUrl);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className="container">
       <div className="row login-page-row">
         <div className="login-box d-flex align-items-center justify-content-center col-md-6">
-          <form className="login-form " onSubmit={handleLogin}>
+          <form className="login-form " onSubmit={formik.handleSubmit}>
             <div className="mb-3">
               <label className="form-label d-flex align-items-center justify-content-center ">
                 Email
@@ -65,9 +70,14 @@ export default function LoginPage() {
                 type="text"
                 placeholder="example@mail.com"
                 className="form-control input-login"
-                value={email}
-                onChange={handleEmail}
+                name="email"
+                value={formik.values.email}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
               />
+              {formik.touched.email && formik.errors.email ? (
+                <p className="p-err-msg-login">{formik.errors.email}</p>
+              ) : null}
             </div>
             <div className="mb-3">
               <label className="form-label d-flex align-items-center justify-content-center">
@@ -78,10 +88,16 @@ export default function LoginPage() {
               <input
                 type="password"
                 className="form-control input-password"
-                value={password}
-                onChange={handlePassword}
+                name="password"
+                value={formik.values.password}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
               />
+              {formik.touched.password && formik.errors.password ? (
+                <p className="p-err-msg-login"> {formik.errors.password}</p>
+              ) : null}
             </div>
+            {errorMsg !== "" && <p className="p-err-msg-login">{errorMsg}</p>}
             <p className=" d-flex align-items-center justify-content-center p-login-btn">
               <button type="submit" className="btn login-btn">
                 Login

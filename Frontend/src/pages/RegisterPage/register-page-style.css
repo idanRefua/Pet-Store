@@ -38,8 +38,9 @@
 }
 .p-errors-register-inputs {
   font-weight: bold;
-  color: rgb(180, 18, 18);
-  font-size: 1.1em;
+  color: rgb(190, 20, 20);
+  font-size: 1.15em;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 .link-to-login {
   color: black;

@@ -48,6 +48,13 @@
   text-decoration: underline;
 }
 
+.p-err-msg-login {
+  font-weight: bold;
+  color: rgb(190, 20, 20);
+  font-size: 1.15em;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
 @media (min-width: 768px) and (max-width: 1140px) {
   .login-image {
     margin-top: 5em;
