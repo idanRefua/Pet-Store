@@ -42,6 +42,7 @@ export default function ProductComponent(props) {
         <p className="d-flex justify-content-center card-price">
           {props.price}$
         </p>
+        <p>{process.env.REACT_APP_SERVER_API}</p>
       </div>
       <div className="">
         {productQty > 0 ? (
