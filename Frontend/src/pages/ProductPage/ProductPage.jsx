@@ -30,6 +30,7 @@ export default function ProductPage() {
       )
       .then((res) => {
         setProduct(res.data);
+        console.log(res.data);
         setProductsReviews(res.data.reviews);
         setProductLikes(res.data.likes);
       })
