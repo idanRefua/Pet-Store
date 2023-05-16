@@ -134,7 +134,7 @@ export default function ProductPage() {
           <div className="row main-product-page-div">
             <div className="col-sm-6">
               <img
-                src={"http://localhost:8181/" + product.image}
+                src={process.env.REACT_APP_SERVER_API / +product.image}
                 alt={product.title}
                 className="image-box"
               />
