@@ -14,13 +14,12 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
 import "animate.css";
 
 axios.defaults.baseURL = "http://localhost:8181";
-
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
     config.headers["token"] = token;
   }
-  /* config.headers["Content-Type"] = "application/json"; */
+
   return config;
 });
 

@@ -10,7 +10,6 @@ export default function EquipProductsPage() {
     axios
       .get("/products/equip")
       .then((res) => {
-        console.log(res.data);
         setProducts(res.data);
       })
       .catch((err) => {

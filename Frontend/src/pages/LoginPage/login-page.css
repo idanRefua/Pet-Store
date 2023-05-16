@@ -55,10 +55,10 @@
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-@media (min-width: 768px) and (max-width: 1140px) {
+@media (min-width: 790px) and (max-width: 1140px) {
   .login-image {
     margin-top: 5em;
-    width: 29em;
+    width: 26em;
   }
 }
 
