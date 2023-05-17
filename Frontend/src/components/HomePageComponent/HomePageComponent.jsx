@@ -53,7 +53,7 @@ export default function HomePageComponent() {
                 return (
                   <div key={product._id} className="product-search-box">
                     <img
-                      src={`http://localhost:8181/${product.image}`}
+                      src={`https://ref-pet-store-api.onrender.com/${product.image}`}
                       alt={product.title}
                       className="product-search-image"
                     />
