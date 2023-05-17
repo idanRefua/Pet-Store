@@ -72,10 +72,6 @@
 
 @media only screen and (max-width: 420px) {
   .store-map {
-    width: 300px;
-    margin-left: 5px;
-  }
-  .about-us-box {
-    margin-right: 2.5em;
+    width: 270px;
   }
 }
