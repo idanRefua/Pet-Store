@@ -105,3 +105,10 @@
 .img-product {
   transition: all 0.7s;
 }
+
+@media only screen and (max-width: 420px) {
+  .card-box {
+    width: 300px !important;
+    pointer-events: none;
+  }
+}

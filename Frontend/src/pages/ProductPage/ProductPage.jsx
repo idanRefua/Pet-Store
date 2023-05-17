@@ -125,8 +125,6 @@ export default function ProductPage() {
     cartUser.deleteCart(prid);
   };
 
-  /* const findProductId = userCart.find((product) => product._id === prid); */
-
   return (
     <div className="container">
       {product !== null && (
