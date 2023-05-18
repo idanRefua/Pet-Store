@@ -40,7 +40,7 @@ export default function CartProductNavbarComponent(props) {
         <div>
           <h4>{productData.title}</h4>
           <img
-            src={`http://localhost:8181/${productData.image}`}
+            src={`${process.env.REACT_APP_SERVER_API}/${productData.image}`}
             alt={productData.title}
             className="cart-product-img"
           />
