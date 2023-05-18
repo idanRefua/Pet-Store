@@ -98,7 +98,7 @@
   display: block;
 }
 .btn-add-to-fav:hover {
-  background-position: right center; /* change the direction of the change here */
+  background-position: right center;
   color: #fff;
   text-decoration: none;
 }
@@ -130,6 +130,9 @@
 
 @media only screen and (max-width: 420px) {
   .image-box {
-    width: 20em !important;
+    width: 15em !important;
+  }
+  .image-box:hover {
+    pointer-events: none !important;
   }
 }

@@ -71,7 +71,6 @@ function App() {
             <Route path="/product/description/:prid" component={ProductPage} />
             <AuthRoute path="/userinfo/cart" component={UserCartPage} />
             <Route path="*" component={NotFoundPage} />
-            <Route path="/notfoundpage" component={NotFoundPage} />
           </Switch>
         </div>
       </CartProvider>
