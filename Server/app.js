@@ -28,6 +28,6 @@ connectToDb
     console.log(`Could not connect to DB !`);
   });
 
-app.listen(process.env.SERVER_API, () => {
-  console.log(`server is running at port ${process.env.SERVER_API}`);
+app.listen(process.env.PORT, () => {
+  console.log(`server is running at port ${process.env.PORT}`);
 });
