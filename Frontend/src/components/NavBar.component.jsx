@@ -109,6 +109,7 @@ function NavBar() {
             data-bs-toggle="collapse"
             data-bs-target="#navbarTogglerDemo02"
             aria-controls="navbarTogglerDemo02"
+            /* data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" */
             aria-expanded="false"
             aria-label="Toggle navigation"
           >

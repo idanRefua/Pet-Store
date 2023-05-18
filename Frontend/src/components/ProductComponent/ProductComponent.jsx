@@ -14,7 +14,7 @@ export default function ProductComponent(props) {
     if (loggedInUser) {
       cartUser.addOneProductToCart(props.id);
     } else {
-      alert("You must login to the website");
+      history.push("/login");
     }
   };
 
@@ -42,7 +42,6 @@ export default function ProductComponent(props) {
         <p className="d-flex justify-content-center card-price">
           {props.price}$
         </p>
-        <p>{process.env.REACT_APP_SERVER_API}</p>
       </div>
       <div className="">
         {productQty > 0 ? (

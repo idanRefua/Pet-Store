@@ -1,5 +1,6 @@
 .card {
-  margin: 5px;
+  margin: 10px;
+
   padding: 0px !important;
   overflow: hidden;
   border: 0.2px solid rgb(255, 172, 163) !important;
@@ -106,9 +107,8 @@
   transition: all 0.7s;
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 585px) {
   .card-box {
-    width: 300px !important;
-    pointer-events: none;
+    width: 330px !important;
   }
 }

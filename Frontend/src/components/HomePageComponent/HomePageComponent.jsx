@@ -53,7 +53,7 @@ export default function HomePageComponent() {
                 return (
                   <div key={product._id} className="product-search-box">
                     <img
-                      src={`https://ref-pet-store-api.onrender.com/${product.image}`}
+                      src={`${process.env.REACT_APP_SERVER_API}/${product.image}`}
                       alt={product.title}
                       className="product-search-image"
                     />
@@ -92,7 +92,7 @@ export default function HomePageComponent() {
               return (
                 <SwiperSlide className="swiper-slide" key={item._id}>
                   <img
-                    src={`http://localhost:8181/${item.image}`}
+                    src={`${process.env.REACT_APP_SERVER_API}/${item.image}`}
                     id={item._id}
                     alt={item.title}
                   />

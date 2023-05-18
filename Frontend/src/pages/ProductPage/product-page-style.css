@@ -123,16 +123,19 @@
 }
 
 .btn-remove-from-fav:hover {
-  background-position: right center; /* change the direction of the change here */
+  background-position: right center;
   color: #fff;
   text-decoration: none;
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (min-height: 360px) and (max-width: 1100px) {
   .image-box {
-    width: 15em !important;
+    width: 16em !important;
+    height: 18em !important;
   }
   .image-box:hover {
-    pointer-events: none !important;
+    width: 16em !important;
+    height: 18em !important;
+    transition: 0;
   }
 }

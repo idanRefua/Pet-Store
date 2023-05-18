@@ -63,3 +63,25 @@
   color: rgb(146, 29, 255);
   margin: 1.3px;
 }
+
+@media only screen and (min-width: 360px) and (max-width: 585px) {
+  .reviews-cards-box {
+    word-wrap: break-word;
+  }
+  .review-body {
+    width: 19em !important;
+  }
+  .back-tik-review {
+    font-size: 1em;
+    font-weight: bold;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    padding: 3px;
+    color: rgb(146, 29, 255);
+    margin: 1.1px;
+  }
+  .review-p {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+  }
+}
