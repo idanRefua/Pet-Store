@@ -37,6 +37,7 @@ export default function ProductComponent(props) {
         className="card-img-top img-product"
         alt={props.title}
       />
+
       <div className="card-body">
         <h3 className="card-title">{props.title}</h3>
         <p className="d-flex justify-content-center card-price">

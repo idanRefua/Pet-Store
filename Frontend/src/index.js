@@ -13,7 +13,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
 
 import "animate.css";
 
-axios.defaults.baseURL = "https://ref-pet-store-api.onrender.com";
+axios.defaults.baseURL = `${process.env.REACT_APP_SERVER_API}`;
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
