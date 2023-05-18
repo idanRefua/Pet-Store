@@ -40,7 +40,7 @@ export default function LoginPage() {
         const decodedToken = jwt_decode(token);
         dispatch(authActions.login());
         dispatch(authActions.updateUserInfo(decodedToken));
-        if (location.state === null) {
+        if (location.state === null || location.state === "/") {
           history.push("/");
         } else {
           history.push(location.state.prevUrl);

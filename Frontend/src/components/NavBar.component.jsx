@@ -1,7 +1,7 @@
 import "./navbar.css";
 import React, { useEffect, useState, useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import homeLogo from "../imgs/favicon.jpg";
+import homeLogo from "../imgs/ref-store.img.png";
 import { useSelector } from "react-redux";
 import { Fragment } from "react";
 import { useDispatch } from "react-redux";
