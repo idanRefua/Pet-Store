@@ -18,7 +18,7 @@ export default function MyProductsComponent(props) {
     <tr>
       <td>
         <img
-          src={`http://localhost:8181/${props.image}`}
+          src={`${process.env.REACT_APP_SERVER_API}/${props.image}`}
           style={{ height: "150px", width: "200px" }}
           onClick={moveToProduct}
           className="image-my-products-component"
