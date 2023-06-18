@@ -62,7 +62,7 @@ router.post(
         throw "You are not admin user !";
       }
     } catch (error) {
-      res.status(400).send(error);
+      res.status(400).send(console.log(error));
     }
   }
 );

@@ -57,6 +57,7 @@ function NavBar() {
 
   const checkoutCart = async () => {
     try {
+      console.log(productsCart);
       const response = await axios.post("/users/checkout", {
         items: cartUser.items,
       });
@@ -91,7 +92,7 @@ function NavBar() {
           ) : (
             <h1>There is no items in the cart</h1>
           )}
-          <h2>Total : {`${price}$`}</h2>
+          <h2>Total : {`${price ? price : 0}$`}</h2>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseUserCart}>
@@ -109,7 +110,6 @@ function NavBar() {
             data-bs-toggle="collapse"
             data-bs-target="#navbarTogglerDemo02"
             aria-controls="navbarTogglerDemo02"
-            /* data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" */
             aria-expanded="false"
             aria-label="Toggle navigation"
           >

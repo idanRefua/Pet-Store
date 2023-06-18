@@ -14,6 +14,10 @@ export default function LoginPage() {
   const passValid = new RegExp(
     "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()]).{6,}$"
   );
+  const [errorMsg, setErrorMsg] = useState("");
+  const location = useLocation();
+  const history = useHistory();
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -40,7 +44,11 @@ export default function LoginPage() {
         const decodedToken = jwt_decode(token);
         dispatch(authActions.login());
         dispatch(authActions.updateUserInfo(decodedToken));
-        if (location.state === null || location.state === "/") {
+        if (
+          location.state === undefined ||
+          location.state === null ||
+          location.state === "/"
+        ) {
           history.push("/");
         } else {
           history.push(location.state.prevUrl);
@@ -50,10 +58,6 @@ export default function LoginPage() {
       }
     },
   });
-  const [errorMsg, setErrorMsg] = useState("");
-  const location = useLocation();
-  const history = useHistory();
-  const dispatch = useDispatch();
 
   return (
     <div className="container">

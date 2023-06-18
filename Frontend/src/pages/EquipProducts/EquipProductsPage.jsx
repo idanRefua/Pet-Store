@@ -18,7 +18,7 @@ export default function EquipProductsPage() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container equip-products-page-box">
       <div className="row">
         {products.map((product) => {
           return (
