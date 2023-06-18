@@ -47,7 +47,7 @@ export default function LoginPage() {
         if (
           location.state === undefined ||
           location.state === null ||
-          location.state === "/"
+          location.state === "/login"
         ) {
           history.push("/");
         } else {
