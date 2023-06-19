@@ -72,7 +72,7 @@ export default function EditProductComponent() {
 
   return (
     <div className="container">
-      <h2 className="d-flex justify-content-center">Add new Product here </h2>
+      <h2 className="d-flex justify-content-center">Edit Product </h2>
       <br />
       {product !== null && (
         <div className="edit-product-box row">

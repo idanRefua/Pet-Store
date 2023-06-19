@@ -133,15 +133,7 @@ router.patch(
             );
             res.status(200).json(updateProduct);
           } else {
-            const updateProduct = await productsModel.updateProduct(
-              productId,
-              title,
-              description,
-              price,
-              category,
-              product.image
-            );
-            res.status(200).json(updateProduct);
+            throw "There is not file";
           }
         } else {
           throw "this is not your product";
