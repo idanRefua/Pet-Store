@@ -133,7 +133,7 @@ export default function EditProductComponent() {
             <br />
             <img
               className="img-edit-page"
-              src={`http://localhost:8181/${product.image}`}
+              src={`${process.env.REACT_APP_SERVER_API}/${product.image}`}
               alt={product.title}
             />
           </div>
