@@ -41,7 +41,8 @@ router.post(
     try {
       const user = req.userData;
       const { title, description, price, category } = req.body;
-      const { path: image } = req.file.buffer;
+      const { path: image } = req.file;
+
       if (user.admin) {
         if (category === "Food" || category === "Equip") {
           const newProduct = await productsModel.uploadProduct({

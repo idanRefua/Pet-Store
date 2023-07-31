@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const productsSchema = new Schema({
   title: { type: String, required: true },
-  image: { data: Buffer, contentType: String },
+  image: { type: String, required: false },
   description: { type: String, required: true },
   likes: [String],
   createdBy: { type: mongoose.Types.ObjectId, required: true },
