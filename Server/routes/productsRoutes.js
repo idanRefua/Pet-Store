@@ -48,7 +48,8 @@ router.post(
           const newProduct = await productsModel.uploadProduct({
             title,
             description,
-            image: image.replace("\\", "/").replace("\\", "/"),
+            /* image: image.replace("\\", "/").replace("\\", "/"), */
+            image: image.replace("\\", "/"),
             createdBy: user._id,
             category,
             price,

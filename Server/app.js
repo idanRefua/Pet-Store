@@ -10,7 +10,8 @@ const path = require("path");
 
 app.use(cors());
 app.use(express.json());
-app.use("/uploads/images", express.static(path.join("uploads", "images")));
+/* app.use("/uploads/images", express.static(path.join("uploads", "images"))); */
+app.use("/uploads", express.static("uploads"));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
