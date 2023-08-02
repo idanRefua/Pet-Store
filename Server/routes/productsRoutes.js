@@ -4,6 +4,7 @@ const authMiddleWare = require("../middleware/auth.middleware");
 const uploadImage = require("../middleware/upload-image");
 const fs = require("fs");
 const usersModel = require("../models/userModel");
+const { log } = require("console");
 
 const router = express.Router();
 
@@ -42,7 +43,7 @@ router.post(
       const user = req.userData;
       const { title, description, price, category } = req.body;
       const { path: image } = req.file;
-
+      console.log(image);
       if (user.admin) {
         if (category === "Food" || category === "Equip") {
           const newProduct = await productsModel.uploadProduct({
