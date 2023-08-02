@@ -42,6 +42,7 @@ export default function ProductFormComponent() {
 
     try {
       if (category === "Food" || category === "Equip") {
+        console.log(image);
         const result = await axios.post("/products/addproduct", formData);
         const data = await result.data;
         history.push("/myproducts");
