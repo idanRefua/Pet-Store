@@ -7,11 +7,11 @@ const mongoose = require("mongoose");
 const connectToDb = require("./config/connectToDB");
 const cors = require("cors");
 const path = require("path");
-global.rootPath = __dirname;
 app.use(cors());
 app.use(express.json());
 /* app.use("/uploads/images", express.static(path.join("uploads", "images"))); */
-app.use("/uploads", express.static("uploads"));
+/* app.use("/uploads", express.static("uploads")); */
+app.use(express.static(__dirname));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
