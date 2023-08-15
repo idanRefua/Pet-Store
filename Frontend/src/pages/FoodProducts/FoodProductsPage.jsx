@@ -10,7 +10,6 @@ export default function FoodProductPgae() {
       .get("/products/food")
       .then((res) => {
         setProducts(res.data);
-        console.log(res.data[0].image.data);
       })
       .catch((err) => {
         console.log(err);
