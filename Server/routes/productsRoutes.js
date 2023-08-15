@@ -43,7 +43,6 @@ router.post(
       const user = req.userData;
       const { title, description, price, category } = req.body;
       const { path: image } = req.file;
-      console.log(image);
       if (user.admin) {
         if (category === "Food" || category === "Equip") {
           const newProduct = await productsModel.uploadProduct({
