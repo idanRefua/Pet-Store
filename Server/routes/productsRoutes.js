@@ -5,6 +5,7 @@ const uploadImage = require("../middleware/upload-image");
 const fs = require("fs");
 const usersModel = require("../models/userModel");
 const { log } = require("console");
+const path = require("path");
 
 const router = express.Router();
 
@@ -45,10 +46,19 @@ router.post(
       const { path: image } = req.file;
       if (user.admin) {
         if (category === "Food" || category === "Equip") {
+          let imageData = {
+            data: fs.readFileSync(
+              path.join("uploads/" + "/images/" + req.file.filename)
+            ),
+            contentType: req.file.mimetype,
+            fileName: req.file.filename,
+          };
+
           const newProduct = await productsModel.uploadProduct({
             title,
             description,
-            image: image.replace("\\", "/").replace("\\", "/"),
+            /* image: image.replace("\\", "/").replace("\\", "/"), */
+            image: imageData,
             createdBy: user._id,
             category,
             price,

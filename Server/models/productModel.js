@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 
 const productsSchema = new Schema({
   title: { type: String, required: true },
-  image: { type: String, required: false },
+  /*   image: { type: String, required: false }, */
+  image: { data: Buffer, contentType: String, fileName: String },
   description: { type: String, required: true },
   likes: [String],
   createdBy: { type: mongoose.Types.ObjectId, required: true },
