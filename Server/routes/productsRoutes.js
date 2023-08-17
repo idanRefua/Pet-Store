@@ -42,15 +42,15 @@ router.post(
   async (req, res) => {
     try {
       const user = req.userData;
-      const { title, description, price, category } = req.body;
-      const { path: image } = req.file;
+      const { title, description, price, category, image } = req.body;
+      /* const { path: image } = req.file; */
       if (user.admin) {
         if (category === "Food" || category === "Equip") {
           const newProduct = await productsModel.uploadProduct({
             title,
             description,
             /* image: image.replace("\\", "/").replace("\\", "/"), */
-            image: image,
+            image,
             createdBy: user._id,
             category,
             price,

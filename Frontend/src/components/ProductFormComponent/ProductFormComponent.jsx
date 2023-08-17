@@ -15,7 +15,11 @@ export default function ProductFormComponent() {
 
   const handleImageInput = (pickedFile, fileIsValid) => {
     if (fileIsValid) {
-      setImage(pickedFile);
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(pickedFile);
+      fileReader.onload = () => {
+        setImage(JSON.stringify(fileReader.result));
+      };
     }
   };
   const handleTitleInput = (e) => {
@@ -32,27 +36,24 @@ export default function ProductFormComponent() {
   };
 
   const handleSubmitForm = async (e) => {
-    let newImage;
     e.preventDefault();
-    const reader = new FileReader();
-    reader.readAsDataURL(image);
-    reader.onload = () => {
-      newImage = reader.result;
-    };
-    reader.onerror = (err) => {
-      console.log("error: ", err);
-    };
-    setImage(newImage);
-    const formData = new FormData();
+
+    /* const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
     formData.append("description", description);
     formData.append("category", category);
-    formData.append("price", price);
-
+    formData.append("price", price); */
+    console.log(title, image, description, category, price);
     try {
       if (category === "Food" || category === "Equip") {
-        const result = await axios.post("/products/addproduct", formData);
+        const result = await axios.post("/products/addproduct", {
+          title,
+          image,
+          description,
+          category,
+          price,
+        });
         const data = await result.data;
         history.push("/myproducts");
       } else {
