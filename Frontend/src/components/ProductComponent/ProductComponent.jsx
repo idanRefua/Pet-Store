@@ -33,7 +33,7 @@ export default function ProductComponent(props) {
   return (
     <div className="card card-box" style={{ width: "18rem" }}>
       <img
-        src={`${process.env.REACT_APP_SERVER_API}/${props.image}`}
+        src={`${process.env.REACT_APP_SERVER_API}/data:image/png;base64,${props.image}`}
         className="card-img-top img-product"
         alt={props.title}
       />

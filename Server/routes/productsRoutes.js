@@ -46,19 +46,11 @@ router.post(
       const { path: image } = req.file;
       if (user.admin) {
         if (category === "Food" || category === "Equip") {
-          let imageData = {
-            data: fs.readFileSync(
-              path.join("uploads/" + "/images/" + req.file.filename)
-            ),
-            contentType: req.file.mimetype,
-            fileName: req.file.filename,
-          };
-
           const newProduct = await productsModel.uploadProduct({
             title,
             description,
             /* image: image.replace("\\", "/").replace("\\", "/"), */
-            image: imageData,
+            image: image,
             createdBy: user._id,
             category,
             price,

@@ -32,7 +32,18 @@ export default function ProductFormComponent() {
   };
 
   const handleSubmitForm = async (e) => {
+    let newImage;
     e.preventDefault();
+    const reader = new FileReader();
+    reader.readAsDataURL(image);
+    reader.onload = () => {
+      newImage = reader.result;
+      console.log(newImage);
+    };
+    reader.onerror = (err) => {
+      console.log("error: ", err);
+    };
+
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
@@ -42,7 +53,6 @@ export default function ProductFormComponent() {
 
     try {
       if (category === "Food" || category === "Equip") {
-        console.log(image);
         const result = await axios.post("/products/addproduct", formData);
         const data = await result.data;
         history.push("/myproducts");
