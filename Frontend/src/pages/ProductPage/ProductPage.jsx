@@ -132,7 +132,7 @@ export default function ProductPage() {
           <div className="row main-product-page-div">
             <div className="col-sm-6">
               <img
-                src={"https://ref-pet-store-api.onrender.com/" + product.image}
+                src={product.image}
                 alt={product.title}
                 className="image-box"
               />
