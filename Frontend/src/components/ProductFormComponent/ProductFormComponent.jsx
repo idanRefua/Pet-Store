@@ -18,6 +18,8 @@ export default function ProductFormComponent() {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(pickedFile);
       fileReader.onload = () => {
+        const newImage = JSON.stringify(fileReader.result);
+        console.log(fileReader.result.toString());
         setImage(JSON.stringify(fileReader.result));
       };
     }
@@ -44,13 +46,13 @@ export default function ProductFormComponent() {
     formData.append("description", description);
     formData.append("category", category);
     formData.append("price", price); */
-    console.log(title, image, description, category, price);
+
     try {
       if (category === "Food" || category === "Equip") {
         const result = await axios.post("/products/addproduct", {
           title,
-          image,
           description,
+          image,
           category,
           price,
         });

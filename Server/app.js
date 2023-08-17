@@ -8,11 +8,13 @@ const connectToDb = require("./config/connectToDB");
 const cors = require("cors");
 const path = require("path");
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "50mb", extended: true }));
 app.use("/uploads/images", express.static(path.join("uploads", "images")));
 /* app.use("/uploads", express.static("uploads")); */
 
-app.use(express.urlencoded({ extended: false }));
+app.use(
+  express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 5000 })
+);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/users/", usersRoutes);
