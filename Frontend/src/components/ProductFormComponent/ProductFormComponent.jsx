@@ -38,12 +38,11 @@ export default function ProductFormComponent() {
     reader.readAsDataURL(image);
     reader.onload = () => {
       newImage = reader.result;
-      console.log(newImage);
     };
     reader.onerror = (err) => {
       console.log("error: ", err);
     };
-
+    setImage(newImage);
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
