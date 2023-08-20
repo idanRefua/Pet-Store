@@ -20,7 +20,7 @@ export default function ProductFormComponent() {
       fileReader.onload = () => {
         const newImage = JSON.stringify(fileReader.result);
         console.log(fileReader.result.toString());
-        setImage(JSON.stringify(fileReader.result));
+        setImage(fileReader.result);
       };
     }
   };

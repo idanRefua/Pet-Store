@@ -57,7 +57,7 @@ export default function FooterComponent() {
         </div>
 
         <div className="text-center p-3">
-          © 2022 Copyright :<a className="text-white">refua-websites.com</a>
+          © 2023 Copyright : <a className="text-white">Idan Refua </a>
         </div>
       </footer>
     </div>

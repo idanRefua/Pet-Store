@@ -53,7 +53,7 @@ export default function HomePageComponent() {
                 return (
                   <div key={product._id} className="product-search-box">
                     <img
-                      src={`${process.env.REACT_APP_SERVER_API}/${product.image}`}
+                      src={product.image}
                       alt={product.title}
                       className="product-search-image"
                     />
@@ -91,11 +91,7 @@ export default function HomePageComponent() {
             {productsArray.map((item) => {
               return (
                 <SwiperSlide className="swiper-slide" key={item._id}>
-                  <img
-                    src={`${process.env.REACT_APP_SERVER_API}/${item.image}`}
-                    id={item._id}
-                    alt={item.title}
-                  />
+                  <img src={item.image} id={item._id} alt={item.title} />
                 </SwiperSlide>
               );
             })}

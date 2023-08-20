@@ -92,9 +92,6 @@ router.delete("/deleteproduct/:productid", authMiddleWare, async (req, res) => {
       const product = await productsModel.productById(productId);
       if (product.createdBy.toString() === user._id) {
         const deleteProduct = await productsModel.deleteProduct(productId);
-        fs.unlinkSync(product.image, function (err) {
-          if (err) return console.log(err);
-        });
         res.status(200).json({ message: "The product delete succssfuly" });
       } else {
         throw "This is not your product";
