@@ -35,8 +35,6 @@ export default function EditProductComponent() {
       fileReader.onload = () => {
         const newImage = JSON.stringify(fileReader.result);
         setImage(fileReader.result);
-
-        console.log(image);
       };
     }
   };
@@ -46,7 +44,7 @@ export default function EditProductComponent() {
       if (category === "Food" || category === "Equip") {
         const result = await axios.patch(
           `/products/updateproduct/${productid}`,
-          { title, description, price, category, newImage: image }
+          { title, description, price, category, image }
         );
         const data = await result.data;
         history.push("/myproducts");
