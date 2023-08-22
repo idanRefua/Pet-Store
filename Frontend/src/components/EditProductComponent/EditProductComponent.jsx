@@ -30,22 +30,23 @@ export default function EditProductComponent() {
 
   const handleImageInput = (pickedFile, fileIsValid) => {
     if (fileIsValid) {
-      setImage(pickedFile);
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(pickedFile);
+      fileReader.onload = () => {
+        const newImage = JSON.stringify(fileReader.result);
+        setImage(fileReader.result);
+
+        console.log(image);
+      };
     }
   };
 
   const handleSubmitForm = async () => {
-    const formData = new FormData();
-    formData.append("image", image);
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("category", category);
-    formData.append("price", price);
     try {
       if (category === "Food" || category === "Equip") {
         const result = await axios.patch(
           `/products/updateproduct/${productid}`,
-          formData
+          { title, description, price, category, newImage: image }
         );
         const data = await result.data;
         history.push("/myproducts");
@@ -66,6 +67,7 @@ export default function EditProductComponent() {
         setDescription(res.data.description);
         setCategory(res.data.category);
         setPrice(res.data.price);
+        setImage(res.data.image);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -133,7 +135,7 @@ export default function EditProductComponent() {
             <br />
             <img
               className="img-edit-page"
-              src={`${process.env.REACT_APP_SERVER_API}/${product.image}`}
+              src={product.image}
               alt={product.title}
             />
           </div>

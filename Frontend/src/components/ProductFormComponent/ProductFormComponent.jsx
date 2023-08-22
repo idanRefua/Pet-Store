@@ -19,7 +19,6 @@ export default function ProductFormComponent() {
       fileReader.readAsDataURL(pickedFile);
       fileReader.onload = () => {
         const newImage = JSON.stringify(fileReader.result);
-        console.log(fileReader.result.toString());
         setImage(fileReader.result);
       };
     }

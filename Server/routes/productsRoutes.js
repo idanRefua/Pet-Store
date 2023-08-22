@@ -43,13 +43,11 @@ router.post(
     try {
       const user = req.userData;
       const { title, description, price, category, image } = req.body;
-      /* const { path: image } = req.file; */
       if (user.admin) {
         if (category === "Food" || category === "Equip") {
           const newProduct = await productsModel.uploadProduct({
             title,
             description,
-            /* image: image.replace("\\", "/").replace("\\", "/"), */
             image,
             createdBy: user._id,
             category,
@@ -112,24 +110,18 @@ router.patch(
     try {
       const user = req.userData;
       const productId = req.params.id;
-      const { title, price, description, category } = req.body;
+      const { title, price, description, category, image } = req.body;
       if (user.admin) {
         const product = await productsModel.productById(productId);
         if (product.createdBy.toHexString() === user._id) {
-          if (req.file) {
-            fs.unlinkSync(product.image, function (err) {
-              if (err) return console.log(err);
-            });
-            const newImage = req.file.path
-              .replace("\\", "/")
-              .replace("\\", "/");
+          if (image !== product.image) {
             const updateProduct = await productsModel.updateProduct(
               productId,
               title,
               description,
               price,
               category,
-              newImage
+              image
             );
             res.status(200).json(updateProduct);
           } else {
