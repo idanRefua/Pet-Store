@@ -84,7 +84,7 @@
   background-image: linear-gradient(
     to right,
     #02aab0 0%,
-    #00cdac 51%,
+    rgb(0, 205, 172) 51%,
     #02aab0 100%
   );
 

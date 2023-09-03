@@ -9,7 +9,7 @@ export default function ReviewTableRowComponent(props) {
 
   return (
     <tr id={props.id} className="review-costumer-tr">
-      <td>{props.userName}</td>
+      <td className="username-review">{props.userName}</td>
       <td className="review-description">{props.review}</td>
       {props.byUser === userInfo._id && (
         <td>

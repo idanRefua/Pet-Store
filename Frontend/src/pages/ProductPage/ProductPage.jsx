@@ -209,11 +209,15 @@ export default function ProductPage() {
                     value={review}
                     id="product-review"
                     rows={3}
-                    cols={120}
+                    cols={90}
                     onChange={hadnleReviewText}
+                    className="d-flex justify-content-center"
                   />
                   <br />
-                  <button className=" add-review-btn" onClick={handleAddReview}>
+                  <button
+                    className="d-flex justify-content-center add-review-btn"
+                    onClick={handleAddReview}
+                  >
                     Add Review
                   </button>
                 </div>
