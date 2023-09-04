@@ -8,6 +8,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .add-review-btn {
@@ -128,7 +129,7 @@
   text-decoration: none;
 }
 
-@media only screen and (min-height: 360px) and (max-width: 1100px) {
+@media only screen and (min-height: 360px) and (max-width: 1180px) {
   .image-box {
     width: 16em !important;
     height: 18em !important;
@@ -137,5 +138,16 @@
     width: 16em !important;
     height: 18em !important;
     transition: 0;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 980px) {
+  .review-text-area {
+    width: 30em !important;
+  }
+}
+@media only screen and (min-width: 100px) and (max-width: 500px) {
+  .review-text-area {
+    width: 20em !important;
   }
 }

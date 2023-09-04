@@ -140,8 +140,8 @@ export default function ProductPage() {
             <div className="col-sm-6 ">
               <h1 className="product-page-title">{product.title}</h1>
               <p className="product-page-p">{product.description}</p>
-              <p className="price-product-p">Price : {product.price}$</p>
               <br />
+              <p className="price-product-p">Price : {product.price}$</p>
               <br />
 
               {loggedInUser && (
@@ -209,9 +209,9 @@ export default function ProductPage() {
                     value={review}
                     id="product-review"
                     rows={3}
-                    cols={90}
+                    cols={80}
                     onChange={hadnleReviewText}
-                    className="d-flex justify-content-center"
+                    className="d-flex justify-content-center review-text-area"
                   />
                   <br />
                   <button
