@@ -114,17 +114,9 @@ router.get("/cart/products", authMiddleware, async (req, res) => {
 router.post("/checkout", authMiddleware, async (req, res) => {
   try {
     const items = req.body.items;
-    let lineItems = [];
-    items.forEach((item) => {
-      lineItems.push({
-        quantity: item.qty,
-        price: item.price,
-        title: item.title,
-      });
-    });
 
     const session = await stripe.checkout.sessions.create({
-      line_items: lineItems,
+      line_items: items,
       mode: "payment",
       success_url: `${process.env.CLIENT_URL}/success`,
       cancel_url: `${process.env.CLIENT_URL}/cancel`,
