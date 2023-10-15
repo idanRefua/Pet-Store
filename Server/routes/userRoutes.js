@@ -115,7 +115,6 @@ router.post("/checkout", authMiddleware, async (req, res) => {
   try {
     const items = req.body.items;
     let lineItems = [];
-
     items.forEach((item) => {
       lineItems.push({
         price: item.id,
@@ -136,7 +135,7 @@ router.post("/checkout", authMiddleware, async (req, res) => {
       })
     );
   } catch (error) {
-    return res.status(401).json(error);
+    return res.status(401).json(console.log(error));
   }
 });
 module.exports = router;

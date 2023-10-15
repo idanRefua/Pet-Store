@@ -66,7 +66,7 @@ function NavBar() {
         window.location.assign(response.url);
       }
     } catch (error) {
-      alert("request not work, please try again later");
+      console.log(error);
     }
   };
 
