@@ -58,18 +58,19 @@ function NavBar() {
   const checkoutCart = async () => {
     try {
       let newItems = [];
-      const newrw = cartUser.items.forEach((item) => {
+
+      cartUser.items.forEach((item) => {
         axios.get(`/products/product/moreinfo/${item.id}`).then((response) => {
           newItems.push({
             title: response.data.title,
-            quantity: item.qty,
+            quantity: item.quantity,
             price: response.data.price,
           });
         });
       });
 
       const response = await axios.post("/users/checkout", {
-        items: newrw,
+        items: newItems,
       });
 
       if (response.url) {
