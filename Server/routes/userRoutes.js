@@ -117,16 +117,17 @@ router.post("/checkout", authMiddleware, async (req, res) => {
     let lineItems = [];
     items.forEach((item) => {
       lineItems.push({
+        currency: "usd",
+        quantity: item.qty,
         price: item.price,
-        quantity: item.quantity,
       });
     });
 
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: "payment",
-      success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/cancel",
+      success_url: `${process.env.CLIENT_URL}/success`,
+      cancel_url: `${process.env.CLIENT_URL}/cancel`,
     });
 
     res.status(200).send(
