@@ -58,6 +58,7 @@ function NavBar() {
   const checkoutCart = async () => {
     try {
       console.log(productsCart);
+      console.log(cartUser);
       const response = await axios.post("/users/checkout", {
         items: cartUser.items,
       });
