@@ -58,13 +58,14 @@ function NavBar() {
   const checkoutCart = async () => {
     try {
       let newItems = [];
-
       cartUser.items.forEach((item) => {
         axios.get(`/products/product/moreinfo/${item.id}`).then((response) => {
           newItems.push({
             title: response.data.title,
+            image: response.data.image,
             quantity: item.quantity,
             price: response.data.price,
+            id: item.id,
           });
         });
       });
