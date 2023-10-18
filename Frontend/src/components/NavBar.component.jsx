@@ -15,6 +15,7 @@ import { getProductInfo } from "../GetData/getDataProducts";
 
 function NavBar() {
   const cartUser = useContext(CartContext);
+  const [newCart, setNewCart] = useState([]);
   const [modalCart, setModalCart] = useState(false);
   const [products, setProdutcs] = useState([]);
   const dispatch = useDispatch();
@@ -57,8 +58,7 @@ function NavBar() {
 
   const checkoutCart = async () => {
     try {
-      let newItems = [];
-      cartUser.items.forEach((item) => {
+      /*    cartUser.items.forEach((item) => {
         axios.get(`/products/product/moreinfo/${item.id}`).then((response) => {
           newItems.push({
             title: response.data.title,
@@ -68,10 +68,10 @@ function NavBar() {
             id: item.id,
           });
         });
-      });
+      }); */
 
       const response = await axios.post("/users/checkout", {
-        items: newItems,
+        items: newCart,
       });
 
       if (response.url) {
@@ -81,6 +81,31 @@ function NavBar() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        cartUser.items.map(async (item) => {
+          const response = await axios.get(
+            `/products/product/moreinfo/${item.id}`
+          );
+          setNewCart((arr) => [
+            ...arr,
+            {
+              title: response.data.title,
+              image: response.data.image,
+              quantity: item.quantity,
+              price: response.data.price,
+              id: item.id,
+            },
+          ]);
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [cartUser.items]);
 
   return (
     <div className="header-nav">

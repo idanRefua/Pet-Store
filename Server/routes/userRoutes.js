@@ -113,7 +113,7 @@ router.get("/cart/products", authMiddleware, async (req, res) => {
 
 router.post("/checkout", authMiddleware, async (req, res) => {
   try {
-    const line_items = req.body.items.map((item) => {
+    /*     const line_items = req.body.items.map((item) => {
       return {
         price_data: {
           currency: "usd",
@@ -129,18 +129,21 @@ router.post("/checkout", authMiddleware, async (req, res) => {
         },
         quantity: item.quantity,
       };
-    });
-    /*   let lineItems = [];
+    }); */
+    const items = req.body.items;
+    let lineItems = [];
     items.forEach((item) => {
       lineItems.push({
         quantity: item.qty,
+        image: item.image,
         price: item.price,
         title: item.title,
+        id: item.id,
       });
-    }); */
+    });
 
     const session = await stripe.checkout.sessions.create({
-      line_items,
+      line_items: lineItems,
       mode: "payment",
       success_url: `${process.env.CLIENT_URL}/success`,
       cancel_url: `${process.env.CLIENT_URL}/cancel`,
