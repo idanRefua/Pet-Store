@@ -130,6 +130,7 @@ router.post("/checkout", authMiddleware, async (req, res) => {
         quantity: item.quantity,
       };
     }); */
+    console.log(req.body);
     const items = req.body.items;
     let lineItems = [];
     items.forEach((item) => {
