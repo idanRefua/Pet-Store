@@ -144,7 +144,7 @@ router.post("/checkout", authMiddleware, async (req, res) => {
     }); */
 
     const session = await stripe.checkout.sessions.create({
-      line_items: lineItems,
+      line_items,
       mode: "payment",
       success_url: `${process.env.CLIENT_URL}/success`,
       cancel_url: `${process.env.CLIENT_URL}/cancel`,
