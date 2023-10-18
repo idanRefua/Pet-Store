@@ -93,7 +93,7 @@ function NavBar() {
             ...arr,
             {
               title: response.data.title,
-              image: response.data.image,
+              /* image: response.data.image, */
               quantity: item.quantity,
               price: response.data.price,
               id: item.id,
