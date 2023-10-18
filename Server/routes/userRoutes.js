@@ -135,7 +135,7 @@ router.post("/checkout", authMiddleware, async (req, res) => {
     let lineItems = [];
     items.forEach((item) => {
       lineItems.push({
-        quantity: item.qty,
+        quantity: item.quantity,
         /* image: item.image, */
         price: item.price,
         title: item.title,
