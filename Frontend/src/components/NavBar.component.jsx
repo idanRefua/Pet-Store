@@ -92,11 +92,11 @@ function NavBar() {
           setNewCart((arr) => [
             ...arr,
             {
-              title: response.data.title,
+              /* title: response.data.title, */
               /* image: response.data.image, */
               quantity: item.quantity,
               price: response.data.price,
-              id: item.id,
+              /*  id: item.id, */
             },
           ]);
         });

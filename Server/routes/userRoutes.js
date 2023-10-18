@@ -138,8 +138,8 @@ router.post("/checkout", authMiddleware, async (req, res) => {
         quantity: item.quantity,
         /* image: item.image, */
         price: item.price,
-        title: item.title,
-        id: item.id,
+        /*  title: item.title,
+        id: item.id, */
       });
     });
 
