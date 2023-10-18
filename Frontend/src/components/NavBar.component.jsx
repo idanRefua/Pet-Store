@@ -58,18 +58,6 @@ function NavBar() {
 
   const checkoutCart = async () => {
     try {
-      /*    cartUser.items.forEach((item) => {
-        axios.get(`/products/product/moreinfo/${item.id}`).then((response) => {
-          newItems.push({
-            title: response.data.title,
-            image: response.data.image,
-            quantity: item.quantity,
-            price: response.data.price,
-            id: item.id,
-          });
-        });
-      }); */
-
       const response = await axios.post("/users/checkout", {
         items: newCart,
       });
@@ -92,11 +80,11 @@ function NavBar() {
           setNewCart((arr) => [
             ...arr,
             {
-              /* title: response.data.title, */
+              name: response.data.title,
               /* image: response.data.image, */
               quantity: item.quantity,
               price: response.data.price,
-              /*  id: item.id, */
+              id: item.id,
             },
           ]);
         });
