@@ -117,13 +117,13 @@ router.post("/checkout", authMiddleware, async (req, res) => {
       return {
         price_data: {
           currency: "usd",
+          unit_amount: item.price * 100,
           product_data: {
-            name: item.title,
+            name: item.name,
             metadata: {
               id: item.id,
             },
           },
-          unit_amount: item.price * 100,
         },
         quantity: item.quantity,
       };
