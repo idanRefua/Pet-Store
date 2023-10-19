@@ -155,7 +155,7 @@ router.post("/checkout", authMiddleware, async (req, res) => {
       })
     );
   } catch (error) {
-    return res.status(401).json(console.log(error));
+    return res.status(401).send(console.log(error));
   }
 });
 module.exports = router;
