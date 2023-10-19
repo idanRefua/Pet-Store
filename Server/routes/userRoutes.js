@@ -113,6 +113,7 @@ router.get("/cart/products", authMiddleware, async (req, res) => {
 
 router.post("/checkout", authMiddleware, async (req, res) => {
   try {
+    console.log(req.body.items);
     const line_items = req.body.items.map((item) => {
       return {
         price_data: {
