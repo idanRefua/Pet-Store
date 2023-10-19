@@ -11,7 +11,6 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import CartProductNavbarComponent from "../components/CartProductNavbarComponent/CartProductNavbarComponent";
 import axios from "axios";
-import { getProductInfo } from "../GetData/getDataProducts";
 
 function NavBar() {
   const cartUser = useContext(CartContext);
@@ -81,7 +80,6 @@ function NavBar() {
             ...arr,
             {
               name: response.data.title,
-              /* image: response.data.image, */
               quantity: item.quantity,
               price: response.data.price,
               id: item.id,
