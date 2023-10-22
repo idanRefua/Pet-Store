@@ -129,18 +129,6 @@ router.post("/checkout", authMiddleware, async (req, res) => {
         quantity: item.quantity,
       };
     });
-    /*    console.log(req.body);
-    const items = req.body.items;
-    let lineItems = [];
-    items.forEach((item) => {
-      lineItems.push({
-        quantity: item.quantity,
-      image: item.image, 
-        price: item.price,
-        title: item.title,
-        id: item.id, 
-      });
-    }); */
 
     const session = await stripe.checkout.sessions.create({
       line_items,

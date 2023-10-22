@@ -57,12 +57,13 @@ function NavBar() {
 
   const checkoutCart = async () => {
     try {
+      console.log(newCart);
       const response = await axios.post("/users/checkout", {
         items: newCart,
       });
 
-      if (response.url) {
-        window.location.assign(response.url);
+      if (response.data.url) {
+        window.location.assign(response.data.url);
       }
     } catch (error) {
       console.log(error);
@@ -71,21 +72,21 @@ function NavBar() {
 
   useEffect(() => {
     const fetchData = async () => {
+      let myArray = [];
       try {
         cartUser.items.map(async (item) => {
           const response = await axios.get(
             `/products/product/moreinfo/${item.id}`
           );
-          setNewCart((arr) => [
-            ...arr,
-            {
-              name: response.data.title,
-              quantity: item.quantity,
-              price: response.data.price,
-              id: item.id,
-            },
-          ]);
+
+          myArray.push({
+            name: response.data.title,
+            quantity: item.quantity,
+            price: response.data.price,
+            id: item.id,
+          });
         });
+        setNewCart(myArray);
       } catch (err) {
         console.log(err);
       }
