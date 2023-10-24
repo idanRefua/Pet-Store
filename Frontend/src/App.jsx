@@ -21,6 +21,7 @@ import EquipProductsPage from "./pages/EquipProducts/EquipProductsPage";
 import FoodProductPgae from "./pages/FoodProducts/FoodProductsPage";
 import FooterComponent from "./components/FooterComponent/FooterComponent";
 import CartProvider from "./context/CartContext/cartContext";
+import MyFavouritesPage from "./pages/MyFavouritesPage/MyFavouritesPage";
 
 function App() {
   const history = useHistory();
@@ -68,6 +69,7 @@ function App() {
               path="/editproduct/:productid"
               component={EditProductPage}
             />
+            <AuthRoute path="/myfavourites" component={MyFavouritesPage} />
             <Route path="/product/description/:prid" component={ProductPage} />
             <AuthRoute path="/userinfo/cart" component={UserCartPage} />
             <Route path="*" component={NotFoundPage} />

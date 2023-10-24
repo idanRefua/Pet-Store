@@ -8,6 +8,14 @@ import axios from "axios";
 export default function MyProductsPage() {
   const [productsArray, setProductsArray] = useState([]);
   const history = useHistory();
+  const user = useSelector((state) => state.auth.userInfo);
+
+  useEffect(() => {
+    if (!user.admin) {
+      history.push("/*");
+    }
+  }, []);
+
   const hadnleDeletProduct = (productId, productTitle) => {
     const userConfirm = window.confirm(
       `Are You Sure You want delete this Product  - ${productTitle}? `
@@ -34,7 +42,7 @@ export default function MyProductsPage() {
       setProductsArray(data.data);
     });
   }, []);
-  const user = useSelector((state) => state.auth.userInfo);
+
   return (
     <div>
       <h3 className="d-flex justify-content-center my-products-title animate__animated animate__backInLeft">

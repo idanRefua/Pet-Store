@@ -271,6 +271,15 @@ function NavBar() {
                             className="dropdown-item"
                             to="/login"
                             activeClassName="activeLink"
+                          >
+                            My Favourites
+                          </NavLink>
+                        </li>
+                        <li>
+                          <NavLink
+                            className="dropdown-item"
+                            to="/login"
+                            activeClassName="activeLink"
                             onClick={logOut}
                           >
                             Log-Out
