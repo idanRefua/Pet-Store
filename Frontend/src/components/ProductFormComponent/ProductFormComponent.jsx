@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./product-form-component.css";
 import { useState } from "react";
 import IamgeUpload from "../ImageUpload/ImageUpload";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function ProductFormComponent() {
   const [title, setTitle] = useState("");
@@ -12,6 +13,13 @@ export default function ProductFormComponent() {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const history = useHistory();
+  const user = useSelector((state) => state.auth.userInfo);
+
+  useEffect(() => {
+    if (!user.admin) {
+      history.push("/*");
+    }
+  }, []);
 
   const handleImageInput = (pickedFile, fileIsValid) => {
     if (fileIsValid) {
@@ -38,13 +46,6 @@ export default function ProductFormComponent() {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-
-    /* const formData = new FormData();
-    formData.append("image", image);
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("category", category);
-    formData.append("price", price); */
 
     try {
       if (category === "Food" || category === "Equip") {

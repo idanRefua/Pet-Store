@@ -269,7 +269,7 @@ function NavBar() {
                         <li>
                           <NavLink
                             className="dropdown-item"
-                            to="/login"
+                            to="/myfavourites"
                             activeClassName="activeLink"
                           >
                             My Favourites

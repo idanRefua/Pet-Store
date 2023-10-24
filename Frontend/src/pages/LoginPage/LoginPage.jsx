@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import "./login-page.css";
-import { useState } from "react";
+import { useDebugValue, useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/auth";
 import jwt_decode from "jwt-decode";
 import loginPagePic from "../../imgs/login-page-pic.svg";
@@ -18,6 +18,14 @@ export default function LoginPage() {
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
+  const loggedInUser = useSelector((state) => state.auth.isLoggedIn);
+
+  useEffect(() => {
+    if (loggedInUser) {
+      history.push("/home");
+    }
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       email: "",
