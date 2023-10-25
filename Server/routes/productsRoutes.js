@@ -185,6 +185,7 @@ router.patch("/removefromfavourites/:id", authMiddleWare, async (req, res) => {
 router.get("/myfavourites", authMiddleWare, async (req, res) => {
   try {
     const userId = req.userData.id;
+    console.log(userId);
     const userFavouritesProducts = await productsModel.userFavouritesProducts(
       userId
     );
