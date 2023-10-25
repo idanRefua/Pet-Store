@@ -4,7 +4,6 @@ const authMiddleWare = require("../middleware/auth.middleware");
 const uploadImage = require("../middleware/upload-image");
 const fs = require("fs");
 const usersModel = require("../models/userModel");
-const { log } = require("console");
 const path = require("path");
 
 const router = express.Router();
@@ -184,8 +183,8 @@ router.patch("/removefromfavourites/:id", authMiddleWare, async (req, res) => {
 
 router.get("/myfavourites", authMiddleWare, async (req, res) => {
   try {
-    const userId = req.userData.id;
-    console.log(userId);
+    const userId = req.userData._id;
+
     const userFavouritesProducts = await productsModel.userFavouritesProducts(
       userId
     );
