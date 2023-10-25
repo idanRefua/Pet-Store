@@ -182,6 +182,18 @@ router.patch("/removefromfavourites/:id", authMiddleWare, async (req, res) => {
   }
 });
 
+router.get("/myfavourites", authMiddleWare, async (req, res) => {
+  try {
+    const userId = req.userData.id;
+    const userFavouritesProducts = await productsModel.userFavouritesProducts(
+      userId
+    );
+    res.status(200).json(userFavouritesProducts);
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+});
+
 router.get("/product/moreinfo/:id", async (req, res) => {
   try {
     const productId = req.params.id;

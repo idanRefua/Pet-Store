@@ -67,6 +67,16 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("/myfavourites", authMiddleware, async (req, res) => {
+  try {
+    const userData = req.userData;
+    const user = await usersModel.findUserById(userData.id);
+    /* const userFavouritesProducts = await  */
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+});
+
 router.delete("/deleteuser/:id", async (req, res) => {
   try {
     const userId = req.params.id;

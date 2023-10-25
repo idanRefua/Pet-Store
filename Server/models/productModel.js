@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const productsSchema = new Schema({
   title: { type: String, required: true },
   image: { type: String, required: false },
-  /* image: { data: Buffer, contentType: String, fileName: String }, */
   description: { type: String, required: true },
   likes: [String],
   createdBy: { type: mongoose.Types.ObjectId, required: true },
@@ -76,6 +75,10 @@ const updateProduct = (id, title, description, price, category, image) => {
   return Products.findOneAndUpdate({ _id: id }, filter);
 };
 
+const userFavouritesProducts = (id) => {
+  return Products.find({ likes: { $in: [id] } });
+};
+
 const productById = (productId) => {
   return Products.findOne({ _id: productId });
 };
@@ -138,4 +141,5 @@ module.exports = {
   checkIfUserReview,
   removeReview,
   porudctsInCart,
+  userFavouritesProducts,
 };
