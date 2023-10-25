@@ -1,12 +1,12 @@
 import "./register-page-style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import registerLogo from "../../imgs/register.svg";
-
+import { useSelector } from "react-redux";
 export default function RegisterPage() {
   const passValid = new RegExp(
     "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()]).{6,}$"
@@ -14,6 +14,14 @@ export default function RegisterPage() {
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const history = useHistory();
+  const loggedInUser = useSelector((state) => state.auth.isLoggedIn);
+
+  useEffect(() => {
+    if (loggedInUser) {
+      history.push("/home");
+    }
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       name: "",
