@@ -1,5 +1,5 @@
 .about-us-box {
-  margin-top: 2.5em;
+  margin-top: 5em;
 }
 
 .about-us-title {
@@ -7,17 +7,17 @@
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 2.8em;
   color: rgb(227, 32, 198);
-  text-shadow: -2px 2px rgb(115, 115, 115);
+  text-shadow: 3px 3px 1px black;
   margin-bottom: 1.5em;
 }
 
-.about-us-content-box {
+/* .about-us-content-box {
   padding: 40px;
   border-radius: 40px;
   box-shadow: 17px 17px 15px black;
   background-color: #a9c9ff;
   background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
-}
+} */
 .story-title {
   border-bottom: 2px solid rgb(227, 32, 198);
   margin-bottom: 1.1em;
@@ -33,13 +33,14 @@
 .store-map {
   margin-left: 3em;
   border-radius: 50px;
+  box-shadow: black 3px 4px;
 }
 
 .p-story-content {
-  font-size: 1.21em;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.4em;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-weight: 800;
-  color: rgb(61, 141, 184);
+  color: rgb(37, 133, 185);
 }
 
 .store-map-box {
