@@ -93,7 +93,7 @@ export default function EquipProductsPage() {
           placeholder="Search Product..."
           onChange={handleSearch}
           value={searchTerm}
-          className=" col-10"
+          className=" col-10 w-100"
         />
         <select
           onChange={handleChangeFilterPrice}
@@ -115,7 +115,7 @@ export default function EquipProductsPage() {
           </option>
         </select>
       </div>
-      <div className="row">{renderData()}</div>
+      <div className="row equip-products-list">{renderData()}</div>
     </div>
   );
 }

@@ -45,6 +45,11 @@ export default function FoodProductPgae() {
       if (e.target.value === "All" && searchTerm === "") {
         return product;
       } else if (
+        e.target.value === "All" &&
+        product.title.toLowerCase().includes(searchTerm)
+      ) {
+        return product;
+      } else if (
         e.target.value === "100" &&
         product.title.toLowerCase().includes(searchTerm)
       ) {
@@ -93,12 +98,13 @@ export default function FoodProductPgae() {
           placeholder="Search Product..."
           onChange={handleSearch}
           value={searchTerm}
-          className=" col-10"
+          className=" col-10 w-100"
         />
+
         <select
           onChange={handleChangeFilterPrice}
           defaultValue={"All"}
-          className="form-select filter-price-box "
+          className="form-select filter-price-box"
           id="inputGroupSelect01"
         >
           <option className="option-select" value="All">
@@ -115,7 +121,7 @@ export default function FoodProductPgae() {
           </option>
         </select>
       </div>
-      <div className="row">{renderData()}</div>
+      <div className="row food-products-list">{renderData()}</div>
     </div>
   );
 }
