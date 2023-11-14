@@ -14,6 +14,7 @@ const productsSchema = new Schema({
     {
       review: String,
       byUser: { type: mongoose.Types.ObjectId },
+      rank: Number,
       userName: String,
     },
   ],
@@ -111,6 +112,7 @@ const addProductReview = (productId, userName, review, userId) => {
       $addToSet: {
         reviews: {
           review,
+          rank,
           userName,
           byUser: userId,
         },

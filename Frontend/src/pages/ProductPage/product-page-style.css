@@ -43,6 +43,14 @@
   color: white;
 }
 
+input[type="radio"] {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+}
+
 #product-review {
   resize: none;
   border-radius: 20px;

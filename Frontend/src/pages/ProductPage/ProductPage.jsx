@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import ReviewTableRowComponent from "../../components/ReviewTableRowComponent/ReviewTableRowComponent";
 import { CartContext } from "../../context/CartContext/cartContext";
+import { FaStar } from "react-icons/fa";
 
 export default function ProductPage() {
   const history = useHistory();
@@ -22,6 +23,8 @@ export default function ProductPage() {
   const [likes, setLikes] = useState([]);
   const [productsCart, setProductsCart] = useState([]);
   const [userCart, setUserCart] = useState([]);
+  const [rank, setRank] = useState(null);
+  const [hover, setHover] = useState(null);
   useEffect(() => {
     axios
       .get(
@@ -57,6 +60,7 @@ export default function ProductPage() {
         let newReview = {
           _id: Math.random(),
           review: review,
+          rank,
           byUser: userInfo._id,
           userName: userInfo.name,
         };
@@ -203,24 +207,53 @@ export default function ProductPage() {
               !productsReviews.some(
                 (review) => review.byUser === userInfo._id
               ) && (
-                <div className="review-input">
-                  <textarea
-                    type="text"
-                    value={review}
-                    id="product-review"
-                    rows={3}
-                    cols={80}
-                    onChange={hadnleReviewText}
-                    className="d-flex justify-content-center review-text-area"
-                  />
+                <Fragment>
+                  <div className="stars-review">
+                    {[...Array(5)].map((star, index) => {
+                      const currentStarRank = index + 1;
+                      return (
+                        <label>
+                          <input
+                            type="radio"
+                            name="rank"
+                            value={currentStarRank}
+                            onClick={() => setRank(currentStarRank)}
+                          />
+                          <FaStar
+                            size={20}
+                            className="star"
+                            color={
+                              currentStarRank <= (hover || rank)
+                                ? "#ffc107"
+                                : "#e4e5e9"
+                            }
+                            onMouseEnter={() => setHover(currentStarRank)}
+                            onMouseLeave={() => setHover(null)}
+                          />
+                        </label>
+                      );
+                    })}
+                  </div>
                   <br />
-                  <button
-                    className="d-flex justify-content-center add-review-btn"
-                    onClick={handleAddReview}
-                  >
-                    Add Review
-                  </button>
-                </div>
+                  <div className="review-input">
+                    <textarea
+                      type="text"
+                      value={review}
+                      id="product-review"
+                      rows={3}
+                      cols={80}
+                      onChange={hadnleReviewText}
+                      className="d-flex justify-content-center review-text-area"
+                    />
+                    <br />
+                    <button
+                      className="d-flex justify-content-center add-review-btn"
+                      onClick={handleAddReview}
+                    >
+                      Add Review
+                    </button>
+                  </div>
+                </Fragment>
               )}
 
             <br />
