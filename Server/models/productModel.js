@@ -105,7 +105,7 @@ const checkIfUserReview = (productId, userId) => {
   });
 };
 
-const addProductReview = (productId, userName, review, userId) => {
+const addProductReview = (productId, userName, review, userId, rank) => {
   return Products.findOneAndUpdate(
     { _id: productId },
     {

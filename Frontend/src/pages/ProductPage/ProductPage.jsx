@@ -49,7 +49,7 @@ export default function ProductPage() {
   }, [prid, likes, userInfo._id, productsCart]);
 
   const handleAddReview = () => {
-    if (review === "" || rank === null) {
+    if (review === "" && rank === null) {
       return alert("Can't add empty review or empty rank");
     }
     axios
