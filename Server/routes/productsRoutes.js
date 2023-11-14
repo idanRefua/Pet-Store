@@ -215,6 +215,7 @@ router.post("/addreview/:id", authMiddleWare, async (req, res) => {
         productId,
         user.name,
         body.review,
+        body.rank,
         user._id
       );
       res.status(200).json(review);

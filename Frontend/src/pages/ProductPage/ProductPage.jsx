@@ -49,12 +49,13 @@ export default function ProductPage() {
   }, [prid, likes, userInfo._id, productsCart]);
 
   const handleAddReview = () => {
-    if (review === "") {
-      return alert("Can't add empty review!");
+    if (review === "" || rank === null) {
+      return alert("Can't add empty review or empty rank");
     }
     axios
       .post(`/products/addreview/${prid}`, {
         review,
+        rank,
       })
       .then(() => {
         let newReview = {
@@ -67,7 +68,8 @@ export default function ProductPage() {
 
         setProductsReviews((prev) => prev.concat(newReview));
       })
-      .catch(() => alert("can't add review right not please try again later!"));
+      .catch((err) => console.log(err));
+    /* .catch(() => alert("can't add review right not please try again later!")); */
   };
 
   const handleAddToFavourites = () => {
