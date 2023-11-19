@@ -1,8 +1,8 @@
 import "./product-page-style.css";
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useCallback, useContext, useEffect } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import ReviewTableRowComponent from "../../components/ReviewTableRowComponent/ReviewTableRowComponent";
 import { CartContext } from "../../context/CartContext/cartContext";
@@ -12,6 +12,7 @@ export default function ProductPage() {
   const history = useHistory();
   const location = useLocation();
   const { prid } = useParams();
+  const myRef = useRef(null);
   const cartUser = useContext(CartContext);
   const productQty = cartUser.getProductQty(prid);
   const userInfo = useSelector((state) => state.auth.userInfo);
@@ -25,6 +26,21 @@ export default function ProductPage() {
   const [userCart, setUserCart] = useState([]);
   const [rank, setRank] = useState(null);
   const [hover, setHover] = useState(null);
+  const [avgRank, setAvgRank] = useState(null);
+
+  /* const calcAvg = useCallback((array) => {
+    console.log(array);
+    const avg =
+      array.reduce((prev, review) => prev + review.rank, 0) / array.length;
+    setAvgRank(avg);
+  }, []); */
+
+  const calcAvg = (array) => {
+    const avg =
+      array.reduce((prev, review) => prev + review.rank, 0) / array.length;
+    setAvgRank(avg);
+  };
+
   useEffect(() => {
     axios
       .get(
@@ -35,6 +51,7 @@ export default function ProductPage() {
         setProduct(res.data);
         setProductsReviews(res.data.reviews);
         setProductLikes(res.data.likes);
+        calcAvg(res.data.reviews);
       })
       .catch(() => {
         history.push("/notfound");
@@ -46,10 +63,10 @@ export default function ProductPage() {
         setUserCart(res.data);
       })
       .catch((err) => console.log(err));
-  }, [prid, likes, userInfo._id, productsCart]);
+  }, [prid, likes, userInfo._id, productsCart, history]);
 
   const handleAddReview = () => {
-    if (review === "" && rank === null) {
+    if (review === "" || rank === null) {
       return alert("Can't add empty review or empty rank");
     }
     axios
@@ -57,7 +74,7 @@ export default function ProductPage() {
         review,
         rank,
       })
-      .then(() => {
+      .then((res) => {
         let newReview = {
           _id: Math.random(),
           review: review,
@@ -65,11 +82,12 @@ export default function ProductPage() {
           byUser: userInfo._id,
           userName: userInfo.name,
         };
+        let newArray = [...productsReviews, newReview];
 
+        calcAvg(newArray);
         setProductsReviews((prev) => prev.concat(newReview));
       })
-      .catch((err) => console.log(err));
-    /* .catch(() => alert("can't add review right not please try again later!")); */
+      .catch(() => alert("can't add review right not please try again later!"));
   };
 
   const handleAddToFavourites = () => {
@@ -107,6 +125,7 @@ export default function ProductPage() {
             return review._id !== id;
           });
           setProductsReviews(newReviewsArrFilter);
+          calcAvg(newReviewsArrFilter);
         })
         .catch(() => {
           alert("there is problem with the server , please try again later");
@@ -114,6 +133,8 @@ export default function ProductPage() {
       setReview("");
     }
   };
+
+  const moveToReviews = () => myRef.current.scrollIntoView();
 
   const handleAddToCart = () => {
     if (loggedInUser) {
@@ -145,6 +166,25 @@ export default function ProductPage() {
             </div>
             <div className="col-sm-6 ">
               <h1 className="product-page-title">{product.title}</h1>
+              <h5>
+                {[...Array(5)].map((star, index) => {
+                  const ratingValue = index + 1;
+
+                  return (
+                    <label className="avg-star">
+                      <input type="radio" name="rank" value={index + 1} />
+                      <FaStar
+                        size={20}
+                        onClick={moveToReviews}
+                        className="avg-star-reviews"
+                        color={ratingValue <= avgRank ? "#ffc107" : "#e4e5e9"}
+                      />
+                    </label>
+                  );
+                })}
+                ({productsReviews.length})
+              </h5>
+              <br />
               <p className="product-page-p">{product.description}</p>
               <br />
               <p className="price-product-p">Price : {product.price}$</p>
@@ -259,7 +299,7 @@ export default function ProductPage() {
               )}
 
             <br />
-            <table className="table">
+            <table className="table" id="table-reviews" ref={myRef}>
               <thead>
                 <tr>
                   <th className="col-sm-6" scope="col">
@@ -276,6 +316,7 @@ export default function ProductPage() {
                     <ReviewTableRowComponent
                       key={review._id}
                       id={review._id}
+                      rank={review.rank}
                       userName={review.userName}
                       review={review.review}
                       byUser={review.byUser}

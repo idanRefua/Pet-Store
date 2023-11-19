@@ -28,6 +28,9 @@
   display: block;
 }
 
+.star-review {
+  color: #e4e5e9;
+}
 .delete-review-btn:hover {
   background-position: right center;
   color: #fff;

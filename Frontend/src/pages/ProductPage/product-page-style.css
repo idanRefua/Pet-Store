@@ -10,7 +10,12 @@
   font-weight: bold;
   margin-bottom: 20px;
 }
-
+.avg-star {
+  margin-right: 2px;
+}
+.avg-star-reviews {
+  cursor: pointer;
+}
 .add-review-btn {
   background-image: linear-gradient(
     to right,
