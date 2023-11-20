@@ -83,7 +83,6 @@ export default function ProductPage() {
           userName: userInfo.name,
         };
         let newArray = [...productsReviews, newReview];
-
         calcAvg(newArray);
         setProductsReviews((prev) => prev.concat(newReview));
       })
