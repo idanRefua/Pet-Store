@@ -22,17 +22,20 @@ const MyFavouritesPage = () => {
         </h4>
       )}
       <div className="row mt-5">
-        {products.map((product) => {
-          return (
-            <ProductComponent
-              key={product._id}
-              id={product._id}
-              title={product.title}
-              price={product.price}
-              image={product.image}
-            />
-          );
-        })}
+        {products
+          .slice()
+          .reverse()
+          .map((product) => {
+            return (
+              <ProductComponent
+                key={product._id}
+                id={product._id}
+                title={product.title}
+                price={product.price}
+                image={product.image}
+              />
+            );
+          })}
       </div>
     </div>
   );

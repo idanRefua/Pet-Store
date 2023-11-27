@@ -28,13 +28,6 @@ export default function ProductPage() {
   const [hover, setHover] = useState(null);
   const [avgRank, setAvgRank] = useState(null);
 
-  /* const calcAvg = useCallback((array) => {
-    console.log(array);
-    const avg =
-      array.reduce((prev, review) => prev + review.rank, 0) / array.length;
-    setAvgRank(avg);
-  }, []); */
-
   const calcAvg = (array) => {
     const avg =
       array.reduce((prev, review) => prev + review.rank, 0) / array.length;
@@ -310,19 +303,22 @@ export default function ProductPage() {
                 </tr>
               </thead>
               <tbody>
-                {productsReviews.map((review) => {
-                  return (
-                    <ReviewTableRowComponent
-                      key={review._id}
-                      id={review._id}
-                      rank={review.rank}
-                      userName={review.userName}
-                      review={review.review}
-                      byUser={review.byUser}
-                      onDelete={handleDeleteReview}
-                    />
-                  );
-                })}
+                {productsReviews
+                  .slice()
+                  .reverse()
+                  .map((review) => {
+                    return (
+                      <ReviewTableRowComponent
+                        key={review._id}
+                        id={review._id}
+                        rank={review.rank}
+                        userName={review.userName}
+                        review={review.review}
+                        byUser={review.byUser}
+                        onDelete={handleDeleteReview}
+                      />
+                    );
+                  })}
               </tbody>
             </table>
           </div>

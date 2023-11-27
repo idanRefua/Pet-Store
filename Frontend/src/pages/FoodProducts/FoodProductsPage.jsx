@@ -74,17 +74,20 @@ export default function FoodProductPgae() {
     if (filterArr) {
       return (
         <Fragment>
-          {filterArr.map((product) => {
-            return (
-              <ProductComponent
-                key={product._id}
-                id={product._id}
-                title={product.title}
-                price={product.price}
-                image={product.image}
-              />
-            );
-          })}
+          {filterArr
+            .slice()
+            .reverse()
+            .map((product) => {
+              return (
+                <ProductComponent
+                  key={product._id}
+                  id={product._id}
+                  title={product.title}
+                  price={product.price}
+                  image={product.image}
+                />
+              );
+            })}
         </Fragment>
       );
     }
