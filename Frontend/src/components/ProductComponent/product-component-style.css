@@ -1,11 +1,10 @@
 .card {
-  margin: 10px;
-
+  margin: 15px;
   padding: 0px !important;
   overflow: hidden;
   border: 0.2px solid rgb(255, 172, 163) !important;
   border-radius: 20px 20px 20px !important;
-  height: 27.2em;
+  height: 27.8em;
 }
 
 .img-product {
@@ -27,8 +26,9 @@
 }
 .card-price {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: bold;
+  margin-top: 1.3em;
   color: rgb(76, 171, 76);
 }
 

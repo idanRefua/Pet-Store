@@ -112,11 +112,11 @@ function NavBar() {
                   ></CartProductNavbarComponent>
                 );
               })}
+              <h2>Total : {`${price ? price : 0}$`}</h2>
             </Fragment>
           ) : (
-            <h1>There is no items in the cart</h1>
+            <h3>There is no items...</h3>
           )}
-          <h2>Total : {`${price ? price : 0}$`}</h2>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseUserCart}>

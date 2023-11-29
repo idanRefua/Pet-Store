@@ -12,8 +12,9 @@
 }
 
 .product-search-image {
-  height: 4.5em;
+  height: 3.3em;
   width: 7em;
+  padding: 2px;
 }
 .products-swiper {
 }
@@ -26,6 +27,7 @@
 }
 .product-search-box {
   border-bottom: 1px solid black;
+  height: 3.3em;
 }
 
 .span-product {

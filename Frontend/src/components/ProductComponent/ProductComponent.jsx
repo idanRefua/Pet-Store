@@ -39,7 +39,9 @@ export default function ProductComponent(props) {
       />
 
       <div className="card-body">
-        <h3 className="card-title">{props.title}</h3>
+        <h3 className="card-title d-flex justify-content-center">
+          {props.title}
+        </h3>
         <p className="d-flex justify-content-center card-price">
           {props.price}$
         </p>

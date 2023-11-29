@@ -98,7 +98,6 @@ export default function HomePageComponent() {
           </Swiper>
         </div>
         <br />
-
         <ReviewsComponentCard></ReviewsComponentCard>
       </div>
     </Fragment>

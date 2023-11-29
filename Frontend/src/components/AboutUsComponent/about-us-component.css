@@ -4,27 +4,24 @@
 
 .about-us-title {
   font-weight: bold;
+  margin-bottom: 2em;
+  font-weight: bold;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 2.8em;
-  color: rgb(227, 32, 198);
-  text-shadow: 3px 3px 1px black;
-  margin-bottom: 1.5em;
+  text-shadow: 5px 2px 5px rgb(88, 88, 88);
+  background: -webkit-linear-gradient(#41d148, #c05757, #4848ff, #fa95f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* .about-us-content-box {
-  padding: 40px;
-  border-radius: 40px;
-  box-shadow: 17px 17px 15px black;
-  background-color: #a9c9ff;
-  background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
-} */
 .story-title {
   border-bottom: 2px solid rgb(227, 32, 198);
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   margin-bottom: 1.1em;
   font-weight: bold;
-  font-size: 2.21em;
-  color: rgb(227, 32, 198);
-  text-shadow: 3px 3px 1px black;
+  text-shadow: 3px 2px 3px rgb(88, 88, 88);
+  background: -webkit-linear-gradient(rgb(67, 162, 245), #f769eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .about-our-us {
   transition: all 1.5s;

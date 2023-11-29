@@ -10,9 +10,9 @@ export default function AboutUsComponent() {
 
       <div className="row about-us-content-box">
         <div className="col-md-6  about-our-us animate__animated animate__fadeInLeftBig">
-          <h3 className="d-flex justify-content-center story-title">
+          <h2 className="d-flex justify-content-center story-title">
             Our Story
-          </h3>
+          </h2>
           <p className="p-story-content">
             • Idan Store was created in 2005,They work years for help others to
             find the best products for dogs,food,accessories and many more.
