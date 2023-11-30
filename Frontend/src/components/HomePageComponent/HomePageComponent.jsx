@@ -88,7 +88,7 @@ export default function HomePageComponent() {
             pagination={true}
             className="my-swiper"
           >
-            {productsArray.map((item) => {
+            {productsArray.slice(0, 10).map((item) => {
               return (
                 <SwiperSlide className="swiper-slide" key={item._id}>
                   <img src={item.image} id={item._id} alt={item.title} />

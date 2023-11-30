@@ -85,8 +85,8 @@ input[type="radio"] {
 }
 
 .image-box:hover {
-  width: 540px;
-  height: 560px;
+  width: 520px;
+  height: 520px;
   transition: all 2s;
 }
 
